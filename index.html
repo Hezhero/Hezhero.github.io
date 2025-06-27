@@ -32,60 +32,60 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     
     <!-- 防止网站被克隆镜像 -->
-<!--    <script>-->
-<!--        (function() {-->
-<!--            var allowedHostnames = [-->
-<!--                decryptHostname([98, 108, 111, 103, 46, 104, 122, 104, 101, 114, 111, 46, 99, 110]), // 'blog.hzhero.cn'-->
-<!--                decryptHostname([104, 101, 122, 104, 101, 114, 111, 46, 103, 105, 116, 104, 117, 98, 46, 105, 111]), // 'hezhero.github.io'-->
-<!--                decryptHostname([108, 111, 99, 97, 108, 104, 111, 115, 116]) // 'localhost'-->
-<!--            ];-->
+    <script>
+        (function() {
+            var allowedHostnames = [
+                decryptHostname([98, 108, 111, 103, 46, 104, 122, 104, 101, 114, 111, 46, 99, 110]), // 'blog.hzhero.cn'
+                decryptHostname([104, 101, 122, 104, 101, 114, 111, 46, 103, 105, 116, 104, 117, 98, 46, 105, 111]), // 'hezhero.github.io'
+                decryptHostname([108, 111, 99, 97, 108, 104, 111, 115, 116]) // 'localhost'
+            ];
 
-<!--            var currentHostname = document.location.hostname;-->
-<!--            // console.log('当前主机名为：' + currentHostname);-->
+            var currentHostname = document.location.hostname;
+            console.log('当前主机名为：' + currentHostname);
 
-<!--            if (!isHostnameAllowed(currentHostname)) {-->
-<!--                showAlertAndRedirect();-->
-<!--            }-->
+            if (!isHostnameAllowed(currentHostname)) {
+                showAlertAndRedirect();
+            }
 
-<!--            function isHostnameAllowed(hostname) {-->
-<!--                return allowedHostnames.includes(hostname);-->
-<!--            }-->
+            function isHostnameAllowed(hostname) {
+                return allowedHostnames.includes(hostname);
+            }
 
-<!--            function decryptHostname(charCodes) {-->
-<!--                return String.fromCharCode.apply(null, charCodes);-->
-<!--            }-->
+            function decryptHostname(charCodes) {
+                return String.fromCharCode.apply(null, charCodes);
+            }
 
-<!--            function showAlertAndRedirect() {-->
-<!--                var countdown = 5;-->
-<!--                var alertDiv = document.createElement('div');-->
-<!--                alertDiv.style.position = 'fixed';-->
-<!--                alertDiv.style.width = '50%';-->
-<!--                alertDiv.style.height = '50%';-->
-<!--                alertDiv.style.top = '50%';-->
-<!--                alertDiv.style.left = '50%';-->
-<!--                alertDiv.style.transform = 'translate(-50%, -50%)';-->
-<!--                alertDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';-->
-<!--                alertDiv.style.color = 'white';-->
-<!--                alertDiv.style.display = 'flex';-->
-<!--                alertDiv.style.justifyContent = 'center';-->
-<!--                alertDiv.style.alignItems = 'center';-->
-<!--                alertDiv.style.fontSize = '24px';-->
-<!--                alertDiv.style.textAlign = 'center';-->
-<!--                alertDiv.style.zIndex = '10000';-->
-<!--                alertDiv.innerHTML = '<div>您访问的网页为镜像地址，<span id="countdown">' + countdown + '</span>秒后会跳转到源地址</div>';-->
-<!--                document.body.appendChild(alertDiv);-->
+            function showAlertAndRedirect() {
+                var countdown = 5;
+                var alertDiv = document.createElement('div');
+                alertDiv.style.position = 'fixed';
+                alertDiv.style.width = '50%';
+                alertDiv.style.height = '50%';
+                alertDiv.style.top = '50%';
+                alertDiv.style.left = '50%';
+                alertDiv.style.transform = 'translate(-50%, -50%)';
+                alertDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                alertDiv.style.color = 'white';
+                alertDiv.style.display = 'flex';
+                alertDiv.style.justifyContent = 'center';
+                alertDiv.style.alignItems = 'center';
+                alertDiv.style.fontSize = '24px';
+                alertDiv.style.textAlign = 'center';
+                alertDiv.style.zIndex = '10000';
+                alertDiv.innerHTML = '<div>您访问的网页为镜像地址，<span id="countdown">' + countdown + '</span>秒后会跳转到源地址</div>';
+                document.body.appendChild(alertDiv);
 
-<!--                var countdownInterval = setInterval(function() {-->
-<!--                countdown&#45;&#45;;-->
-<!--                document.getElementById('countdown').innerText = countdown;-->
-<!--                if (countdown <= 0) {-->
-<!--                    clearInterval(countdownInterval);-->
-<!--                    window.location.href = new URL(document.location.href).href.replace(currentHostname, allowedHostnames[0]);-->
-<!--                }-->
-<!--                }, 1000);-->
-<!--            }-->
-<!--        })();-->
-<!--    </script>-->
+                var countdownInterval = setInterval(function() {
+                countdown--;
+                document.getElementById('countdown').innerText = countdown;
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = new URL(document.location.href).href.replace(currentHostname, allowedHostnames[0]);
+                }
+                }, 1000);
+            }
+        })();
+    </script>
 <meta name="generator" content="Hexo 7.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
@@ -744,29 +744,6 @@ transparent;
         
             
             <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/6.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">docker基础</div>
-                            <div class="description center-align">
-                                
-                                    docker基础知识入门介绍
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/article/docker-basic.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
                  style="background-image: url('/medias/featureimages/9.jpg');">
                 <div class="container">
                     <div class="row">
@@ -802,6 +779,29 @@ transparent;
                             </div>
                             <div class="cover-btns">
                                 <a href="/article/docker-network.html" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/6.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">docker基础</div>
+                            <div class="description center-align">
+                                
+                                    docker基础知识入门介绍
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="/article/docker-basic.html" class="waves-effect waves-light btn"
                                    target="_blank">
                                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                                 </a>
@@ -944,34 +944,6 @@ transparent;
     
     <div class="col s12 m6" >
         
-            <div class="post-card" style="background-image: url('/medias/featureimages/6.jpg')">
-            
-            <div class="post-body">
-                <div class="post-categories">
-                    
-                        
-                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="category">运维</a>
-                        
-                    
-                </div>
-                <a href="/article/docker-basic.html">
-                    <h3 class="post-title">docker基础</h3>
-                </a>
-                <p class="post-description">
-                    
-                        docker基础知识入门介绍
-                    
-                </p>
-                <a href="/article/docker-basic.html" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FF5E3A 0%, #FF2A68 100%)" target="_blank">
-                    <i class="icon far fa-eye fa-fw"></i>阅读更多
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    
-    <div class="col s12 m6" >
-        
             <div class="post-card" style="background-image: url('/medias/featureimages/9.jpg')">
             
             <div class="post-body">
@@ -990,7 +962,7 @@ transparent;
                         docker-compose入门介绍
                     
                 </p>
-                <a href="/article/docker-compose.html" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #EF4DB6 0%, #C643FC 100%)" target="_blank">
+                <a href="/article/docker-compose.html" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FF5E3A 0%, #FF2A68 100%)" target="_blank">
                     <i class="icon far fa-eye fa-fw"></i>阅读更多
                 </a>
             </div>
@@ -998,7 +970,7 @@ transparent;
     </div>
     
     
-    <div class="col s12 m6" data-aos="zoom-in-up">
+    <div class="col s12 m6" >
         
             <div class="post-card" style="background-image: url('/medias/featureimages/15.jpg')">
             
@@ -1018,7 +990,35 @@ transparent;
                         docker网络和存储配置介绍
                     
                 </p>
-                <a href="/article/docker-network.html" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #1AD6FD 0%, #1D62F0 100%)" target="_blank">
+                <a href="/article/docker-network.html" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #EF4DB6 0%, #C643FC 100%)" target="_blank">
+                    <i class="icon far fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="col s12 m6" data-aos="zoom-in-up">
+        
+            <div class="post-card" style="background-image: url('/medias/featureimages/6.jpg')">
+            
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                        
+                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="category">运维</a>
+                        
+                    
+                </div>
+                <a href="/article/docker-basic.html">
+                    <h3 class="post-title">docker基础</h3>
+                </a>
+                <p class="post-description">
+                    
+                        docker基础知识入门介绍
+                    
+                </p>
+                <a href="/article/docker-basic.html" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #1AD6FD 0%, #1D62F0 100%)" target="_blank">
                     <i class="icon far fa-eye fa-fw"></i>阅读更多
                 </a>
             </div>
