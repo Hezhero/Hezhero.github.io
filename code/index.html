@@ -1,0 +1,2208 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="编码开发, 天际星空的神知库">
+    <meta name="description" content="把经验变产品，把专业变事业">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>编码开发 | 天际星空的神知库</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+    <!-- 防止网站被克隆镜像 -->
+    <script>
+        (function() {
+            var allowedHostnames = [
+                decryptHostname([98, 108, 111, 103, 46, 104, 122, 104, 101, 114, 111, 46, 99, 110]), // 'blog.hzhero.cn'
+                decryptHostname([103, 105, 116, 104, 117, 98, 46, 99, 111, 109]), // 'github.com'
+                decryptHostname([108, 111, 99, 97, 108, 104, 111, 115, 116]) // 'localhost'
+            ];
+
+            var currentHostname = document.location.hostname;
+            // console.log('当前主机名为：' + currentHostname);
+
+            if (!isHostnameAllowed(currentHostname)) {
+                showAlertAndRedirect();
+            }
+
+            function isHostnameAllowed(hostname) {
+                return allowedHostnames.includes(hostname);
+            }
+
+            function decryptHostname(charCodes) {
+                return String.fromCharCode.apply(null, charCodes);
+            }
+
+            function showAlertAndRedirect() {
+                var countdown = 5;
+                var alertDiv = document.createElement('div');
+                alertDiv.style.position = 'fixed';
+                alertDiv.style.width = '50%';
+                alertDiv.style.height = '50%';
+                alertDiv.style.top = '50%';
+                alertDiv.style.left = '50%';
+                alertDiv.style.transform = 'translate(-50%, -50%)';
+                alertDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                alertDiv.style.color = 'white';
+                alertDiv.style.display = 'flex';
+                alertDiv.style.justifyContent = 'center';
+                alertDiv.style.alignItems = 'center';
+                alertDiv.style.fontSize = '24px';
+                alertDiv.style.textAlign = 'center';
+                alertDiv.style.zIndex = '10000';
+                alertDiv.innerHTML = '<div>您访问的网页为镜像地址，<span id="countdown">' + countdown + '</span>秒后会跳转到源地址</div>';
+                document.body.appendChild(alertDiv);
+
+                var countdownInterval = setInterval(function() {
+                countdown--;
+                document.getElementById('countdown').innerText = countdown;
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = new URL(document.location.href).href.replace(currentHostname, allowedHostnames[0]);
+                }
+                }, 1000);
+            }
+        })();
+    </script>
+<meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+
+    <style type="text/css" lang="css">
+    #loading-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100vw;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: 
+#FFF;
+        text-align: center;
+        /* loader页面消失采用渐隐的方式*/
+        -webkit-transition: opacity 1s ease;
+        -moz-transition: opacity 1s ease;
+        -o-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+    }
+    .loading-image{
+        width: 120px;
+        height: 50px;
+        transform: translate(-50%);
+    }
+
+    .loading-image div:nth-child(2) {
+        -webkit-animation: pacman-balls 1s linear 0s infinite;
+        animation: pacman-balls 1s linear 0s infinite
+    }
+
+    .loading-image div:nth-child(3) {
+        -webkit-animation: pacman-balls 1s linear .33s infinite;
+        animation: pacman-balls 1s linear .33s infinite
+    }
+
+    .loading-image div:nth-child(4) {
+        -webkit-animation: pacman-balls 1s linear .66s infinite;
+        animation: pacman-balls 1s linear .66s infinite
+    }
+
+    .loading-image div:nth-child(5) {
+        -webkit-animation: pacman-balls 1s linear .99s infinite;
+        animation: pacman-balls 1s linear .99s infinite
+    }
+
+   .loading-image div:first-of-type {
+        width: 0;
+        height: 0;
+        border: 25px solid 
+#49b1f5;
+        border-right-color: 
+transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+        animation: rotate_pacman_half_up .5s 0s infinite;
+    }
+    .loading-image div:nth-child(2) {
+        width: 0;
+        height: 0;
+        border: 25px solid 
+#49b1f5;
+        border-right-color: 
+transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+        animation: rotate_pacman_half_down .5s 0s infinite;
+        margin-top: -50px;
+    }
+    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    .loading-image div:nth-child(3),
+    .loading-image div:nth-child(4),
+    .loading-image div:nth-child(5),
+    .loading-image div:nth-child(6){
+        background-color: 
+#49b1f5;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        margin: 2px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        transform: translateY(-6.25px);
+        top: 25px;
+        left: 100px;
+    }
+    .loading-text{
+        background: linear-gradient(to right, #ff0000, #00ff00);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 20vh;
+        text-align: center;
+        font-size: 1.5rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    @media only screen and (max-width: 500px) {
+         .loading-text{
+            font-size: 2rem;
+         }
+    }
+    .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    /* logo出现动画 */
+    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
+ </style>
+ <script>
+(function () {
+    const loaded = function(){
+       setTimeout(function(){
+            const loader = document.getElementById("loading-container");
+            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+            // document.getElementById("body-wrap").style.display="flex";
+            setTimeout(function(){
+                loader.style.display="none";
+            },2500); 
+        },1000);//强制显示loading page 1s  
+    };
+    loaded();
+})()
+</script>
+ 
+
+<body>
+    
+        <div id="loading-container">
+             <p class="loading-text">欢迎你的到来，神圣知识宝库将为你的成长保驾护航~~ </p> 
+        </div>
+    
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">天际星空的神知库</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/program" class="waves-effect waves-light">
+      
+      <i class="fas fa-code" style="zoom: 0.6;"></i>
+      
+      <span>编程</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/architecture" class="waves-effect waves-light">
+      
+      <i class="fas fa-layer-group" style="zoom: 0.6;"></i>
+      
+      <span>架构设计</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/pmp" class="waves-effect waves-light">
+      
+      <i class="fas fa-user" style="zoom: 0.6;"></i>
+      
+      <span>项目管理</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/maintenance" class="waves-effect waves-light">
+      
+      <i class="fas fa-arrows-alt faa-shake" style="zoom: 0.6;"></i>
+      
+      <span>运维</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-icons" style="zoom: 0.6;"></i>
+      
+      <span>娱乐</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/mofang">
+          
+          <i class="fas fa-cube faa-horizontal faa-reverse" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>魔方</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/plane">
+          
+          <i class="fas fa-plane faa-vertical" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>能飞多远</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tetris">
+          
+          <i class="fas fa-cubes faa-shake" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>俄罗斯方块</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>文章</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/tags">
+          
+          <i class="fas fa-tags" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>标签</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories">
+          
+          <i class="fas fa-bookmark" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>分类</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/archives">
+          
+          <i class="fas fa-archive" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>归档</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle faa-vertical" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">天际星空的神知库</div>
+        <div class="logo-desc">
+            
+            把经验变产品，把专业变事业
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/program" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-code"></i>
+			
+			编程
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/architecture" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-layer-group"></i>
+			
+			架构设计
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/pmp" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user"></i>
+			
+			项目管理
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/maintenance" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-arrows-alt faa-shake"></i>
+			
+			运维
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-icons"></i>
+			
+			娱乐
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/mofang " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-cube faa-horizontal faa-reverse" style="position: absolute;left:28px" ></i>
+			      
+		          <span>魔方</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/plane " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-plane faa-vertical" style="position: absolute;left:28px" ></i>
+			      
+		          <span>能飞多远</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/tetris " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-cubes faa-shake" style="position: absolute;left:28px" ></i>
+			      
+		          <span>俄罗斯方块</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			文章
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/tags " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-tags" style="position: absolute;left:28px" ></i>
+			      
+		          <span>标签</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/categories " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-bookmark" style="position: absolute;left:28px" ></i>
+			      
+		          <span>分类</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/archives " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-archive" style="position: absolute;left:28px" ></i>
+			      
+		          <span>归档</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle faa-vertical"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">编码开发</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: sticky;
+        top: 80px; /* 增加与导航栏的距离 */
+    }
+
+    .toc-widget {
+        width: 100%; /* 使用百分比宽度 */
+        max-width: 345px; /* 设置最大宽度 */
+        padding-left: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important; /* 与文章卡片阴影一致 */
+        transition: all 0.3s ease; /* 添加过渡效果 */
+    }
+
+    .toc-widget:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* 悬停时增强阴影 */
+    }
+
+    .toc-widget .toc-title {
+        padding: 25px 0 15px 17px; /* 减少上内边距 */
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+        color: #3C4858; /* 与文章列表标题颜色一致 */
+        border-bottom: 1px solid #eee; /* 添加分隔线 */
+        margin-right: 20px; /* 右侧留出空间 */
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding: 15px 0 30px 0; /* 调整内边距 */
+        overflow: auto;
+        max-height: 70vh; /* 限制最大高度 */
+    }
+
+    /* 自定义滚动条样式 */
+    #toc-content::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    #toc-content::-webkit-scrollbar-thumb {
+        background-color: rgba(66, 185, 131, 0.5);
+        border-radius: 3px;
+    }
+
+    #toc-content::-webkit-scrollbar-track {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+        margin: 8px 0; /* 增加条目间距 */
+    }
+
+    #toc-content .toc-link {
+        color: #555; /* 链接颜色 */
+        transition: all 0.3s ease; /* 添加过渡效果 */
+        font-size: 0.95rem; /* 调整字体大小 */
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: none; /* 移除下划线 */
+        padding-left: 5px; /* 添加左侧内边距 */
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+        font-weight: 700;
+        border-left: 2px solid #42b983; /* 添加左侧边框 */
+        padding-left: 5px; /* 添加左侧内边距 */
+    }
+
+    /* 代码块相关样式 */
+    .code-area {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+
+    .code-area::after {
+        content: " ";
+        position: absolute;
+        border-radius: 50%;
+        background: #ff5f56;
+        width: 12px;
+        height: 12px;
+        top: 0;
+        left: 12px;
+        margin-top: 12px;
+        -webkit-box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
+        box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
+    }
+
+    .code_lang {
+        position: absolute;
+        top: 1.2rem;
+        right: 46px;
+        line-height: 0;
+        font-weight: bold;
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+        z-index: 1;
+        filter: invert(50%);
+        cursor: pointer;
+    }
+
+    .code_copy {
+        position: absolute;
+        top: 0.7rem;
+        right: 25px;
+        z-index: 1;
+        filter: invert(50%);
+        cursor: pointer;
+    }
+
+    .codecopy_notice {
+        position: absolute;
+        top: 0.7rem;
+        right: 6px;
+        z-index: 1;
+        filter: invert(50%);
+        opacity: 0;
+    }
+
+    .code-expand {
+        position: absolute;
+        top: 4px;
+        right: 0;
+        filter: invert(50%);
+        padding: 7px;
+        z-index: 999 !important;
+        cursor: pointer;
+        transition: all .3s;
+        transform: rotate(0deg);
+    }
+
+    .code-closed .code-expand {
+        transform: rotate(-180deg) !important;
+        transition: all .3s;
+    }
+
+    .code-closed pre::before {
+        height: 0;
+    }
+
+    .code-closed pre code {
+        display: none;
+    }
+
+    .code-area pre {
+        padding: 2rem 1rem 1rem 1rem !important;
+        border-radius: 0.35rem;
+        tab-size: 4;
+        background-color: #272822;
+        overflow-x: auto;
+    }
+
+    pre code {
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    /* 左侧文章列表样式 */
+    .article-list-container {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important; /* 与文章卡片阴影一致 */
+        padding: 15px;
+        margin-bottom: 20px;
+        width: 100%;
+        height: fit-content;
+        position: sticky;
+        top: 80px; /* 与导航栏保持距离 */
+        transition: all 0.3s ease; /* 添加过渡效果 */
+    }
+
+    @media only screen and (max-width: 992px) {
+        .article-list-title {
+            font-size: 1.2rem;
+            padding: 10px 0;
+        }
+
+        .article-list li a {
+            font-size: 0.9rem;
+        }
+    }
+
+    .article-list-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 15px;
+        color: #3C4858; /* 标题颜色 */
+    }
+
+    .article-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 70vh; /* 限制最大高度 */
+        overflow-y: auto; /* 内容超出时显示滚动条 */
+    }
+
+    /* 自定义滚动条样式 */
+    .article-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .article-list::-webkit-scrollbar-thumb {
+        background-color: rgba(66, 185, 131, 0.5);
+        border-radius: 3px;
+    }
+
+    .article-list::-webkit-scrollbar-track {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .article-list li {
+        padding: 8px 0;
+        border-bottom: 1px dashed #eee;
+    }
+
+    .article-list li a {
+        color: #333;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: block; /* 使整行可点击 */
+        padding: 5px 0; /* 增加可点击区域 */
+        white-space: nowrap; /* 防止文本换行 */
+        overflow: hidden; /* 隐藏超出部分 */
+        text-overflow: ellipsis; /* 显示省略号 */
+    }
+
+    .article-list li a:hover {
+        color: #42b983;
+        padding-left: 10px;
+        background-color: rgba(66, 185, 131, 0.05); /* 悬停背景色 */
+    }
+
+    .article-list li a.active {
+        color: #42b983;
+        font-weight: bold;
+        background-color: rgba(66, 185, 131, 0.1); /* 激活状态背景色 */
+        border-left: 3px solid #42b983; /* 左侧边框 */
+        padding-left: 10px;
+    }
+
+    /* 中间文章内容样式 */
+    .article-container {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    /* 确保文章内容区域不被导航栏遮挡 */
+    #artDetail {
+        margin-top: 20px; /* 增加顶部边距 */
+    }
+
+    /* 文章卡片样式 */
+    #artDetail .card {
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    #artDetail .card:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 文章内容区域的内边距，与文章页面保持一致 */
+    @media only screen and (min-width: 993px) {
+        #artDetail .article-card-content {
+            padding: 0 50px 20px 50px;
+            line-height: 1.8; /* 增加行高，提高可读性 */
+        }
+
+        #artDetail .article-info {
+            padding: 20px 30px 1px 40px;
+            border-bottom: 1px solid #f1f1f1; /* 添加分隔线 */
+        }
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 992px) {
+        #artDetail .article-card-content {
+            padding: 0 30px 20px 32px;
+            line-height: 1.7; /* 增加行高 */
+        }
+
+        #artDetail .article-info {
+            padding: 15px 20px 0 28px;
+            border-bottom: 1px solid #f1f1f1; /* 添加分隔线 */
+        }
+    }
+
+    @media only screen and (max-width: 601px) {
+        #artDetail .article-info {
+            padding: 15px 15px 1px 15px;
+            border-bottom: 1px solid #f1f1f1; /* 添加分隔线 */
+        }
+
+        #artDetail .article-card-content {
+            padding: 0 15px 20px 15px;
+            line-height: 1.6; /* 增加行高 */
+        }
+    }
+
+    /* 文章内容样式 */
+    #articleContent {
+        color: #333; /* 文字颜色 */
+        font-size: 1rem; /* 文字大小 */
+    }
+
+    #articleContent p {
+        margin: 1em 0; /* 段落间距 */
+    }
+
+    #articleContent h1, #articleContent h2, #articleContent h3,
+    #articleContent h4, #articleContent h5, #articleContent h6 {
+        margin: 1.5em 0 0.8em; /* 标题间距 */
+        color: #222; /* 标题颜色 */
+        font-weight: 600; /* 标题字重 */
+    }
+
+    /* 确保文章内容区域不被导航栏遮挡 */
+    #artDetail {
+        margin-top: 20px;
+    }
+
+    /* 确保容器在所有屏幕尺寸下都能水平居中 */
+    .code-container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* 响应式调整 */
+    @media only screen and (min-width: 993px) {
+        .code-container {
+            width: 95%; /* 使用百分比宽度 */
+            max-width: 2000px; /* 设置最大宽度为2000px */
+            margin: 0 auto; /* 水平居中 */
+            display: flex;
+            justify-content: center; /* 内容居中 */
+            position: relative;
+        }
+
+        #main-content {
+            width: 50%; /* 使用百分比宽度 */
+            min-width: 900px; /* 设置最小宽度，确保内容可读性，至少是左侧区域宽度的三倍 */
+            order: 2;
+            padding: 0 20px; /* 添加内边距，增加可读性 */
+        }
+
+        .left-column {
+            width: 300px; /* 固定宽度为300px */
+            flex-shrink: 0; /* 防止收缩 */
+            order: 1;
+            padding-right: 20px; /* 添加右内边距 */
+        }
+
+        .right-column {
+            width: 345px; /* 固定宽度为345px */
+            flex-shrink: 0; /* 防止收缩 */
+            order: 3;
+            padding-left: 20px; /* 添加左内边距 */
+        }
+    }
+
+    /* 中等屏幕下(平板类)的样式 */
+    @media only screen and (min-width: 600px) and (max-width: 992px) {
+        .code-container {
+            width: 98%;
+            max-width: 1200px; /* 调整最大宽度，更适合平板 */
+            margin: 0 auto;
+            display: flex;
+            justify-content: center; /* 内容居中 */
+            flex-wrap: wrap;
+        }
+
+        #main-content {
+            width: 65%; /* 调整中间区域宽度 */
+            order: 2;
+            padding: 0 15px; /* 添加内边距 */
+            min-width: 600px; /* 确保内容区域有足够宽度 */
+        }
+
+        #toc-aside {
+            display: none; /* 在平板上隐藏目录 */
+        }
+
+        .left-column {
+            width: 300px; /* 保持左侧固定宽度 */
+            order: 1;
+            padding-right: 15px;
+        }
+    }
+
+    /* 小屏幕下(手机类)的样式 */
+    @media only screen and (max-width: 600px) {
+        .code-container {
+            width: 100%; /* 最大化利用屏幕宽度 */
+            margin: 0 auto;
+            display: flex;
+            justify-content: center; /* 内容居中 */
+            flex-direction: column;
+            align-items: center; /* 垂直方向居中 */
+        }
+
+        #main-content {
+            width: 100%;
+            order: 2;
+            padding: 0 10px; /* 添加内边距，增加可读性 */
+        }
+
+        .left-column {
+            width: 100%;
+            order: 1;
+            margin-bottom: 20px;
+            padding: 0 10px; /* 添加内边距 */
+        }
+
+        /* 调整文章列表容器的样式 */
+        .article-list-container {
+            padding: 15px; /* 适当的内边距 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 减轻阴影效果 */
+        }
+
+        /* 调整文章内容卡片的样式 */
+        #artDetail .card {
+            margin: 0; /* 移除外边距 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 减轻阴影效果 */
+        }
+
+        #artDetail .article-card-content {
+            padding: 0 15px 15px 15px; /* 适当的内边距 */
+        }
+    }
+</style>
+
+<main class="post-container content">
+    
+    <div class="code-container">
+        <!-- 左侧文章列表 -->
+        <div class="col s12 m3 l3 left-column">
+            <div class="article-list-container">
+                <div class="article-list-title"><i class="fas fa-list"></i>&nbsp;运维文章列表</div>
+                <ul class="article-list" id="article-list">
+                    
+                        
+                            <li><a href="/article/docker-compose.html" data-path="article/docker-compose.html">熟悉docker-compose</a></li>
+                        
+                    
+                        
+                            <li><a href="/article/docker-basic.html" data-path="article/docker-basic.html">docker基础</a></li>
+                        
+                    
+                        
+                            <li><a href="/article/docker-network.html" data-path="article/docker-network.html">docker网络和存储</a></li>
+                        
+                    
+                        
+                    
+                        
+                            <li><a href="/article/dockerfile.html" data-path="article/dockerfile.html">深入dockerfile</a></li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                </ul>
+            </div>
+        </div>
+
+        <!-- 中间文章内容 -->
+        <div id="main-content" class="col s12 m6 l6">
+            <div id="artDetail">
+                <div class="card">
+                    <div class="card-content article-info" id="articleInfo">
+                        <div class="row tag-cate">
+                            <div class="col s7" id="article-tags">
+                                <!-- 文章标签将在加载文章时动态填充 -->
+                            </div>
+                            <div class="col s5 right-align" id="article-categories">
+                                <!-- 文章分类将在加载文章时动态填充 -->
+                            </div>
+                        </div>
+
+                        <div class="post-info" id="post-info">
+                            <!-- 文章信息将在加载文章时动态填充 -->
+                        </div>
+                    </div>
+                    <hr class="clearfix">
+
+                    
+                    <!-- 是否加载使用自带的 prismjs. -->
+                    <link rel="stylesheet" href="/libs/prism/prism.css">
+                    
+
+                    
+                    <!-- 代码块不折行 -->
+                    <style type="text/css">
+                        code[class*="language-"], pre[class*="language-"] { white-space: pre !important; overflow-x: auto !important; }
+                    </style>
+                    
+
+                    <div class="card-content article-card-content">
+                        <div id="articleContent">
+                            <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/style.css"><script src="https://fastly.jsdelivr.net/npm/d3@7"></script><script src="https://fastly.jsdelivr.net/npm/markmap-view@0.18.10"></script><script src="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10"></script>
+<link rel="stylesheet" href="/css/markmap.css">
+
+<script src="/js/markmap.js"></script>
+
+                        </div>
+                        <hr/>
+
+                        <!-- 版权声明 -->
+                        <div id="reprint-statement" class="reprint">
+                            <!-- 版权声明将在加载文章时动态填充 -->
+                        </div>
+
+                        <!-- 文章分享按钮 -->
+                        <div class="tag_share" style="display: block;" id="article-share">
+                            <!-- 文章分享按钮将在加载文章时动态填充 -->
+                        </div>
+
+                        <!-- 打赏按钮 -->
+                        <div style="text-align: center; margin-top: 30px;">
+                            
+                            <style>
+                                /* 确保打赏按钮的字体大小正确 */
+                                #reward .reward-link {
+                                    font-size: 1.5rem;
+                                    line-height: 56px;
+                                    height: 56px;
+                                    width: 56px;
+                                    border-radius: 28px;
+                                }
+
+                                /* 确保微信和支付宝付款码的图片样式正确 */
+                                .reward-tabs .reward-img {
+                                    width: 210px;
+                                    height: 210px;
+                                    border-radius: 4px;
+                                    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+                                }
+
+                                /* 确保模态框的标题样式正确 */
+                                #rewardModal .reward-title {
+                                    font-size: 1.25rem;
+                                    font-weight: 500;
+                                    color: #3C4858;
+                                    margin: 15px auto;
+                                    padding-bottom: 5px;
+                                }
+
+                                /* 确保标签页的样式正确 */
+                                .reward-tabs .tab a {
+                                    font-size: 0.9rem;
+                                    font-weight: 500;
+                                    padding: 0;
+                                }
+
+                                /* 确保标签页的活动状态样式正确 */
+                                .reward-tabs .wechat-tab .active {
+                                    color: #fff !important;
+                                    background-color: #22AB38 !important;
+                                }
+
+                                .reward-tabs .alipay-tab .active {
+                                    color: #fff !important;
+                                    background-color: #019FE8 !important;
+                                }
+
+                                /* 确保模态框的大小正确 */
+                                #rewardModal {
+                                    width: 320px;
+                                    height: 350px;
+                                }
+
+                                /* 确保模态框的内容样式正确 */
+                                #rewardModal .modal-content {
+                                    padding: 10px;
+                                }
+
+                                /* 确保关闭按钮的样式正确 */
+                                #rewardModal .close {
+                                    position: absolute;
+                                    right: 15px;
+                                    top: 15px;
+                                    color: rgba(0, 0, 0, 0.5);
+                                    font-size: 1.3rem;
+                                    line-height: 20px;
+                                    cursor: pointer;
+                                }
+
+                                #rewardModal .close:hover {
+                                    color: #ef5350;
+                                    transform: scale(1.3);
+                                    -moz-transform:scale(1.3);
+                                    -webkit-transform:scale(1.3);
+                                    -o-transform:scale(1.3);
+                                }
+                            </style>
+                            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧 TOC -->
+        <div id="toc-aside" class="col l3 m3 hide-on-med-and-down right-column">
+            <div class="toc-widget card" style="background-color: white;">
+                <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+                <div id="toc-content"></div>
+            </div>
+        </div>
+    </div>
+    
+</main>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<script>
+    $(function () {
+        // 初始化 TOC
+        function initTocbot() {
+            tocbot.init({
+                tocSelector: '#toc-content',
+                contentSelector: '#articleContent',
+                headingsOffset: -($(window).height() * 0.4 - 45),
+                collapseDepth: Number('0'),
+                headingSelector: 'h2, h3, h4, h5, h6'
+            });
+
+            // modify the toc link href to support Chinese
+            let i = 0;
+            let tocHeading = 'toc-heading-';
+            $('#toc-content a').each(function () {
+                $(this).attr('href', '#' + tocHeading + (++i));
+            });
+
+            // modify the heading title id to support Chinese
+            i = 0;
+            $('#articleContent').children('h2, h3, h4, h5, h6').each(function () {
+                $(this).attr('id', tocHeading + (++i));
+            });
+
+            // Set scroll toc fixed
+            let tocHeight = parseInt($(window).height() * 0.4 - 64);
+            let $tocWidget = $('.toc-widget');
+            $(window).scroll(function () {
+                let scroll = $(window).scrollTop();
+                /* add post toc fixed */
+                if (scroll > tocHeight) {
+                    $tocWidget.addClass('toc-fixed');
+                } else {
+                    $tocWidget.removeClass('toc-fixed');
+                }
+            });
+        }
+
+        // 初始化代码块功能
+        function initCodeBlockFeatures() {
+            // 清除旧的元素
+            $('.code_lang').remove();
+            $('.code_copy').remove();
+            $('.codecopy_notice').remove();
+            $('.code-expand').remove();
+
+            // 重新包装代码块
+            $('#articleContent pre').each(function() {
+                // 如果已经被包装，先解除包装
+                if ($(this).parent().hasClass('code-area')) {
+                    $(this).unwrap();
+                }
+                // 重新包装
+                $(this).wrap('<div class="code-area" style="position: relative"></div>');
+            });
+
+            
+            // 添加语言标签
+            $('pre').each(function() {
+                var $highlight_lang = $('<div class="code_lang" title="代码语言"></div>');
+                $(this).before($highlight_lang);
+
+                var code_language = $(this).attr('class');
+                if (code_language) {
+                    var lang_name = code_language.replace("line-numbers", "").trim().replace("language-", "").trim();
+                    $(this).siblings(".code_lang").text(lang_name);
+                }
+            });
+            
+
+            
+            // 添加复制按钮
+            $('.code-area').each(function() {
+                var $copyIcon = $('<i class="fas fa-copy code_copy" title="复制代码" aria-hidden="true"></i>');
+                var $notice = $('<div class="codecopy_notice"></div>');
+                $(this).prepend($copyIcon);
+                $(this).prepend($notice);
+            });
+
+            // 绑定复制事件
+            $('.code-area .fa-copy').on('click', function () {
+                var selection = window.getSelection();
+                var range = document.createRange();
+                range.selectNodeContents($(this).siblings('pre').find('code')[0]);
+                selection.removeAllRanges();
+                selection.addRange(range);
+                var text = selection.toString();
+
+                // 复制到剪贴板
+                if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
+                    try {
+                        document.execCommand('copy'); // Security exception may be thrown by some browsers.
+                        $(this).prev('.codecopy_notice')
+                            .text("复制成功")
+                            .animate({
+                                opacity: 1,
+                                top: 30
+                            }, 450, function () {
+                                setTimeout(function () {
+                                    $('.codecopy_notice').animate({
+                                        opacity: 0,
+                                        top: 0
+                                    }, 650);
+                                }, 400);
+                            });
+                    } catch (ex) {
+                        $(this).prev('.codecopy_notice')
+                            .text("复制失败")
+                            .animate({
+                                opacity: 1,
+                                top: 30
+                            }, 650, function () {
+                                setTimeout(function () {
+                                    $('.codecopy_notice').animate({
+                                        opacity: 0,
+                                        top: 0
+                                    }, 650);
+                                }, 400);
+                            });
+                    }
+                } else {
+                    $(this).prev('.codecopy_notice').text("浏览器不支持复制");
+                }
+
+                selection.removeAllRanges();
+            });
+            
+
+            
+            // 添加收缩按钮
+            $('.code-area').each(function() {
+                var $code_expand = $('<i class="fas fa-angle-up code-expand" aria-hidden="true"></i>');
+                $(this).prepend($code_expand);
+            });
+
+            // 绑定收缩事件
+            $('.code-expand').on('click', function () {
+                if ($(this).parent().hasClass('code-closed')) {
+                    $(this).siblings('pre').find('code').show();
+                    $(this).parent().removeClass('code-closed');
+                } else {
+                    $(this).siblings('pre').find('code').hide();
+                    $(this).parent().addClass('code-closed');
+                }
+            });
+            
+        }
+
+        initTocbot();
+        initCodeBlockFeatures();
+
+        // 初始化打赏模态框和标签页
+        $('.modal').modal();
+        $('.tabs').tabs();
+
+        // 添加点击事件监听器
+        $('#article-list a').click(function(event) {
+            event.preventDefault();
+            var path = $(this).attr('data-path');
+            var href = $(this).attr('href');
+
+            // 移除所有active类
+            $('#article-list a').removeClass('active');
+            // 给当前点击的链接添加active类
+            $(this).addClass('active');
+
+            if (!href) {
+                console.error('文章链接未定义');
+                return;
+            }
+
+            console.log('正在加载文章:', href);
+
+            // 使用完整的URL，不依赖当前页面路径
+            var fullUrl = window.location.origin + href;
+
+            $.ajax({
+                url: href, // 直接使用href，不拼接当前路径
+                type: 'GET',
+                success: function(data) {
+                    // 创建临时 DOM 元素来解析响应内容
+                    var $data = $(data);
+                    var articleContent = $data.find('#articleContent').html();
+                    var articleTitle = $data.find('.post-title').text() || $(this).text();
+                    var articleTags = $data.find('.article-tag').html();
+                    var articleCategories = $data.find('.post-cate').html();
+                    var articleInfo = $data.find('.post-info').html();
+                    var articleShare = $data.find('.tag_share').html();
+                    var reprintStatement = $data.find('#reprint-statement').html();
+                    var rewardContent = $data.find('#reward').html();
+
+                    if (!articleContent) {
+                        console.error('未找到文章内容区域');
+                        return;
+                    }
+
+                    // 更新文章标题
+                    document.title = articleTitle;
+
+                    // 更新文章内容
+                    $('#articleContent').html(articleContent);
+
+                    // 更新文章标签
+                    if (articleTags) {
+                        $('#article-tags').html(articleTags);
+                    } else {
+                        $('#article-tags').html('<div class="article-tag"><span class="chip bg-color">无标签</span></div>');
+                    }
+
+                    // 更新文章分类
+                    if (articleCategories) {
+                        $('#article-categories').html(articleCategories);
+                    }
+
+                    // 更新文章信息（发布日期、更新日期、字数等）
+                    if (articleInfo) {
+                        $('#post-info').html(articleInfo);
+                    }
+
+                    // 更新文章分享按钮
+                    if (articleShare) {
+                        $('#article-share').html(articleShare);
+                    }
+
+                    // 更新版权声明
+                    if (reprintStatement) {
+                        $('#reprint-statement').html(reprintStatement);
+                    }
+
+                    // 更新打赏按钮
+                    if (rewardContent) {
+                        // 完全清除打赏容器的内容，然后重新添加
+                        var $rewardContainer = $('div[style="text-align: center; margin-top: 30px;"]');
+                        $rewardContainer.empty(); // 清除所有内容，包括样式标签
+
+                        // 重新添加样式
+                        var styleContent = '<style>' +
+                            '/* 确保打赏按钮的字体大小正确 */' +
+                            '#reward .reward-link {' +
+                            '    font-size: 1.5rem;' +
+                            '    line-height: 56px;' +
+                            '    height: 56px;' +
+                            '    width: 56px;' +
+                            '    border-radius: 28px;' +
+                            '}' +
+                            '/* 确保微信和支付宝付款码的图片样式正确 */' +
+                            '.reward-tabs .reward-img {' +
+                            '    width: 210px;' +
+                            '    height: 210px;' +
+                            '    border-radius: 4px;' +
+                            '    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);' +
+                            '}' +
+                            '/* 确保模态框的标题样式正确 */' +
+                            '#rewardModal .reward-title {' +
+                            '    font-size: 1.25rem;' +
+                            '    font-weight: 500;' +
+                            '    color: #3C4858;' +
+                            '    margin: 15px auto;' +
+                            '    padding-bottom: 5px;' +
+                            '}' +
+                            '/* 确保标签页的样式正确 */' +
+                            '.reward-tabs .tab a {' +
+                            '    font-size: 0.9rem;' +
+                            '    font-weight: 500;' +
+                            '    padding: 0;' +
+                            '}' +
+                            '/* 确保标签页的活动状态样式正确 */' +
+                            '.reward-tabs .wechat-tab .active {' +
+                            '    color: #fff !important;' +
+                            '    background-color: #22AB38 !important;' +
+                            '}' +
+                            '.reward-tabs .alipay-tab .active {' +
+                            '    color: #fff !important;' +
+                            '    background-color: #019FE8 !important;' +
+                            '}' +
+                            '/* 确保模态框的大小正确 */' +
+                            '#rewardModal {' +
+                            '    width: 320px;' +
+                            '    height: 350px;' +
+                            '}' +
+                            '/* 确保模态框的内容样式正确 */' +
+                            '#rewardModal .modal-content {' +
+                            '    padding: 10px;' +
+                            '}' +
+                            '/* 确保关闭按钮的样式正确 */' +
+                            '#rewardModal .close {' +
+                            '    position: absolute;' +
+                            '    right: 15px;' +
+                            '    top: 15px;' +
+                            '    color: rgba(0, 0, 0, 0.5);' +
+                            '    font-size: 1.3rem;' +
+                            '    line-height: 20px;' +
+                            '    cursor: pointer;' +
+                            '}' +
+                            '#rewardModal .close:hover {' +
+                            '    color: #ef5350;' +
+                            '    transform: scale(1.3);' +
+                            '    -moz-transform:scale(1.3);' +
+                            '    -webkit-transform:scale(1.3);' +
+                            '    -o-transform:scale(1.3);' +
+                            '}' +
+                            '</style>';
+
+                        // 添加样式和打赏内容
+                        $rewardContainer.append(styleContent);
+                        $rewardContainer.append(rewardContent);
+
+                        // 初始化打赏模态框
+                        $('.modal').modal();
+                        // 初始化打赏标签页
+                        $('.tabs').tabs();
+                    }
+
+                    // 更新浏览器历史记录，但不跳转页面
+                    if (window.history && window.history.pushState) {
+                        window.history.pushState(null, null, href);
+                    }
+
+                    // 重新初始化 TOC
+                    tocbot.destroy();
+                    initTocbot();
+
+                    // 重新初始化代码块功能
+                    initCodeBlockFeatures();
+                },
+                error: function(error) {
+                    console.error('加载文章时出错:', error);
+                }
+            });
+        });
+
+        // 总是默认加载第一篇文章
+        if ($('#article-list li').length > 0) {
+            // 标记第一篇文章为激活状态
+            $('#article-list li:first-child a').addClass('active');
+            // 无条件加载第一篇文章内容
+            $('#article-list li:first-child a').trigger('click');
+        }
+    });
+</script>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 天际星空的神知库<br />'
+            + '作者: 天际星空<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+
+    // 版权声明相关脚本
+    $(document).on('copy', function (e) {
+        let toastHTML = '<span>请遵循转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看规则</a>';
+        M.toast({html: toastHTML});
+    });
+
+    function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+    }
+</script>
+
+
+<!-- 这里已经在上面引入过相关脚本，不需要重复引入 -->
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="2988868328"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/meting/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            
+                <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
+                <a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备2022004140号-1</a>
+            </span>
+            
+            | Copyright&nbsp;&copy;
+            
+                <span id="year">2016-2025</span>
+            
+            <span id="year">2016</span>
+            <a href="/about" target="_blank">天际星空</a>
+
+<!--            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>-->
+<!--            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>-->
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">76.3k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2016";
+                    var startMonth = "7";
+                    var startDate = "1";
+                    var startHour = "8";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+<!--            <br>-->
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Hezhero/Hezhero.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:la9408531@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+<!--  -->
+
+<!--  -->
+
+<!--  -->
+
+<!--  -->
+
+<!--  -->
+
+<!--  -->
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!-- 冒泡 -->
+    
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            document.write(
+                '<script type="text/javascript" src="/libs/others/bubble.js"><\/script>'
+            );
+        </script>
+    
+
+    <!--  禁止查看源代码，屏蔽F12和鼠标右键-->
+    <script type="text/javascript">
+        window.onload = function(){
+            //屏蔽键盘事件
+            document.onkeydown = function (){
+                var e = window.event || arguments[0];
+                //F12
+                if(e.keyCode == 123){
+                    return false;
+                //Ctrl+Shift+I
+                }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
+                    return false;
+                //Shift+F10
+                }else if((e.shiftKey) && (e.keyCode == 121)){
+                    return false;
+                //Ctrl+U
+                }else if((e.ctrlKey) && (e.keyCode == 85)){
+                    return false;
+                }
+            };
+            //屏蔽鼠标右键
+            document.oncontextmenu = function (){
+                return false;
+            }
+        }
+    </script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":200,"height":300,"hOffset":50,"vOffset":-5},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+</html>

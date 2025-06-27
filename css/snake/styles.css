@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+#scoreboard {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+button {
+    font-size: 18px;
+    margin: 0 5px;
+    padding: 5px 10px;
+}
+
+#gameCanvas {
+    border: 1px solid #000;
+}

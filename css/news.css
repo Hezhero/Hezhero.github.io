@@ -1,0 +1,132 @@
+.news-container {
+    padding: 20px 0;
+}
+
+.news-header {
+    margin-bottom: 30px;
+}
+
+.news-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.news-subtitle {
+    font-size: 1.2rem;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.news-update-time {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+#refresh-btn {
+    margin-left: 15px;
+    padding: 0 15px;
+}
+
+.news-category {
+    margin-bottom: 30px;
+}
+
+.news-category-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eaeaea;
+    margin-bottom: 15px;
+}
+
+.news-list {
+    min-height: 300px;
+}
+
+.news-item {
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.news-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.news-item-title {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.news-item-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.news-item-title a:hover {
+    color: #3f51b5;
+}
+
+.news-item-source {
+    font-size: 0.8rem;
+    color: #888;
+    display: flex;
+    align-items: center;
+}
+
+.news-item-source-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.loading-spinner .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3f51b5;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 响应式调整 */
+@media only screen and (max-width: 992px) {
+    .news-category {
+        margin-bottom: 40px;
+    }
+}
+
+/* 颜色定义 */
+.color-zhihu { background-color: #0066FF; }
+.color-weibo { background-color: #E6162D; }
+.color-baidu { background-color: #4E6EF2; }
+.color-bilibili { background-color: #FB7299; }
+.color-github { background-color: #24292F; }
+.color-v2ex { background-color: #171A1D; }
+.color-36kr { background-color: #4285F4; }
+.color-juejin { background-color: #1E80FF; }
+.color-tieba { background-color: #3385FF; }
+.color-douyin { background-color: #000000; }
+.color-toutiao { background-color: #ED4040; }
+.color-default { background-color: #666666; }
