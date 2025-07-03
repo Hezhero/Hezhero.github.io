@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="深入dockerfile, 天际星空的神知库">
+    <meta name="keywords" content="gitlab-ee，gitlab">
     <meta name="description" content="把经验变产品，把专业变事业">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>深入dockerfile | 天际星空的神知库</title>
+    <title>Gitlab企业版安装 | 天际星空的神知库</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -608,12 +608,12 @@ transparent;
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">深入dockerfile</h1>
+                    <h1 class="description center-align post-title">Gitlab企业版安装</h1>
                 </div>
             </div>
         </div>
@@ -732,8 +732,8 @@ transparent;
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/docker/">
-                                <span class="chip bg-color">docker</span>
+                            <a href="/tags/%E8%BF%90%E7%BB%B4/">
+                                <span class="chip bg-color">运维</span>
                             </a>
                         
                     </div>
@@ -757,28 +757,28 @@ transparent;
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2018-09-09
+                    2025-07-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-06-26
+                    2025-07-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.9k
+                    4.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    22 分
+                    21 分
                 </div>
                 
 
@@ -801,945 +801,705 @@ transparent;
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <center><h1>深入Dockerfile</h1></center>
-<p>Dockerfile由一行行命令语句组成，并且支持以#开头的注释行。 (文件名无后缀)</p>
-<p>基础的小linux系统。如：jdk</p>
-<p>一般而言，Dockerfile可以分为四部分</p>
+                <h1>
+    <center>
+    Gitlab 企业版安装激活
+    </center>
+</h1>
+<h1>一、 gitlab简介</h1>
+<p>GitLab 是一个用于仓库管理系统的开源项目，使用Git作为代码管理工具，并在此基础上搭建起来的Web服务。<br>
+GitLab是由GitLabInc.开发，使用MIT许可证的基于网络的Git仓库管理工具，且具有wiki和issue跟踪功能。使用Git作为代码管理工具，并在此基础上搭建起来的web服务。<br>
+GitLab由乌克兰程序员DmitriyZaporozhets和ValerySizov开发，它使用Ruby语言写成。后来，一些部分用Go语言重写。截止2018年5月，该公司约有290名团队成员，以及2000多名开源贡献者。GitLab被IBM，Sony，JülichResearchCenter，NASA，Alibaba，Invincea，O’ReillyMedia，Leibniz-Rechenzentrum(LRZ)，CERN，SpaceX等组织使用。</p>
+<p>gitlab的安装方式有很多种，比如docker镜像安装，Helm charts安装，源代码安装，GET(GitLab Environment Toolkit)安装、yum安装、使用rpm包安装等．</p>
+<h1>二、系统要求</h1>
+<p>空闲硬盘空间：　2.5G+<br>
+CPU: 4core+ (4核最多支持500用户，8核最多支持1000用户)<br>
+内存：4GB+</p>
+<h2 id="Database">Database</h2>
+<h3 id="PostgreSQL">PostgreSQL</h3>
+<p><a target="_blank" rel="noopener" href="https://www.postgresql.org/">PostgreSQL</a> is the only supported database and is bundled with the Linux package. You can also use an <a target="_blank" rel="noopener" href="https://docs.gitlab.com/omnibus/settings/database.html#using-a-non-packaged-postgresql-database-management-server">external PostgreSQL database</a>.</p>
+<p>Depending on the <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/administration/reference_architectures/index.html">number of users</a>, the PostgreSQL server should have:</p>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>基础镜像信息</p>
+<p>For most GitLab instances, at least 5 to 10 GB of storage</p>
 </li>
 <li class="lvl-2">
-<p>维护者信息</p>
+<p>For GitLab Ultimate, at least 12 GB of storage (1 GB of vulnerability data must be imported)</p>
 </li>
-<li class="lvl-2">
-<p>镜像操作指令</p>
-</li>
-<li class="lvl-2">
-<p>启动时执行指令</p>
+</ul>
+<p>For the following versions of GitLab, use these PostgreSQL versions:</p>
 <table>
 <thead>
 <tr>
-<th>指令</th>
-<th>说明</th>
+<th style="text-align:left">GitLab version</th>
+<th style="text-align:left">Minimum PostgreSQL version</th>
+<th style="text-align:left">Maximum PostgreSQL version</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>FROM</td>
-<td>指定基础镜像</td>
+<td style="text-align:left">17.x</td>
+<td style="text-align:left">14.9</td>
+<td style="text-align:left">15.x</td>
 </tr>
 <tr>
-<td>MAINTAINER</td>
-<td>指定维护者信息，已经过时，可以使用LABEL maintainer=xxx 来代替</td>
+<td style="text-align:left">16.x</td>
+<td style="text-align:left">13.6</td>
+<td style="text-align:left">15.x (<a target="_blank" rel="noopener" href="https://gitlab.com/gitlab-org/gitlab/-/merge_requests/119344">tested against GitLab 16.1 and later</a>)</td>
 </tr>
 <tr>
-<td>RUN</td>
-<td>运行命令</td>
-</tr>
-<tr>
-<td>CMD</td>
-<td>指定启动容器时默认的命令</td>
-</tr>
-<tr>
-<td>ENTRYPOINT</td>
-<td>指定镜像的默认入口.运行命令</td>
-</tr>
-<tr>
-<td>EXPOSE</td>
-<td>声明镜像内服务监听的端口</td>
-</tr>
-<tr>
-<td>ENV</td>
-<td>指定环境变量，可以在docker run的时候使用-e改变 ；会被固化到image的 config里面</td>
-</tr>
-<tr>
-<td>ADD</td>
-<td>复制指定的src路径下的内容到容器中的dest路径下，src可以为url会自动下载， 可以为tar文件，会自动解压</td>
-</tr>
-<tr>
-<td>COPY</td>
-<td>复制本地主机的src路径下的内容到镜像中的dest路径下，但不会自动解压等</td>
-</tr>
-<tr>
-<td>LABEL</td>
-<td>指定生成镜像的元数据标签信息</td>
-</tr>
-<tr>
-<td>VOLUME</td>
-<td>创建数据卷挂载点</td>
-</tr>
-<tr>
-<td>USER</td>
-<td>指定运行容器时的用户名或UID</td>
-</tr>
-<tr>
-<td>WORKDIR</td>
-<td>配置工作目录，为后续的RUN、CMD、ENTRYPOINT指令配置工作目录</td>
-</tr>
-<tr>
-<td>ARG</td>
-<td>指定镜像内使用的参数（如版本号信息等），可以在build的时候，使用–build-args改变</td>
-</tr>
-<tr>
-<td>OBBUILD</td>
-<td>配置当创建的镜像作为其他镜像的基础镜像时，所指定的创建操作指令</td>
-</tr>
-<tr>
-<td>STOPSIGNAL</td>
-<td>容器退出的信号值</td>
-</tr>
-<tr>
-<td>HEALTHCHECK</td>
-<td>健康检查</td>
-</tr>
-<tr>
-<td>SHELL</td>
-<td>指定使用shell时的默认shell类型</td>
+<td style="text-align:left">15.x</td>
+<td style="text-align:left">12.10</td>
+<td style="text-align:left">14.x (<a target="_blank" rel="noopener" href="https://gitlab.com/gitlab-org/gitlab/-/merge_requests/114624">tested against GitLab 15.11 only</a>), 13.x</td>
 </tr>
 </tbody>
 </table>
-</li>
-</ul>
-<h2 id="1、FROM">1、FROM</h2>
-<p>FROM 指定基础镜像，最好挑一些apline，slim之类的基础小镜像. scratch镜像是一个空镜像，常用于多阶段构建</p>
-<p>如何确定我需要什么样的基础镜像？</p>
+<h1>三、主机安装</h1>
+<pre class="language-none"><code class="language-none"># 添加 GitLab 的 GPG 密钥和仓库
+curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+
+# 更新仓库
+sudo apt update
+
+# 查看所有可用版本
+apt list --all-versions gitlab-ee
+
+# 安装最新版
+apt install -y gitlab-ee
+
+# 安装指定版本
+apt install gitlab-ee=17.2.1-ee.0
+
+配置gitlab
+安装完成后执行以下命令gitlab将会自动帮我们完成一些必要的配置，切记如果你手动完成一些配置后不要重复执行以下命令，否则手动配置的参数会被清除，严重时会导致用户访问时出现http 500错误．
+
+修改external_url
+编辑文件/etc/gitlab/gitlab.rb
+
+#replace gitlab.example.com with your domain or your ip
+# for instance external_url 'http://192.168.1.100'
+external_url 'your_domain'
+
+gitlab-ctl reconfigure
+启动gitlab
+
+gitlab默认运行在80端口
+需要检查防火墙状态, 如何防火墙已开启, 需要放行80端口
+
+# 检查防火墙是否开启
+sudo firewall-cmd --state
+
+# 如果开启, 需放行80端口
+sudo firewall-cmd --add-port=80/tcp --permanent
+sudo firewall-cmd --reload
+如果一切顺利，我们就可以启动gitlab了，启动命令为
+gitlab-ctl start
+启动成功后, 可以使用浏览器访问gitlab web页面，默认端口是80, 所以可以打开http://your_server_address访问．
+
+如果没有设置密码，系统将为root用户生成一个随机密码，该随机密码可以在/etc/gitlab/initial_root_password文件中找到．
+建议修改该随机密码，方式为
+gitlab-rake "gitlab:password:reset[root]"
+参数说明: 命令中的root即为root用户，该命令也可以用来为其他用户设置密码．
+关于gitlab的高级配置，可以参考gitlab的官网
+如果要配置gitlab ci/cd还需要安装gitlab-runner, gitlab-runner的安装和配置可以参考我的博客gitlab-runner安装与配置, 更多关于gitlab的文章请访问gitlab合集
+这里补充几点如何启动，关闭，查看gitlab状态的命令，方便troubleshooting
+
+# 关闭gitlab
+gitlab-ctl stop
+
+# 重启gitlab
+gitlab-ctl restart
+
+# 查看gitlab状态
+gitlab-ctl status
+
+# 查看gitlab滚动日志
+gitlab-ctl tail
+
+# 想了解更多命令，可以查看帮助
+gitlab-ctl --help
+
+# 命令行查看gitlab版本
+cat /opt/gitlab/embedded/service/gitlab-rails/VERSION
+
+#查看日志文件
+日志文件位于/var/log/gitlab下, 日志是按照服务分类存放
+Gitlab 日志文件位于 /var/log/gitlab/gitlab-rails/production.log
+</code></pre>
+<h1>四、docker compose安装</h1>
+<pre class="language-none"><code class="language-none">version: '3.7'
+services:
+  web:
+    image: 'gitlab/gitlab-ee:17.2.1-ee.0'
+    restart: always
+    hostname: 'gitlab.example.com'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://gitlab.example.com'
+    ports:
+      - '30022:22'
+      - '30080:80'
+      - '30443:443'
+    volumes:
+      - '/data/docker-compose/gitlab/config:/etc/gitlab'
+      - '/data/docker-compose/gitlab/logs:/var/log/gitlab'
+      - '/data/docker-compose/gitlab/data:/var/opt/gitlab'</code></pre>
+<p>容器成功启动后：访问<a target="_blank" rel="noopener" href="https://ip:30443">https://ip:30443</a></p>
+<p>默认用户名：root</p>
+<p>默认密码：</p>
+<pre class="language-none"><code class="language-none">docker exec -it gitlab-web-1 bash
+
+cat /etc/gitlab/initial_root_password</code></pre>
+<h1>五、k8s部署</h1>
+<h2 id="5-1-部署文件">5.1 部署文件</h2>
+<pre class="language-none"><code class="language-none">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitlab-ee
+  namespace: middleware
+spec:
+  selector:
+    matchLabels:
+      app: gitlab
+  # 项目的提交历史记录将只保留最近的 100 次提交 超出这个范围的提交将被删除或不可访问（具体取决于 GitLab 的实现方式）
+  revisionHistoryLimit: 100
+  template:
+    metadata:
+      labels:
+        app: gitlab
+    spec:
+      containers:
+      - env:
+        - name: GITLAB_OMNIBUS_CONFIG
+          value: |
+            external_url 'http://192.168.41.50:31080'
+            gitlab_rails['gitlab_shell_ssh_port'] = 31022
+            gitlab_rails['gitlab_ssh_host'] = '192.168.41.50'
+            gitlab_rails['time_zone'] = 'Asia/Shanghai'
+            gitlab_rails['db_adapter'] = "postgresql"
+            gitlab_rails['db_encoding'] = "utf8"
+            gitlab_rails['db_database'] = "gitlab"
+            gitlab_rails['db_username'] = "postgres"
+            gitlab_rails['db_password'] = "123629he"
+            gitlab_rails['db_host'] = '192.168.41.50'
+            gitlab_rails['db_port'] = 30431
+            gitlab_workhorse['listen_network'] = 'tcp'
+            gitlab_workhorse['listen_addr'] = '0.0.0.0:31088'
+            nginx['listen_port'] = 31080
+            # 新增配置，允许使用 31088 端口进行 HTTP 方式的代码操作
+            gitlab_rails['gitlab_http_clone_host'] = '192.168.41.50'
+            gitlab_rails['gitlab_http_clone_port'] = 31088
+        - name: TZ
+          value: Asia/Shanghai
+        - name: GITLAB_TIMEZONE
+          value: Beijing
+        # 用于加密 CI 密钥变量及数据库中的重要凭证。如果丢失这个密码，将无法使用已经存在的 CI 密钥。
+        - name: GITLAB_SECRETS_DB_KEY_BASE
+          value: long-and-random-alpha-numeric-string
+        # 用于密码重置链接以及其他“标准”身份验证功能。如果丢失这个密码，电子邮件中的密码重置 token 将重置。
+        - name: GITLAB_SECRETS_SECRET_KEY_BASE
+          value: long-and-random-alpha-numeric-string
+        # 用于加密数据库的 2FA 密钥。如果丢失这个密码，所有用户都无法通过 2FA 登录
+        - name: GITLAB_SECRETS_OTP_KEY_BASE
+          value: long-and-random-alpha-numeric-string
+        - name: GITLAB_ROOT_PASSWORD
+          #valueFrom:
+          #  secretKeyRef:
+          #    name: git-user-pass
+          #    key: password
+          value: 123629He
+        - name: GITLAB_ROOT_EMAIL
+          value: 851448443@qq.com
+        - name: GITLAB_HOST
+          value: 192.168.41.50
+        - name: GITLAB_PORT
+          value: "31080"
+        - name: GITLAB_SSH_PORT
+          value: "31022"
+        - name: GITLAB_NOTIFY_ON_BROKEN_BUILDS
+          value: "true"
+        - name: GITLAB_NOTIFY_PUSHER
+          value: "false"
+        - name: GITLAB_BACKUP_SCHEDULE
+          value: daily
+        - name: GITLAB_BACKUP_TIME
+          value: 01:00
+        name: gitlab
+        image: 192.168.41.200/devops/gitlab/gitlab-ee:16.11.10-ee.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 443
+          name: https
+        - containerPort: 31080
+          name: http
+        - containerPort: 31088
+          name: http-git
+        - containerPort: 22
+          name: ssh
+        resources:
+          requests:
+            memory: "2048Mi"
+            cpu: 2
+          limits:
+            memory: "8096Mi"
+            cpu: 4
+        volumeMounts:
+        - name: timezone
+          mountPath: /etc/localtime
+          readOnly: true
+        - name: gitlab
+          mountPath: /etc/gitlab
+          subPath: gitlab-config                    # 使用 subPath 在宿主机的挂载目录上设置一个子目录，用于存放上面指定目录的数据
+        - name: gitlab
+          mountPath: /var/log/gitlab
+          subPath: gitlab-logs
+        - name: gitlab
+          mountPath: /var/opt/gitlab
+          subPath: gitlab-data
+      imagePullSecrets:
+      - name: harbor-secret
+      volumes:
+      - name: timezone
+        hostPath:
+          path: /etc/localtime
+          type: ""
+      - name: gitlab
+        persistentVolumeClaim:
+          claimName: gitlab-pvc    #绑定下面创建的 PVC
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gitlab-pvc
+  namespace: middleware
+spec:
+  storageClassName: nfs-sc
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitlab-svc
+  namespace: middleware
+spec:
+  type: NodePort
+  ports:
+  - port: 443 # pod端口
+    nodePort: 31443 # 外部端口
+    targetPort: 443 # 容器端口
+    name: https
+  - port: 31080
+    nodePort: 31080
+    targetPort: 31080
+    name: http
+  - port: 31088
+    nodePort: 31088
+    targetPort: 31088
+    name: http-git
+  - port: 22
+    nodePort: 31022
+    targetPort: 22
+    name: ssh
+  selector:
+    app: gitlab</code></pre>
+<h2 id="5-2-获取初始密码">5.2 获取初始密码</h2>
+<pre class="language-none"><code class="language-none"># 默认密码已配置为 123629He
+kubectl exec -it -n middleware $(kubectl get pods -n middleware | grep gitlab | awk '{print$1}') -- cat /etc/gitlab/initial_root_password | grep Password:</code></pre>
+<h2 id="5-3-登录">5.3 登录</h2>
+<pre class="language-none"><code class="language-none">http://192.168.41.50:31080/</code></pre>
+<h2 id="5-4-配置外部URL">5.4 配置外部URL</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>Java应用当然是java基础镜像（SpringBoot应用）或者Tomcat基础镜像（War应用）</p>
+<p>代码仓库克隆链接 gitlab 会根据机器内部的 FQCN 来标记一个仓库的 url,这个url不可用</p>
+<img src="/article/gitlab-ee-install/image-20240926164117567.png" alt="image-20240926164117567" style="zoom:50%;">
 </li>
 <li class="lvl-2">
-<p>JS模块化应用一般用nodejs基础镜像</p>
-</li>
-<li class="lvl-2">
-<p>其他各种语言用自己的服务器或者基础环境镜像，如python、golang、java、php等</p>
+<p>按需修改nfs中的配置文件gitlab.rb</p>
+<pre class="language-none"><code class="language-none"># 1、修改配置文件
+vim /nfs/xxx/gitlab-config/conf/gitlab.rb
+
+external_url 'http://192.168.41.50:31080'
+gitlab_rails['gitlab_ssh_host'] = '192.168.41.50'  ## ip需要修改为访问地址
+gitlab_rails['gitlab_shell_ssh_port'] = 31022
+gitlab_rails['time_zone'] = 'Asia/Shanghai'
+
+gitlab_rails['db_adapter'] = "postgresql"
+gitlab_rails['db_encoding'] = "utf8"
+gitlab_rails['db_database'] = "gitlab" #需要现在postgresql里创建数据库gitlab，否则启动失败
+gitlab_rails['db_username'] = "postgres"
+gitlab_rails['db_password'] = "123629he"
+gitlab_rails['db_host'] = "192.68.41.50"
+gitlab_rails['db_port'] = '30431'
+
+gitlab_rails['smtp_enable'] = false
+gitlab_rails['smtp_address'] = "smtp.qq.com"
+gitlab_rails['smtp_port'] = 465
+gitlab_rails['smtp_user_name'] = "851448443@qq.com"
+gitlab_rails['smtp_password'] = "yasfadsfafddfdj"  ## 密码为qq的smtp授权码 不是登录密码
+gitlab_rails['smtp_domain'] = "smtp.qq.com"
+gitlab_rails['smtp_authentication'] = "login"
+gitlab_rails['smtp_enable_starttls_auto'] = true
+gitlab_rails['smtp_tls'] = true
+gitlab_rails['gitlab_email_enabled'] = false
+gitlab_rails['gitlab_email_from'] = '851448443@qq.com'
+gitlab_rails['gitlab_email_display_name'] = 'gitlab'
+gitlab_rails['gitlab_email_reply_to'] = '851448443@qq.com'
+gitlab_rails['gitlab_email_subject_suffix'] = '[gitlab]'
+
+#2、重启gitlab 重启后再激活
+kubectl delete pod -n middleware $(kubectl get pods -n middleware | grep gitlab | awk '{print$1}')</code></pre>
 </li>
 </ul>
-<h2 id="2、LABEL">2、LABEL</h2>
-<p>标注镜像的一些说明信息。</p>
-<pre class="language-none"><code class="language-none">LABEL multi.label1="value1" multi.label2="value2" other="value3"
-LABEL multi.label1="value1" \
-multi.label2="value2" \
-other="value3"</code></pre>
-<h2 id="3、RUN（构建过程执行）">3、RUN（构建过程执行）</h2>
+<h1>六、 激活</h1>
+<h2 id="6-1-安装ruby">6.1  安装ruby</h2>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装ruby</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> ruby <span class="token parameter variable">-f</span>
+
+<span class="token comment"># 查看安装版本</span>
+ruby <span class="token parameter variable">-v</span>
+
+<span class="token comment"># 查看gem安装版本</span>
+gem <span class="token parameter variable">-v</span></code></pre>
+<h2 id="6-2-安装gitlab-license">6.2 安装gitlab-license</h2>
+<pre class="language-bash" data-language="bash"><code class="language-bash">gem <span class="token function">install</span> gitlab-license</code></pre>
+<h2 id="6-3-破解方法">6.3 破解方法</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>RUN指令在当前镜像层顶部的新层执行任何命令，并提交结果，生成新的镜像层。</p>
+<p>创建一个rb文件</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /opt/gitlab/license
+
+<span class="token builtin class-name">cd</span> /opt/gitlab/license
+
+<span class="token function">vim</span> license.rb</code></pre>
 </li>
 <li class="lvl-2">
-<p>生成的提交映像将用于Dockerfile中的下一步。 分层运行RUN指令并生成提交符合Docker的核心概 念，就像源代码控制一样。</p>
+<p>将如下内容拷贝到license.rb</p>
+<pre class="language-ruby" data-language="ruby"><code class="language-ruby"><span class="token keyword">require</span> <span class="token string-literal"><span class="token string">"openssl"</span></span>
+ <span class="token keyword">require</span> <span class="token string-literal"><span class="token string">"gitlab/license"</span></span>
+ key_pair <span class="token operator">=</span> OpenSSL<span class="token double-colon punctuation">::</span>PKey<span class="token double-colon punctuation">::</span><span class="token constant">RSA</span><span class="token punctuation">.</span>generate<span class="token punctuation">(</span><span class="token number">2048</span><span class="token punctuation">)</span>
+ <span class="token builtin">File</span><span class="token punctuation">.</span>open<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"license_key"</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"w"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">|</span>f<span class="token operator">|</span> f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>key_pair<span class="token punctuation">.</span>to_pem<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+ public_key <span class="token operator">=</span> key_pair<span class="token punctuation">.</span>public_key
+ <span class="token builtin">File</span><span class="token punctuation">.</span>open<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"license_key.pub"</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"w"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">|</span>f<span class="token operator">|</span> f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>public_key<span class="token punctuation">.</span>to_pem<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+ private_key <span class="token operator">=</span> OpenSSL<span class="token double-colon punctuation">::</span>PKey<span class="token double-colon punctuation">::</span><span class="token class-name">RSA</span><span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token builtin">File</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"license_key"</span></span><span class="token punctuation">)</span>
+ Gitlab<span class="token double-colon punctuation">::</span>License<span class="token punctuation">.</span>encryption_key <span class="token operator">=</span> private_key
+ license <span class="token operator">=</span> Gitlab<span class="token double-colon punctuation">::</span><span class="token class-name">License</span><span class="token punctuation">.</span><span class="token keyword">new</span>
+ license<span class="token punctuation">.</span>licensee <span class="token operator">=</span> <span class="token punctuation">{</span>
+ <span class="token string-literal"><span class="token string">"Name"</span></span> <span class="token operator">=&gt;</span> <span class="token string-literal"><span class="token string">"none"</span></span><span class="token punctuation">,</span>
+ <span class="token string-literal"><span class="token string">"Company"</span></span> <span class="token operator">=&gt;</span> <span class="token string-literal"><span class="token string">"none"</span></span><span class="token punctuation">,</span>
+ <span class="token string-literal"><span class="token string">"Email"</span></span> <span class="token operator">=&gt;</span> <span class="token string-literal"><span class="token string">"example@test.com"</span></span><span class="token punctuation">,</span>
+ <span class="token punctuation">}</span>
+ license<span class="token punctuation">.</span>starts_at <span class="token operator">=</span> <span class="token class-name">Date</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span><span class="token number">2021</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># 开始时间</span>
+ license<span class="token punctuation">.</span>expires_at <span class="token operator">=</span> <span class="token class-name">Date</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span><span class="token number">2050</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># 结束时间</span>
+ license<span class="token punctuation">.</span>notify_admins_at <span class="token operator">=</span> <span class="token class-name">Date</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span><span class="token number">2049</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+ license<span class="token punctuation">.</span>notify_users_at <span class="token operator">=</span> <span class="token class-name">Date</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span><span class="token number">2049</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+ license<span class="token punctuation">.</span>block_changes_at <span class="token operator">=</span> <span class="token class-name">Date</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span><span class="token number">2050</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+ license<span class="token punctuation">.</span>restrictions <span class="token operator">=</span> <span class="token punctuation">{</span>
+ <span class="token symbol">active_user_count</span><span class="token operator">:</span> <span class="token number">10000</span><span class="token punctuation">,</span>
+ <span class="token punctuation">}</span>
+ puts <span class="token string-literal"><span class="token string">"License:"</span></span>
+ puts license
+ data <span class="token operator">=</span> license<span class="token punctuation">.</span>export
+ puts <span class="token string-literal"><span class="token string">"Exported license:"</span></span>
+ puts data
+ <span class="token builtin">File</span><span class="token punctuation">.</span>open<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"GitLabBV.gitlab-license"</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"w"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">|</span>f<span class="token operator">|</span> f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+ public_key <span class="token operator">=</span> OpenSSL<span class="token double-colon punctuation">::</span>PKey<span class="token double-colon punctuation">::</span><span class="token class-name">RSA</span><span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token builtin">File</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"license_key.pub"</span></span><span class="token punctuation">)</span>
+ Gitlab<span class="token double-colon punctuation">::</span>License<span class="token punctuation">.</span>encryption_key <span class="token operator">=</span> public_key
+ data <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"GitLabBV.gitlab-license"</span></span><span class="token punctuation">)</span>
+ <span class="token variable">$license</span> <span class="token operator">=</span> Gitlab<span class="token double-colon punctuation">::</span>License<span class="token punctuation">.</span>import<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+ puts <span class="token string-literal"><span class="token string">"Imported license:"</span></span>
+ puts <span class="token variable">$license</span>
+ <span class="token keyword">unless</span> <span class="token variable">$license</span>
+ <span class="token keyword">raise</span> <span class="token string-literal"><span class="token string">"The license is invalid."</span></span>
+ <span class="token keyword">end</span>
+ <span class="token keyword">if</span> <span class="token variable">$license</span><span class="token punctuation">.</span>restricted<span class="token operator">?</span><span class="token punctuation">(</span><span class="token symbol">:active_user_count</span><span class="token punctuation">)</span>
+ active_user_count <span class="token operator">=</span> <span class="token number">10000</span>
+ <span class="token keyword">if</span> active_user_count <span class="token operator">&gt;</span> <span class="token variable">$license</span><span class="token punctuation">.</span>restrictions<span class="token punctuation">[</span><span class="token symbol">:active_user_count</span><span class="token punctuation">]</span>
+     <span class="token keyword">raise</span> <span class="token string-literal"><span class="token string">"The active user count exceeds the allowed amount!"</span></span>
+ <span class="token keyword">end</span>
+ <span class="token keyword">end</span>
+ <span class="token keyword">if</span> <span class="token variable">$license</span><span class="token punctuation">.</span>notify_admins<span class="token operator">?</span>
+ puts <span class="token string-literal"><span class="token string">"The license is due to expire on </span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content"><span class="token variable">$license</span><span class="token punctuation">.</span>expires_at</span><span class="token delimiter punctuation">}</span></span><span class="token string">."</span></span>
+ <span class="token keyword">end</span>
+ <span class="token keyword">if</span> <span class="token variable">$license</span><span class="token punctuation">.</span>notify_users<span class="token operator">?</span>
+ puts <span class="token string-literal"><span class="token string">"The license is due to expire on </span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content"><span class="token variable">$license</span><span class="token punctuation">.</span>expires_at</span><span class="token delimiter punctuation">}</span></span><span class="token string">."</span></span>
+ <span class="token keyword">end</span>
+ <span class="token keyword">module</span> <span class="token class-name">Gitlab</span>
+ <span class="token keyword">class</span> <span class="token class-name">GitAccess</span>
+     <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">check</span></span><span class="token punctuation">(</span>cmd<span class="token punctuation">,</span> changes <span class="token operator">=</span> <span class="token keyword">nil</span><span class="token punctuation">)</span>
+     <span class="token keyword">if</span> <span class="token variable">$license</span><span class="token punctuation">.</span>block_changes<span class="token operator">?</span>
+         <span class="token keyword">return</span> build_status_object<span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"License expired"</span></span><span class="token punctuation">)</span>
+     <span class="token keyword">end</span>
+     <span class="token keyword">end</span>
+ <span class="token keyword">end</span>
+ <span class="token keyword">end</span>
+ puts <span class="token string-literal"><span class="token string">"This instance of GitLab Enterprise Edition is licensed to:"</span></span>
+ <span class="token variable">$license</span><span class="token punctuation">.</span>licensee<span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>key<span class="token punctuation">,</span> value<span class="token operator">|</span>
+ puts <span class="token string-literal"><span class="token string">"</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">key</span><span class="token delimiter punctuation">}</span></span><span class="token string">: </span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">value</span><span class="token delimiter punctuation">}</span></span><span class="token string">"</span></span>
+ <span class="token keyword">end</span>
+ <span class="token keyword">if</span> <span class="token variable">$license</span><span class="token punctuation">.</span>expired<span class="token operator">?</span>
+ puts <span class="token string-literal"><span class="token string">"The license expired on </span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content"><span class="token variable">$license</span><span class="token punctuation">.</span>expires_at</span><span class="token delimiter punctuation">}</span></span><span class="token string">"</span></span>
+ <span class="token keyword">elsif</span> <span class="token variable">$license</span><span class="token punctuation">.</span>will_expire<span class="token operator">?</span>
+ puts <span class="token string-literal"><span class="token string">"The license will expire on </span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content"><span class="token variable">$license</span><span class="token punctuation">.</span>expires_at</span><span class="token delimiter punctuation">}</span></span><span class="token string">"</span></span>
+ <span class="token keyword">else</span>
+ puts <span class="token string-literal"><span class="token string">"The license will never expire."</span></span>
+ <span class="token keyword">end</span></code></pre>
 </li>
 <li class="lvl-2">
-<p>exec形式可以避免破坏shell字符串，并使用不包含指定shell可执行文件的基本映像运行RUN命令。 可以使用SHELL命令更改shell形式的默认shell。 在shell形式中，您可以使用\（反斜杠）将一条 RUN指令继续到下一行。</p>
+<p>生成 GitLabBV.gitlab-license license_key license_key.pub 这三个文件。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /opt/gitlab/license
+ruby license.rb</code></pre>
+</li>
+<li class="lvl-2">
+<p>使用许可证</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>首先把license_key.pub文件复制到nfs对应的gitlab-config目录下</p>
+<pre class="language-none"><code class="language-none">cp license_key.pub /nfs/middleware-gitlab-pvc-pvc-a9d1340c-be3c-4752-854e-6b0a6773b073/gitlab-config/</code></pre>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>然后进入gitlab容器</p>
+<pre class="language-none"><code class="language-none">kubectl exec -it -n middleware $(kubectl get pods -n middleware | grep gitlab | awk '{print$1}') bash</code></pre>
+</li>
+<li class="lvl-2">
+<p>备份 /opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> /opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub /opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub_bak</code></pre>
+</li>
+<li class="lvl-2">
+<p>用 license_key.pub 文件替换 /opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub 中的内容</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> /etc/gitlab/license_key.pub /opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub</code></pre>
+</li>
+<li class="lvl-2">
+<p>修改等级</p>
+<pre class="language-diff" data-language="diff"><code class="language-diff">vi /opt/gitlab/embedded/service/gitlab-rails/ee/app/models/license.rb
+
+<span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line"> # 查找plan 277行 
+</span><span class="token prefix unchanged"> </span><span class="token line"> # Esc模式下输入 277 enter
+</span></span>
+<span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line"> # 修改STARTER_PLAN 为 ULTIMATE_PLAN
+</span><span class="token prefix unchanged"> </span><span class="token line"> -    restricted_attr(:plan).presence || STARTER_PLAN
+</span><span class="token prefix unchanged"> </span><span class="token line"> +    restricted_attr(:plan).presence || ULTIMATE_PLAN
+</span></span></code></pre>
+</li>
+<li class="lvl-2">
+<p>重启gitlab</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">gitlab-ctl restart</code></pre>
+</li>
+</ul>
+<p>刚刚<code>ruby license.rb</code>执行后生成的三个文件其中 GitLabBV.gitlab-license 即是许可证，浏览器打开gitlab管理页面 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http%3A%2F%2F%24%7Byour_gitlab_server_address%7D%2Fadmin%2Fapplication_settings%2Fgeneral">http://${your_gitlab_server_address}/admin/application_settings/general</a></p>
+<p>例如:<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http%3A%2F%2Flocalhost%3A8080%2Fadmin%2Fapplication_settings%2Fgeneral">http://localhost:8080/admin/application_settings/general</a></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>展开 add license</p>
+</li>
+<li class="lvl-2">
+<p>勾选Enter license key, 填入license,</p>
+</li>
+<li class="lvl-2">
+<p>勾选terms of service 点击add license按钮,</p>
+</li>
+<li class="lvl-2">
+<p>当看到这段话, 表示成功。<code>The license was successfully uploaded and is now active. You can see the details below.</code></p>
+</li>
+</ul>
+<h1>七、升级gitlab</h1>
+<p>Gitlab的更新速度还是挺快的, 每隔一个月就会发布一个release. 如果要使用一些新特性或修补一些安全漏洞, 掌握升级技巧是必不可少的. 这里个人建议收藏文档, 原文在文章末尾有链接地址, 以备升级时使用, 知道系统是如何安装的, 又该如何升级. 原文实时更新, 踩过的坑都会记录下来.</p>
+<p>更多关于Gitlab的release政策, 请参考gitlab官方文档<a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/policy/maintenance.html">GitLab release and maintenance policy</a></p>
+<h3 id="7-1-升级前备份">7.1 升级前备份</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>备份数据</p>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">gitlab-rake gitlab:backup:create</code></pre>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>备份敏感数据</p>
+</li>
+</ul>
+<p>手动备份两个具有敏感数据的文件</p>
+<pre class="language-none"><code class="language-none">cp  /etc/gitlab/gitlab.rb  /var/opt/gitlab/backups
+# and
+cp  /etc/gitlab/gitlab-secrets.json  /var/opt/gitlab/backups</code></pre>
 <blockquote>
-<ul class="lvl-3">
-<li class="lvl-2">RUN  ( shell 形式, /bin/sh -c 的方式运行，避免破坏shell字符串)</li>
-<li class="lvl-2">RUN [“executable”, “param1”, “param2”] ( exec 形式）</li>
+<p>说明：</p>
+<ul class="lvl-1">
+<li class="lvl-2">备份被保存在/var/opt/gitlab/backups目录下</li>
+<li class="lvl-2">备份文件名格式如下: 例如1665044212_2022_10_06_14.4.1-ee_gitlab_backup.tar, 命名规则为:备份编号+日期+gitlab版本号+后缀</li>
+<li class="lvl-2">备份恢复的原则是对应版本的备份文件只能使用对应版本的gitlab程序进行恢复</li>
+<li class="lvl-2">跨版本恢复备份文件会出现恢复失败或未知错误</li>
+<li class="lvl-2">如果要在高版本中使用低版本的备份文件
+<blockquote>
+<ul class="lvl-4">
+<li class="lvl-4">方法一: 在另一台机中 安装低版本gitlab 将低版本的备份程序采用低版本的gitlab恢复后再将低版本的gitlab升级到高版本, 再使用高版本的gitlab制作备份文件</li>
 </ul>
 </blockquote>
-<pre class="language-none"><code class="language-none">RUN /bin/bash -c 'source $HOME/.bashrc; \
-echo $HOME'
-#上面等于下面这种写法
-RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'
-RUN ["/bin/bash", "-c", "echo hello"]</code></pre>
-<pre class="language-none"><code class="language-none"># 测试案例
-FROM alpine
-LABEL maintainer=hzhero xx=aa
-ENV msg='hello hzhero'
-RUN echo $msg
-RUN ["echo","$msg"]
-RUN /bin/sh -c 'echo $msg'
-RUN ["/bin/sh","-c","echo $msg"]
-CMD sleep 10000
-#总结； 由于[]不是shell形式，所以不能输出变量信息，而是输出$msg。其他任何/bin/sh -c 的形式都
-可以输出变量信息</code></pre>
-</li>
-<li class="lvl-2">
-<p>总结：什么是shell和exec形式</p>
-<pre class="language-none"><code class="language-none">1. shell 是 /bin/sh -c &lt;command&gt;的方式，
-2. exec ["/bin/sh","-c",command] 的方式== shell方式
-也就是exec 默认方式不会进行变量替换</code></pre>
 </li>
 </ul>
-<h2 id="4、CMD和ENTRYPOINT（都是只在运行时执行）">4、CMD和ENTRYPOINT（都是只在运行时执行）</h2>
-<h3 id="0、都可以作为容器启动入口">0、都可以作为容器启动入口</h3>
-<p>CMD 的三种写法：</p>
+</blockquote>
+<h3 id="5-2-开启yum缓存">5.2. 开启yum缓存</h3>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>CMD [“executable”,“param1”,“param2”] ( exec 方式, 首选方式)</p>
+<p>gitlab的每个安装包都接近1G大小，gitlab升级过程中可能需要反复恢复重试，如果不开启yum缓存，即每次执行yum install无论成功与否，安装包都会被清理掉，下次重试即使是相同的版本也会去服务器上重新下载，会特别慢，而且消耗服务器带宽，如果触发了镜像服务器的限流机制，升级可能会无法进行下去.</p>
 </li>
 <li class="lvl-2">
-<p>CMD [“param1”,“param2”] (为ENTRYPOINT提供默认参数)</p>
+<p>强烈建议开启yum缓存，等升级完成后再关闭缓存并手动清理 /var/cache/yum/x86_64/7/gitlab_gitlab-ee下的缓存．</p>
 </li>
 <li class="lvl-2">
-<p>CMD command param1 param2 ( shell 形式)</p>
+<p>开启yum 缓存步骤如下: 修改/etc/yum.conf, 将keepcache设置为1, 默认为0.<br>
+这样当再次重试相同版本时就可以使用-C 参数使用缓存(详细使用方法参考”开始升级章节”)，而不必去镜像服务器上重新下载．</p>
 </li>
 </ul>
-<p>ENTRYPOINT 的两种写法：</p>
+<p>/etc/yum.conf</p>
+<pre class="language-none"><code class="language-none">[main]
+cachedir=/var/cache/yum/$basearch/$releasever
+keepcache=1　# 开启缓存, 1表示开启缓存, 0表示关闭缓存
+debuglevel=2
+logfile=/var/log/yum.log
+exactarch=1
+obsoletes=1
+gpgcheck=1
+plugins=0</code></pre>
+<h3 id="5-3-开始升级">5.3. 开始升级</h3>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>ENTRYPOINT [“executable”, “param1”, “param2”] ( exec 方式, 首选方式)</p>
+<p>升级前需要了解升级路径，gitlab不能一次性从低版本升级到最新版，需要升级到必要的中间版本，然后一步步升级到最新版本．主要涉及到版本之间的数据的迁移(data migration)工作，所以必须经过其中关键的版本升级，才能顺利完成数据更新操作．升级路径可以参考<a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/update/">官网</a> - <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/update/#upgrade-paths">Upgrade paths</a>, 这里简要列举路径如下<br>
+8.11.Z -&gt; 8.12.0 -&gt; 8.17.7 -&gt; 9.0.13 -&gt; 9.5.10 -&gt; 10.0.7 -&gt; 10.8.7-&gt; 11.0.6 -&gt; 11.11.8 -&gt; 12.0.12 -&gt; 12.1.17 -&gt; 12.10.14 -&gt; 13.0.14 -&gt; 13.1.11 -&gt; 13.8.8 -&gt; 13.12.15 -&gt; 14.0.12 -&gt; 14.3.6 -&gt; 14.9.5 -&gt; 14.10.5 -&gt; 15.0.5 -&gt; 15.1.6 (for GitLab instances with multiple web nodes) -&gt; 15.4.6 -&gt; 15.11.13 -&gt;<br>
+(only instances with lots of users or large pipeline variables history) &gt; 16.1 (instances with NPM packages in their package registry) &gt; 16.2.x (only instances with large pipeline variables history) &gt; 16.3 &gt; latest 16.Y.Z.</p>
 </li>
 <li class="lvl-2">
-<p>ENTRYPOINT command param1 param2 (shell 形式)</p>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none"># 一个示例
-FROM alpine
-LABEL maintainer=hzhero
-CMD ["1111"]
-CMD ["2222"]
-ENTRYPOINT ["echo"]
-#构建出如上镜像后测试
-docker run xxxx：效果 echo 2222</code></pre>
-<h3 id="1、只能有一个CMD">1、只能有一个CMD</h3>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>Dockerfile中只能有一条CMD指令。 如果您列出多个CMD，则只有最后一个CMD才会生效。</p>
-</li>
-<li class="lvl-2">
-<p>CMD的主要目的是为执行中的容器提供默认值。 这些默认值可以包含可执行文件，也可以省略可 执行文件，在这种情况下，您还必须指定ENTRYPOINT指令。</p>
-</li>
-</ul>
-<h3 id="2、CMD为ENTRYPOINT提供默认参数">2、CMD为ENTRYPOINT提供默认参数</h3>
-<p>如果使用CMD为ENTRYPOINT指令提供默认参数，则CMD和ENTRYPOINT指令均应使用JSON数组格 式指定。</p>
-<h3 id="3、组合最终效果">3、组合最终效果</h3>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>无ENTRYPOINT</th>
-<th>ENTRYPOINT exec_entry p1_entry</th>
-<th>ENTRYPOINT [“exec_entry”, “p1_entry”]</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>无CMD</td>
-<td>错误, 不允许的写 法 ；容器没有启动 命令</td>
-<td>/bin/sh -c exec_entry p1_entry</td>
-<td>exec_entry p1_entry</td>
-</tr>
-<tr>
-<td>CMD [“exec_cmd”, “p1_cmd”]</td>
-<td>exec_cmd p1_cmd</td>
-<td>/bin/sh -c exec_entry p1_entry</td>
-<td>exec_entry p1_entry exec_cmd p1_cmd</td>
-</tr>
-<tr>
-<td>CMD [“p1_cmd”, “p2_cmd”]</td>
-<td>p1_cmd p2_cmd</td>
-<td>/bin/sh -c exec_entry p1_entry</td>
-<td>exec_entry p1_entry p1_cmd p2_cmd</td>
-</tr>
-<tr>
-<td>CMD exec_cmd p1_cmd</td>
-<td>/bin/sh -c exec_cmd p1_cmd</td>
-<td>/bin/sh -c exec_entry p1_entry</td>
-<td>exec_entry p1_entry [/bin/sh -c exec_cmd p1_cmd]</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>此列总是以ENTRYPOINT为准</td>
-<td>此列，ENTRYPOINT和CMD共同作用</td>
-</tr>
-</tbody>
-</table>
-<h3 id="4、docker-run-启动参数会覆盖CMD内容">4、docker run 启动参数会覆盖CMD内容</h3>
-<pre class="language-none"><code class="language-none"># 一个示例
-FROM alpine
-LABEL maintainer=hzhero
-CMD ["1111"]
-ENTRYPOINT ["echo"]
+<p>首先确定gitlab版本信息, 然后再选择合适的升级路径</p>
+<pre class="language-none"><code class="language-none">gitlab-rake gitlab:env:info
 
-#构建出如上镜像后测试
-docker run xxxx：什么都不传则  echo 1111
-docker run xxx arg1：传入arg1 则echo arg1</code></pre>
-<h2 id="5、ARG和ENV（ENV会覆盖ARG）">5、ARG和ENV（ENV会覆盖ARG）</h2>
-<h3 id="1、ARG-构建参数，只能在构建时RUN打印，运行时CMD-ENTRYPOINT打印不出来">1、ARG(构建参数，只能在构建时RUN打印，运行时CMD ENTRYPOINT打印不出来)</h3>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>ARG指令定义了一个变量，用户可以在构建时使用–build-arg  =  传递，docker build命令会将其传递给构建器。</p>
-</li>
-<li class="lvl-2">
-<p>–build-arg 指定参数会覆盖Dockerfile 中指定的同名参数</p>
-</li>
-<li class="lvl-2">
-<p>如果用户指定了 未在Dockerfile中定义的构建参数 ，则构建会输出 警告 。</p>
-</li>
-<li class="lvl-2">
-<p>ARG只在构建期有效，运行期无效</p>
-</li>
-<li class="lvl-2">
-<p>不建议使用构建时变量来传递诸如github密钥，用户凭据等机密。因为构建时变量值使用docker<br>
-history是可见的。</p>
-</li>
-<li class="lvl-2">
-<p>ARG变量定义从Dockerfile中定义的行开始生效。</p>
-</li>
-<li class="lvl-2">
-<p>使用ENV指令定义的环境变量始终会覆盖同名的ARG指令。</p>
+# 例如
+GitLab information
+Version:        14.4.1-ee
+Revision:       abc23a14bac</code></pre>
 </li>
 </ul>
-<h3 id="2、ENV-只能在运行期生效">2、ENV(只能在运行期生效)</h3>
+<p>gitlab-rake中Rake并不是单词<a target="_blank" rel="noopener" href="https://philoenglish.com/query/rake">Rake</a>的意思, 它实际上是Ruby Make的简写形式, 是ruby种类似make的一种程序. 使用Rake可以做一些通用的管理和运维任务.</p>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>在构建阶段中所有后续指令的环境中使用，并且在许多情况下也可以内联替换。</p>
+<p>升级前关闭gitlab的部分服务</p>
+<pre class="language-none"><code class="language-none">gitlab-ctl stop unicorn
+gitlab-ctl stop sidekiq
+gitlab-ctl stop nginx</code></pre>
 </li>
 <li class="lvl-2">
-<p>引号和反斜杠可用于在值中包含空格。</p>
+<p>升级命令</p>
+<p>升级命令和安装命令是一样的, 将x.y.z-ee.0.el7替换成关键中间版本</p>
+<pre class="language-none"><code class="language-none">yum update -y -C gitlab-ee-x.y.z-ee.0.el7</code></pre>
+<blockquote>
+<p>-C 参数使用缓存, 详细解释参考”开启yum缓存”</p>
+</blockquote>
+<p>升级完成后，需要重新运行配置,否则启动会失败</p>
+<pre class="language-none"><code class="language-none">gitlab-ctl reconfigure</code></pre>
+<p>如果有手动配置，需要重做一遍．</p>
+<p>需要启动gitlab,等待数据迁移任务完成，然后再备份，再次进行下一个版本的升级．</p>
+<p>如果遇到严重问题，需要回退到上一个版本，导入备份，解决问题后继续往后升级，所以备份数据很重要．</p>
+<p>备份恢复命令如下：其中636041545_2021_11_04_12.10.14为备份文件的名字，不包含文件名后缀．</p>
+<pre class="language-none"><code class="language-none">gitlab-rake gitlab:backup:restore BACKUP=1636041545_2021_11_04_12.10.14</code></pre>
 </li>
 <li class="lvl-2">
-<p>ENV 可以使用key  value的写法，但是这种不建议使用了，后续版本可能会删除</p>
-<pre class="language-none"><code class="language-none">ENV MY_MSG hello
-ENV MY_NAME="John Doe"
-ENV MY_DOG=Rex\ The\ Dog
-ENV MY_CAT=fluffy
-#多行写法如下
-ENV MY_NAME="John Doe" MY_DOG=Rex\ The\ Dog \
-MY_CAT=fluffy</code></pre>
-</li>
-<li class="lvl-2">
-<p>docker run --env 可以修改这些值</p>
-</li>
-<li class="lvl-2">
-<p>容器运行时ENV值可以生效</p>
-</li>
-<li class="lvl-2">
-<p>ENV在image阶段就会被解析并持久化（docker inspect image查看），参照下面示例。</p>
-<pre class="language-none"><code class="language-none">FROM alpine
-ENV arg=1111111
-ENV runcmd=$arg
-RUN echo $runcmd
-CMD echo $runcmd
-#ENV的固化问题： 改变arg，会不会改变 echo的值，会改变哪些值，如何修改这些值?
-docker build --no-cache -t demo:test  -f dockerfile1 . 
-[root@localhost hzh]# docker run --env arg=222 bda9843ece19
-1111111</code></pre>
-</li>
-</ul>
-<h3 id="3、综合测试示例">3、综合测试示例</h3>
-<pre class="language-none"><code class="language-none">FROM alpine
-ARG arg1=22222
-ENV arg2=1111111
-ENV arg3=3333333
-ENV runcmd=$arg1
-ENV runcmd2=$arg3
-RUN echo $arg1 $arg2 $runcmd $runcmd2
-CMD echo $arg1 $arg2 $runcmd $runcmd2
-
-[root@localhost hzh]# docker build --no-cache -t demo:test  -f dockerfile3 .
-Sending build context to Docker daemon   5.12kB
-Step 1/8 : FROM alpine
- ---&gt; c059bfaa849c
-Step 2/8 : ARG arg1=22222
- ---&gt; Running in f268afb15919
-Removing intermediate container f268afb15919
- ---&gt; b9cb5acbcf8a
-Step 3/8 : ENV arg2=1111111
- ---&gt; Running in 02b53262b28a
-Removing intermediate container 02b53262b28a
- ---&gt; a6374e1227eb
-Step 4/8 : ENV arg3=3333333
- ---&gt; Running in 4429a64647d2
-Removing intermediate container 4429a64647d2
- ---&gt; b2867fe9fcd8
-Step 5/8 : ENV runcmd=$arg1
- ---&gt; Running in 6258b73903b5
-Removing intermediate container 6258b73903b5
- ---&gt; 08a713f21542
-Step 6/8 : ENV runcmd2=$arg3
- ---&gt; Running in d8b4496877bc
-Removing intermediate container d8b4496877bc
- ---&gt; 10681685a6c6
-Step 7/8 : RUN echo $arg1 $arg2 $runcmd $runcmd2
- ---&gt; Running in d9f073299461
-22222 1111111 22222 3333333
-Removing intermediate container d9f073299461
- ---&gt; 479679fbcd8f
-Step 8/8 : CMD echo $arg1 $arg2 $runcmd $runcmd2
- ---&gt; Running in a789f06f3d71
-Removing intermediate container a789f06f3d71
- ---&gt; 0d9f14f33ef1
-Successfully built 0d9f14f33ef1
-Successfully tagged demo:test
-[root@localhost hzh]# docker run -e arg1="444",arg3="555" 0d9f14f33ef1
-444,arg3=555 1111111 22222 3333333
-[root@localhost hzh]# docker run -e arg1="444" -e arg3="555" 0d9f14f33ef1
-444 1111111 22222 3333333
-
-
-#arg1 被覆盖为ENV 所以被打印了
-#arg3先被持久化 所以$runcmd2打印为3333333
-</code></pre>
-<h2 id="6、ADD和COPY">6、ADD和COPY</h2>
-<h3 id="1、COPY">1、COPY</h3>
-<p>COPY的两种写法</p>
-<pre class="language-none"><code class="language-none">COPY [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;
-COPY [--chown=&lt;user&gt;:&lt;group&gt;] ["&lt;src&gt;",... "&lt;dest&gt;"]</code></pre>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>–chown功能仅在用于构建Linux容器的Dockerfiles上受支持，而在Windows容器上不起作用</p>
-</li>
-<li class="lvl-2">
-<p>COPY指令从 src 复制新文件或目录，并将它们添加到容器的文件系统中，路径为 dest 。</p>
-</li>
-<li class="lvl-2">
-<p>可以指定多个 src 资源，但是文件和目录的路径将被解释为相对于构建上下文的源。</p>
-</li>
-<li class="lvl-2">
-<p>每个 src 都可以包含通配符，并且匹配将使用Go的filepath.Match规则进行。</p>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">COPY hom* /mydir/ #当前上下文，以home开始的所有资源
-COPY hom?.txt /mydir/ # ?匹配单个字符
-COPY test.txt relativeDir/ # 目标路径如果设置为相对路径，则相对与 WORKDIR 开始
-# 把 “test.txt” 添加到 &lt;WORKDIR&gt;/relativeDir/
-COPY test.txt /absoluteDir/ #也可以使用绝对路径，复制到容器指定位置
-#所有复制的新文件都是uid(0)/gid(0)的用户，可以使用--chown改变
-COPY --chown=55:mygroup files* /somedir/
-COPY --chown=bin files* /somedir/
-COPY --chown=1 files* /somedir/
-COPY --chown=10:11 files* /somedir/
-</code></pre>
-<h3 id="2、ADD">2、ADD</h3>
-<p>同COPY用法，不过 ADD拥有自动下载远程文件和解压的功能。</p>
-<p>注意：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>src 路径必须在构建的上下文中； 不能使用 …/something /something 这种方式，因为docker 构建的第一步是将上下文目录（和子目录）发送到docker守护程序。</p>
-</li>
-<li class="lvl-2">
-<p>如果 src 是URL，并且 dest 不以斜杠结尾，则从URL下载文件并将其复制到 dest 。</p>
+<p>每个版本升级完成后，要启动gitlab等待数据迁移完成查看数据迁移任务，有两种查看方式，可以通过web界面查看，也可以通过命令行来查看．</p>
 <ul class="lvl-2">
-<li class="lvl-4">如果 dest 以斜杠结尾，将自动推断出url的名字（保留最后一部分），保存到 dest</li>
+<li class="lvl-4">
+<p>web界面查看方式查看迁移任务的状态，打开web界面:<br>
+在页面顶部, 选择 Menu &gt; Admin.<br>
+在页面左侧边栏，选择Monitoring &gt; Background Migrations.</p>
+</li>
+<li class="lvl-4">
+<p>命令行查看方式</p>
+<pre class="language-none"><code class="language-none">gitlab-rails runner -e production 'puts Gitlab::BackgroundMigration.remaining'</code></pre>
+</li>
 </ul>
 </li>
-<li class="lvl-2">
-<p>如果 src 是目录，则将复制目录的整个内容，包括文件系统元数据。</p>
-</li>
 </ul>
-<h2 id="7、WORKDIR和VOLUME">7、WORKDIR和VOLUME</h2>
-<h3 id="1、WORKDIR">1、WORKDIR</h3>
+<h1>八、gitlab迁移</h1>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>WORKDIR指令为Dockerfile中跟随它的所有 RUN，CMD，ENTRYPOINT，COPY，ADD 指令设置工作目 录。 如果WORKDIR不存在，即使以后的Dockerfile指令中未使用它也将被创建。</p>
+<p>有时我们需要将gitlab迁移到新的性能更好的服务器．怎么进行迁移呢？当然方法很多，这里介绍其中的一种方式，即通过先备份，然后在新的服务器上进行还原操作．</p>
 </li>
 <li class="lvl-2">
-<p>WORKDIR指令可在Dockerfile中多次使用。 如果提供了相对路径，则它将相对于上一个WORKDIR指 令的路径。 例如：</p>
-<pre class="language-none"><code class="language-none">WORKDIR /a
-WORKDIR b
-WORKDIR c
-RUN pwd
-#结果 /a/b/c</code></pre>
-</li>
-<li class="lvl-2">
-<p>也可以用到环境变量</p>
-<pre class="language-none"><code class="language-none">ENV DIRPATH=/path
-WORKDIR $DIRPATH/$DIRNAME
-RUN pwd
-#结果 /path/$DIRNAME</code></pre>
+<p>说明: gitlab还原有一点需要注意，那就是备份文件只能是在与创建备份的gitlab版本相同的gitlab上才能恢复，备份文件的后八位即是创建该备份的gitlab的版本，该版本只能在这种版本下进行还原．</p>
 </li>
 </ul>
-<h3 id="2、VOLUME">2、VOLUME</h3>
-<p>作用：把容器的某些文件夹映射到主机外部</p>
-<p>写法：</p>
-<pre class="language-none"><code class="language-none">VOLUME ["/var/log/"] #可以是JSON数组
-VOLUME /var/log #可以直接写
-VOLUME /var/log /var/db #可以空格分割多个</code></pre>
-<p>注意： 用 VOLUME 声明了卷，那么在这一行之后对于卷内容的修改会被丢弃，所以， 一定在volume声明之前修改内容 ；</p>
-<pre class="language-none"><code class="language-none">FROM alpine
-
-RUN mkdir /hello &amp;&amp;mkdir /app
-RUN echo 1111 &gt; /hello/a.txt
-RUN echo 2222 &gt; /app/b.txt
-# 挂载 容器的指定文件夹，如果不存在就创建
-# 指定了VOLUME，即使启动容器没有指定 -v 参数，我们也会自动进行匿名卷挂载
-# 容器内的/hello /app文件夹，在使用镜像启动容器的时候，自动给宿主机挂载
-
-#VOLUME挂载出去的东西，容器改变也不会最终commit的时候生效
-#只是为了方便容器启动后，宿主机和容器直接方便文件传输或者同步修改
-VOLUME ["/hello", "/app"]
-#VOLUME 指定的挂载目录
-
-# 这两句话没有生效
-RUN echo 6666 &gt;&gt;  /hello/a.txt
-RUN echo 8888 &gt;&gt; /app/b.txt
-
-CMD ping baidu.com
-
-
-[root@localhost hzh]# docker build --no-cache -t demo:test  -f dockerfile4 .
-Sending build context to Docker daemon  6.656kB
-Step 1/8 : FROM alpine
- ---&gt; c059bfaa849c
-Step 2/8 : RUN mkdir /hello &amp;&amp;mkdir /app
- ---&gt; Running in caca1ee42d10
-Removing intermediate container caca1ee42d10
- ---&gt; 144f38a938d5
-Step 3/8 : RUN echo 1111 &gt; /hello/a.txt
- ---&gt; Running in 1296256552cd
-Removing intermediate container 1296256552cd
- ---&gt; 07cf4f85ada9
-Step 4/8 : RUN echo 2222 &gt; /app/b.txt
- ---&gt; Running in c22bb65909f8
-Removing intermediate container c22bb65909f8
- ---&gt; fbee52567277
-Step 5/8 : VOLUME ["/hello", "/app"]
- ---&gt; Running in c43f6ed5b9fa
-Removing intermediate container c43f6ed5b9fa
- ---&gt; d1a87b02d53c
-Step 6/8 : RUN echo 6666 &gt;&gt;  /hello/a.txt
- ---&gt; Running in 8ef8a7702887
-Removing intermediate container 8ef8a7702887
- ---&gt; 41b731518e9b
-Step 7/8 : RUN echo 8888 &gt;&gt; /app/b.txt
- ---&gt; Running in e2778101beb6
-Removing intermediate container e2778101beb6
- ---&gt; 006843ded13f
-Step 8/8 : CMD ping baidu.com
- ---&gt; Running in 0ab295c77c66
-Removing intermediate container 0ab295c77c66
- ---&gt; c84867879973
-Successfully built c84867879973
-Successfully tagged demo:test
-
-[root@localhost hzh]# docker run -d -P  c84867879973
-17b209864395fd7419a0bb22370cc4839d85d115db9a1f1c7a5947236dca548b
-[root@localhost hzh]# docker ps
-CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS     NAMES
-17b209864395   c84867879973   "/bin/sh -c 'ping ba…"   3 seconds ago   Up 2 seconds             intelligent_lichterman
-
-[root@localhost hzh]# docker inspect 17b209864395
-[
-    {
-        "Id": "17b209864395fd7419a0bb22370cc4839d85d115db9a1f1c7a5947236dca548b",
-        "Created": "2022-01-12T10:11:28.557803298Z",
-        "Path": "/bin/sh",
-        "Args": [
-            "-c",
-            "ping baidu.com"
-        ],
-        "State": {
-            "Status": "running",
-            "Running": true,
-            "Paused": false,
-            "Restarting": false,
-            "OOMKilled": false,
-            "Dead": false,
-            "Pid": 24882,
-            "ExitCode": 0,
-            "Error": "",
-            "StartedAt": "2022-01-12T10:11:28.959047886Z",
-            "FinishedAt": "0001-01-01T00:00:00Z"
-        },
-        "Image": "sha256:c84867879973ca0bb31470be36cd43b9c7191c9bfb22fcbad923eb7cfa9ff16b",
-        "ResolvConfPath": "/var/lib/docker/containers/17b209864395fd7419a0bb22370cc4839d85d115db9a1f1c7a5947236dca548b/resolv.conf",
-        "HostnamePath": "/var/lib/docker/containers/17b209864395fd7419a0bb22370cc4839d85d115db9a1f1c7a5947236dca548b/hostname",
-        "HostsPath": "/var/lib/docker/containers/17b209864395fd7419a0bb22370cc4839d85d115db9a1f1c7a5947236dca548b/hosts",
-        "LogPath": "/var/lib/docker/containers/17b209864395fd7419a0bb22370cc4839d85d115db9a1f1c7a5947236dca548b/17b209864395fd7419a0bb22370cc4839d85d115db9a1f1c7a5947236dca548b-json.log",
-        "Name": "/intelligent_lichterman",
-        "RestartCount": 0,
-        "Driver": "overlay2",
-        "Platform": "linux",
-        "MountLabel": "",
-        "ProcessLabel": "",
-        "AppArmorProfile": "",
-        "ExecIDs": null,
-        "HostConfig": {
-            "Binds": null,
-            "ContainerIDFile": "",
-            "LogConfig": {
-                "Type": "json-file",
-                "Config": {}
-            },
-            "NetworkMode": "default",
-            "PortBindings": {},
-            "RestartPolicy": {
-                "Name": "no",
-                "MaximumRetryCount": 0
-            },
-            "AutoRemove": false,
-            "VolumeDriver": "",
-            "VolumesFrom": null,
-            "CapAdd": null,
-            "CapDrop": null,
-            "CgroupnsMode": "host",
-            "Dns": [],
-            "DnsOptions": [],
-            "DnsSearch": [],
-            "ExtraHosts": null,
-            "GroupAdd": null,
-            "IpcMode": "private",
-            "Cgroup": "",
-            "Links": null,
-            "OomScoreAdj": 0,
-            "PidMode": "",
-            "Privileged": false,
-            "PublishAllPorts": true,
-            "ReadonlyRootfs": false,
-            "SecurityOpt": null,
-            "UTSMode": "",
-            "UsernsMode": "",
-            "ShmSize": 67108864,
-            "Runtime": "runc",
-            "ConsoleSize": [
-                0,
-                0
-            ],
-            "Isolation": "",
-            "CpuShares": 0,
-            "Memory": 0,
-            "NanoCpus": 0,
-            "CgroupParent": "",
-            "BlkioWeight": 0,
-            "BlkioWeightDevice": [],
-            "BlkioDeviceReadBps": null,
-            "BlkioDeviceWriteBps": null,
-            "BlkioDeviceReadIOps": null,
-            "BlkioDeviceWriteIOps": null,
-            "CpuPeriod": 0,
-            "CpuQuota": 0,
-            "CpuRealtimePeriod": 0,
-            "CpuRealtimeRuntime": 0,
-            "CpusetCpus": "",
-            "CpusetMems": "",
-            "Devices": [],
-            "DeviceCgroupRules": null,
-            "DeviceRequests": null,
-            "KernelMemory": 0,
-            "KernelMemoryTCP": 0,
-            "MemoryReservation": 0,
-            "MemorySwap": 0,
-            "MemorySwappiness": null,
-            "OomKillDisable": false,
-            "PidsLimit": null,
-            "Ulimits": null,
-            "CpuCount": 0,
-            "CpuPercent": 0,
-            "IOMaximumIOps": 0,
-            "IOMaximumBandwidth": 0,
-            "MaskedPaths": [
-                "/proc/asound",
-                "/proc/acpi",
-                "/proc/kcore",
-                "/proc/keys",
-                "/proc/latency_stats",
-                "/proc/timer_list",
-                "/proc/timer_stats",
-                "/proc/sched_debug",
-                "/proc/scsi",
-                "/sys/firmware"
-            ],
-            "ReadonlyPaths": [
-                "/proc/bus",
-                "/proc/fs",
-                "/proc/irq",
-                "/proc/sys",
-                "/proc/sysrq-trigger"
-            ]
-        },
-        "GraphDriver": {
-            "Data": {
-                "LowerDir": "/var/lib/docker/overlay2/4f563f3f33e7de6d94a8297c9e952819bcc29b2e911e089512c351c3d71a8edb-init/diff:/var/lib/docker/overlay2/fc498dec72595aaaaa87c596f8320732a801f23b9f8f3c584c84bcf377ce2949/diff:/var/lib/docker/overlay2/6bb5823617cec58f587704068adac52dbfd924cc25b13a0bb1213cc7779653b7/diff:/var/lib/docker/overlay2/cb6538f91de4af5307be08d8f4d51611075e24e1c86a51c6640e40d91f955db9/diff:/var/lib/docker/overlay2/1d72b306ec40f2bbcc0555957984ff6d6b08be172075c4a35498a6794ec9fb1d/diff",
-                "MergedDir": "/var/lib/docker/overlay2/4f563f3f33e7de6d94a8297c9e952819bcc29b2e911e089512c351c3d71a8edb/merged",
-                "UpperDir": "/var/lib/docker/overlay2/4f563f3f33e7de6d94a8297c9e952819bcc29b2e911e089512c351c3d71a8edb/diff",
-                "WorkDir": "/var/lib/docker/overlay2/4f563f3f33e7de6d94a8297c9e952819bcc29b2e911e089512c351c3d71a8edb/work"
-            },
-            "Name": "overlay2"
-        },
-        "Mounts": [
-            {
-                "Type": "volume",
-                "Name": "8fb68385ed20365b8f99b72948a3b6499d2e22a3c2618d55da11be0ae7ef7eda",
-                "Source": "/var/lib/docker/volumes/8fb68385ed20365b8f99b72948a3b6499d2e22a3c2618d55da11be0ae7ef7eda/_data",
-                "Destination": "/hello",
-                "Driver": "local",
-                "Mode": "",
-                "RW": true,
-                "Propagation": ""
-            },
-            {
-                "Type": "volume",
-                "Name": "a2623f9b6b97c28063099f378bfd374ee495ac6e183ae10169966f3e8bb6f4c9",
-                "Source": "/var/lib/docker/volumes/a2623f9b6b97c28063099f378bfd374ee495ac6e183ae10169966f3e8bb6f4c9/_data",
-                "Destination": "/app",
-                "Driver": "local",
-                "Mode": "",
-                "RW": true,
-                "Propagation": ""
-            }
-        ],
-        "Config": {
-            "Hostname": "17b209864395",
-            "Domainname": "",
-            "User": "",
-            "AttachStdin": false,
-            "AttachStdout": false,
-            "AttachStderr": false,
-            "Tty": false,
-            "OpenStdin": false,
-            "StdinOnce": false,
-            "Env": [
-                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-            ],
-            "Cmd": [
-                "/bin/sh",
-                "-c",
-                "ping baidu.com"
-            ],
-            "Image": "c84867879973",
-            "Volumes": {
-                "/app": {},
-                "/hello": {}
-            },
-            "WorkingDir": "",
-            "Entrypoint": null,
-            "OnBuild": null,
-            "Labels": {}
-        },
-        "NetworkSettings": {
-            "Bridge": "",
-            "SandboxID": "3afb2f26675442701adb5ee23dfb1e1649d0227c3ee1edc689266cfd2455a944",
-            "HairpinMode": false,
-            "LinkLocalIPv6Address": "",
-            "LinkLocalIPv6PrefixLen": 0,
-            "Ports": {},
-            "SandboxKey": "/var/run/docker/netns/3afb2f266754",
-            "SecondaryIPAddresses": null,
-            "SecondaryIPv6Addresses": null,
-            "EndpointID": "581beda59106ff764e60cf08ab088a080f2bfefee8d348e785d1eebb9d2dc012",
-            "Gateway": "172.17.0.1",
-            "GlobalIPv6Address": "",
-            "GlobalIPv6PrefixLen": 0,
-            "IPAddress": "172.17.0.2",
-            "IPPrefixLen": 16,
-            "IPv6Gateway": "",
-            "MacAddress": "02:42:ac:11:00:02",
-            "Networks": {
-                "bridge": {
-                    "IPAMConfig": null,
-                    "Links": null,
-                    "Aliases": null,
-                    "NetworkID": "d9bc9bf896664b970195e03de603c983fb9983dcf6b987cede491d338b41d193",
-                    "EndpointID": "581beda59106ff764e60cf08ab088a080f2bfefee8d348e785d1eebb9d2dc012",
-                    "Gateway": "172.17.0.1",
-                    "IPAddress": "172.17.0.2",
-                    "IPPrefixLen": 16,
-                    "IPv6Gateway": "",
-                    "GlobalIPv6Address": "",
-                    "GlobalIPv6PrefixLen": 0,
-                    "MacAddress": "02:42:ac:11:00:02",
-                    "DriverOpts": null
-                }
-            }
-        }
-    }
-]
-
-[root@localhost hzh]# cd /var/lib/docker/volumes/8fb68385ed20365b8f99b72948a3b6499d2e22a3c2618d55da11be0ae7ef7eda/_data
-[root@localhost _data]# ll
-总用量 4
--rw-r--r--. 1 root root 5 1月  12 18:06 a.txt
-
-# 可以看到声明之后确实没有生效
-[root@localhost _data]# cat a.txt
-1111
-[root@localhost _data]# vim a.txt
-[root@localhost _data]# cat a.txt
-1111
-2222
-[root@localhost _data]# docker ps
-CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS              PORTS     NAMES
-17b209864395   c84867879973   "/bin/sh -c 'ping ba…"   About a minute ago   Up About a minute             intelligent_lichterman
-
-[root@localhost _data]# docker exec -it 17b209864395 /bin/sh
-/ # cd /hello
-
-/hello # ls
-a.txt
-/hello # cat a.txt
-1111
-2222
-</code></pre>
-<h2 id="8、USER">8、USER</h2>
-<p>写法：</p>
-<pre class="language-none"><code class="language-none">USER &lt;user&gt;[:&lt;group&gt;]
-USER &lt;UID&gt;[:&lt;GID&gt;]</code></pre>
+<h3 id="8-1-备份数据">8.1 备份数据</h3>
+<pre class="language-none"><code class="language-none">gitlab-rake gitlab:backup:create</code></pre>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>USER指令设置运行映像时要使用的用户名（或UID）以及可选的用户组（或GID），以及Dockerfile 中USER后面所有RUN，CMD和ENTRYPOINT指令。</p>
+<p>备份文件默认(如果没有修改默认配置的情况下)保存在/var/opt/gitlab/backups目录下面．</p>
 </li>
 </ul>
-<h2 id="9、EXPOSE">9、EXPOSE</h2>
+<h3 id="8-2-在新服务器上安装gitlab">8.2 在新服务器上安装gitlab</h3>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>EXPOSE指令通知Docker容器在运行时在指定的网络端口上进行侦听。 可以指定端口是侦听TCP还 是UDP，如果未指定协议，则默认值为TCP。</p>
-</li>
-<li class="lvl-2">
-<p>EXPOSE指令实际上不会发布端口。 它充当构建映像的人员和运行容器的人员之间的一种文档，即 有关打算发布哪些端口的信息。 要在运行容器时实际发布端口，请在docker run上使用-p标志发布 并映射一个或多个端口，或使用-P标志发布所有公开的端口并将其映射到高阶端口。</p>
-<pre class="language-none"><code class="language-none">EXPOSE &lt;port&gt; [&lt;port&gt;/&lt;protocol&gt;...]
-EXPOSE [80,443]
-EXPOSE 80/tcp
-EXPOSE 80/udp</code></pre>
+<p>可以参考本文的安装部分进行安装</p>
 </li>
 </ul>
-<h2 id="10、multi-stage-builds">10、multi-stage builds</h2>
-<h3 id="1、使用">1、使用</h3>
-<p><a target="_blank" rel="noopener" href="https://docs.docker.com/develop/develop-images/multistage-build/">多阶段构建官方文档</a></p>
-<p>解决：如何让一个镜像变得更小; 多阶段构建的典型示例</p>
-<pre class="language-none"><code class="language-none">### 我们如何打包一个Java镜像
-FROM maven
-WORKDIR /app
-COPY . .
-RUN mvn clean package
-COPY /app/target/*.jar /app/app.jar
-ENTRYPOINT java -jar app.jar
-## 这样的镜像有多大？
-## 我们最小做到多大？？</code></pre>
-<h3 id="2、生产示例">2、生产示例</h3>
-<pre class="language-none"><code class="language-none">#以下所有前提 保证Dockerfile和项目在同一个文件夹
-# 第一阶段：环境构建; 用这个也可以
-FROM maven:3.5.0-jdk-8-alpine AS builder
-WORKDIR /app
-ADD ./ /app
-RUN mvn clean package -Dmaven.test.skip=true
-# 第二阶段，最小运行时环境，只需要jre；第二阶段并不会有第一阶段哪些没用的层
-#基础镜像没有 jmap； jdk springboot-actutor（jdk）
-FROM openjdk:8-jre-alpine
-LABEL maintainer="851448443@qq.com"
-# 从上一个阶段复制内容
-COPY --from=builder /app/target/*.jar /app.jar
-# 修改时区
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; echo
-'Asia/Shanghai' &gt;/etc/timezone &amp;&amp; touch /app.jar
-ENV JAVA_OPTS=""
-ENV PARAMS=""
-# 运行jar包
-ENTRYPOINT [ "sh", "-c", "java -Djava.security.egd=file:/dev/./urandom
-$JAVA_OPTS -jar /app.jar $PARAMS" ]</code></pre>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml">&lt;<span class="token tag">!--</span>为了加速下载需要在pom文件中复制如下 <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span>
-&lt;repositories<span class="token punctuation">&gt;</span>
-    &lt;repository<span class="token punctuation">&gt;</span>
-        &lt;id<span class="token punctuation">&gt;</span>aliyun&lt;/id<span class="token punctuation">&gt;</span>
-        &lt;name<span class="token punctuation">&gt;</span>Nexus Snapshot Repository&lt;/name<span class="token punctuation">&gt;</span>
-        &lt;url<span class="token punctuation">&gt;</span>https<span class="token punctuation">:</span>//maven.aliyun.com/repository/public&lt;/url<span class="token punctuation">&gt;</span>
-        &lt;layout<span class="token punctuation">&gt;</span>default&lt;/layout<span class="token punctuation">&gt;</span>
-        &lt;releases<span class="token punctuation">&gt;</span>
-            &lt;enabled<span class="token punctuation">&gt;</span>true&lt;/enabled<span class="token punctuation">&gt;</span>
-        &lt;/releases<span class="token punctuation">&gt;</span>
-        &lt;<span class="token tag">!--snapshots</span>默认是关闭的<span class="token punctuation">,</span>需要开启 <span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">&gt;</span><span class="token scalar string">
-        &lt;snapshots&gt;
-            &lt;enabled&gt;true&lt;/enabled&gt;
-        &lt;/snapshots&gt;</span>
-    &lt;/repository<span class="token punctuation">&gt;</span>
-&lt;/repositories<span class="token punctuation">&gt;</span>
-&lt;pluginRepositories<span class="token punctuation">&gt;</span>
-&lt;pluginRepository<span class="token punctuation">&gt;</span>
-&lt;id<span class="token punctuation">&gt;</span>aliyun&lt;/id<span class="token punctuation">&gt;</span>
-&lt;name<span class="token punctuation">&gt;</span>Nexus Snapshot Repository&lt;/name<span class="token punctuation">&gt;</span>
-&lt;url<span class="token punctuation">&gt;</span>https<span class="token punctuation">:</span>//maven.aliyun.com/repository/public&lt;/url<span class="token punctuation">&gt;</span>
-&lt;layout<span class="token punctuation">&gt;</span>default&lt;/layout<span class="token punctuation">&gt;</span>
-&lt;releases<span class="token punctuation">&gt;</span>
-    &lt;enabled<span class="token punctuation">&gt;</span>true&lt;/enabled<span class="token punctuation">&gt;</span>
-&lt;/releases<span class="token punctuation">&gt;</span>
-    &lt;snapshots<span class="token punctuation">&gt;</span>
-        &lt;enabled<span class="token punctuation">&gt;</span>true&lt;/enabled<span class="token punctuation">&gt;</span>
-    &lt;/snapshots<span class="token punctuation">&gt;</span>
-&lt;/pluginRepository<span class="token punctuation">&gt;</span>
-&lt;/pluginRepositories<span class="token punctuation">&gt;</span>
-</code></pre>
-<pre class="language-none"><code class="language-none">######小细节
-RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; echo
-'Asia/Shanghai' &gt;/etc/timezone
-或者
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; echo
-'Asia/Shanghai' &gt;/etc/timezone
-可以让镜像时间同步。
-## 容器同步系统时间 CST（China Shanghai Timezone）
--v /etc/localtime:/etc/localtime:ro
-#已经不同步的如何同步？
-docker cp /etc/localtime 容器id:/etc/</code></pre>
-<p>docker build --build-arg url=“git address” -t demo:test . ：自动拉代码并构建镜像</p>
-<pre class="language-none"><code class="language-none">FROM maven:3.6.1-jdk-8-alpine AS buildapp
-#第二阶段，把克隆到的项目源码拿过来
-# COPY --from=gitclone * /app/
-WORKDIR /app
-COPY pom.xml .
-COPY src .
-RUN mvn clean package -Dmaven.test.skip=true
-# /app 下面有 target
-RUN pwd &amp;&amp; ls -l
-RUN cp /app/target/*.jar /app.jar
-RUN ls -l
-### 以上第一阶段结束，我们得到了一个 app.jar
-## 只要一个JRE
-# FROM openjdk:8-jre-alpine
-FROM openjdk:8u282-slim
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; echo
-'Asia/Shanghai' &gt;/etc/timezone
-LABEL maintainer="851448443@qq.com"
-# 把上一个阶段的东西复制过来
-COPY --from=buildapp /app.jar /app.jar
-# docker run -e JAVA_OPTS="-Xmx512m -Xms33 -" -e PARAMS="--spring.profiles=dev -
--server.port=8080" -jar /app/app.jar
-# 启动java的命令
-ENV JAVA_OPTS=""
-ENV PARAMS=""
-ENTRYPOINT [ "sh", "-c", "java -Djava.security.egd=file:/dev/./urandom
-$JAVA_OPTS -jar /app.jar $PARAMS" ]</code></pre>
-<h2 id="11、images瘦身实践">11、images瘦身实践</h2>
+<h3 id="8-3-还原备份">8.3 还原备份</h3>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>最小的基础镜像</p>
-</li>
-<li class="lvl-2">
-<p>合并RUN环节的所有指令，少生成一些层</p>
-</li>
-<li class="lvl-2">
-<p>RUN期间可能安装其他程序会生成临时缓存，要自行删除。如：</p>
-<pre class="language-none"><code class="language-none"># 开发期间，逐层验证正确的
-RUN xxx
-RUN xxx
-RUN aaa \
-aaa \
-vvv \
-
-
-
-
-#生产环境
-RUN apt-get update &amp;&amp; apt-get install -y \
-bzr \
-cvs \
-git \
-mercurial \
-subversion \
-&amp;&amp; rm -rf /var/lib/apt/lists/*</code></pre>
-</li>
-<li class="lvl-2">
-<p>使用.dockerignore 文件，排除上下文中无需参与构建的资源</p>
-</li>
-<li class="lvl-2">
-<p>使用多阶段构建</p>
-</li>
-<li class="lvl-2">
-<p>合理使用构建缓存加速构建。[–no-cache]</p>
+<p>将备份文件拷贝到新服务器的/var/opt/gitlab/backups目录下，执行恢复命令．备份文件参数，根据自己的实际情况进行修改．</p>
+<p>首先要将旧服务器上的两个文件<code>/etc/gitlab/gitlab.rb</code>,<code>/etc/gitlab/gitlab-secrets.json</code>拷贝到新服务器, 否则后续会发现一些奇怪的问题.</p>
+<p>并将/etc/gitlab/gitlab.rb 的external_url设置为正确的url</p>
+<p>然后执行<code>gitlab-ctl reconfigure</code></p>
+<pre class="language-none"><code class="language-none">gitlab-rake gitlab:backup:restore BACKUP=1636041545_2021_11_04_12.10.14</code></pre>
+<p>如果还原失败, 请先参考问题排查章节, 再在到网上查找解决办法.</p>
 </li>
 </ul>
-<h2 id="12、springboot-java-最终写法">12、springboot java 最终写法</h2>
-<pre class="language-none"><code class="language-none">FROM openjdk:8-jre-alpine
-LABEL maintainer="851448443@qq.com"
-COPY target/*.jar /app.jar
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; echo
-'Asia/Shanghai' &gt;/etc/timezone &amp;&amp; touch /app.jar
-ENV JAVA_OPTS=""
-ENV PARAMS=""
-ENTRYPOINT [ "sh", "-c", "java -Djava.security.egd=file:/dev/./urandom
-$JAVA_OPTS -jar /app.jar $PARAMS" ]
-# 运行命令 docker run -e JAVA_OPTS="-Xmx512m -Xms33 -" -e PARAMS="--
-spring.profiles=dev --server.port=8080" -jar /app/app.jar</code></pre>
+<h1>九、问题排查</h1>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>问题 1:</p>
+<p>从一台机迁移到另外一台机时报如下错错误</p>
+<pre class="language-none"><code class="language-none">Restoring PostgreSQL database gitlabhq_production ... ERROR:  must be owner of extension pg_trgm
+ERROR:  must be owner of extension btree_gist
+ERROR:  must be owner of extension btree_gist
+ERROR:  must be owner of extension pg_trgm</code></pre>
+<p>解决办法:</p>
+<p>修改postgresql配置, 能从本地连接到postgresql</p>
+<pre class="language-none"><code class="language-none">$ vim /var/opt/gitlab/postgresql/data/postgresql.conf
+listen_addresses = '*'
+# 最下面新增两行
+$ vim /var/opt/gitlab/postgresql/data/pg_hba.conf
+local   all         all                               trust
+host    all         all                               127.0.0.1/32 trust</code></pre>
+<p>重启gitlab使得配置生效</p>
+<pre class="language-none"><code class="language-none">gitlab-ctl restart</code></pre>
+<p>修改gitlab账号为超级用户</p>
+<pre class="language-none"><code class="language-none">$ su - gitlab-psql
+$ /opt/gitlab/embedded/bin/psql -h 127.0.0.1 gitlabhq_production
+psql (9.2.8)
+Type "help" for help.
+
+gitlabhq_production=# ALTER USER gitlab WITH SUPERUSER;
+ALTER ROLE
+gitlabhq_production=# \q</code></pre>
+<p>修改完gitlab用户权限后, 记得将postgresql的配置文件改回去</p>
+<ol>
+<li class="lvl-5">
+<p>保证安全性, 防止误操作</p>
+</li>
+<li class="lvl-5">
+<p>以免后续安装postgresql数据库是参数端口冲突</p>
+</li>
+</ol>
+</li>
+<li class="lvl-2">
+<p>问题 2:</p>
+<p>解决Gitlab迁移后，项目的 CI/ CD页面报500错误</p>
+<p>原因是: gitlab默认的备份机制，是不会备份gitlab.rb和gitlab-secrets.json文件的,<br>
+如果这两文件还存在则将其拷贝到新的服务器, 如果不存在则将secrets 清除重设</p>
+</li>
+</ul>
 <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/style.css"><script src="https://fastly.jsdelivr.net/npm/d3@7"></script><script src="https://fastly.jsdelivr.net/npm/markmap-view@0.18.10"></script><script src="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10"></script>
 <link rel="stylesheet" href="/css/markmap.css">
 
@@ -1770,7 +1530,7 @@ spring.profiles=dev --server.port=8080" -jar /app/app.jar</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blog.hzhero.cn/article/dockerfile.html">https://blog.hzhero.cn/article/dockerfile.html</a>
+                    <a href="https://blog.hzhero.cn/article/gitlab-ee-install.html">https://blog.hzhero.cn/article/gitlab-ee-install.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1808,8 +1568,8 @@ spring.profiles=dev --server.port=8080" -jar /app/app.jar</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/docker/">
-                                    <span class="chip bg-color">docker</span>
+                                <a href="/tags/%E8%BF%90%E7%BB%B4/">
+                                    <span class="chip bg-color">运维</span>
                                 </a>
                             
                         </div>
@@ -2247,77 +2007,29 @@ spring.profiles=dev --server.port=8080" -jar /app/app.jar</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/article/docker-basic.html">
+                <a href="/article/gitlab-ee-install.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="docker基础">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Gitlab企业版安装">
                         
-                        <span class="card-title">docker基础</span>
+                        <span class="card-title">Gitlab企业版安装</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            docker基础知识入门介绍
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2018-09-09
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
-                                    运维
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/docker/">
-                        <span class="chip bg-color">docker</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/article/docker-network.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="docker网络和存储">
-                        
-                        <span class="card-title">docker网络和存储</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            docker网络和存储配置介绍
+                            gitlab-ee企业版安装
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2018-09-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-07-03
                             </span>
                         <span class="publish-author">
                             
@@ -2331,11 +2043,65 @@ spring.profiles=dev --server.port=8080" -jar /app/app.jar</code></pre>
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/docker/">
-                        <span class="chip bg-color">docker</span>
+                    <a href="/tags/%E8%BF%90%E7%BB%B4/">
+                        <span class="chip bg-color">运维</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/article/leetcode-easy.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="leetCode简单">
+                        
+                        <span class="card-title">leetCode简单</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            leetCode简单难度题型
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-06-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    编程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BC%96%E7%A8%8B/">
+                        <span class="chip bg-color">编程</span>
+                    </a>
+                    
+                    <a href="/tags/leetCode/">
+                        <span class="chip bg-color">leetCode</span>
                     </a>
                     
                 </div>
