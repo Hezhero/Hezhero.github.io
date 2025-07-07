@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="项目, 天际星空的神知库">
+    <meta name="keywords" content="gitlab，端口分离">
     <meta name="description" content="把经验变产品，把专业变事业">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>项目 | 天际星空的神知库</title>
+    <title>gitlab分离克隆端口笔记 | 天际星空的神知库</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -613,7 +613,7 @@ transparent;
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">项目</h1>
+                    <h1 class="description center-align post-title">gitlab分离克隆端口笔记</h1>
                 </div>
             </div>
         </div>
@@ -730,12 +730,29 @@ transparent;
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/gitlab/">
+                                <span class="chip bg-color">gitlab</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%BF%90%E7%BB%B4/">
+                                <span class="chip bg-color">运维</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
+                                运维
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -744,28 +761,28 @@ transparent;
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2025-02-19
+                    2025-07-07
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-06-23
+                    2025-07-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    5 分
                 </div>
                 
 
@@ -788,7 +805,272 @@ transparent;
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/style.css"><script src="https://fastly.jsdelivr.net/npm/d3@7"></script><script src="https://fastly.jsdelivr.net/npm/markmap-view@0.18.10"></script><script src="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10"></script>
+                <h1>
+    <center>
+    	gitlab分离克隆端口笔记
+    </center>
+</h1>
+<h1>一、需求描述</h1>
+<p>​		要求gitlab访问端口跟克隆端口不一致，克隆端口只允许git操作推拉代码，不允许访问页面等其他操作。</p>
+<h1>二、docker compose部署</h1>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>web页面访问端口为20023，也可以克隆代码。20021端口只能克隆代码</p>
+</li>
+</ul>
+<h2 id="1、docker-compose部署脚本">1、docker compose部署脚本</h2>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">gitlab</span><span class="token punctuation">:</span>
+    <span class="token key atrule">shm_size</span><span class="token punctuation">:</span> 1G
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> gitlab
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> gitlab/gitlab<span class="token punctuation">-</span>ce<span class="token punctuation">:</span>16.3.7<span class="token punctuation">-</span>ce.0
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">GITLAB_OMNIBUS_CONFIG</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+        external_url "http://127.0.0.1:20023"
+        # 必须跟external_url保持一致 否则内部跳转会出问题，比如代码仓库里的成员名称跳转403
+        nginx['listen_port'] = 20023
+        nginx['custom_nginx_config'] = "include /etc/nginx/conf.d/gitlab-clone-only.conf;"
+        gitlab_rails['gitlab_shell_ssh_port'] = 20022
+        gitlab_rails['gitlab_http_clone_host'] = "127.0.0.1"
+        gitlab_rails['gitlab_http_clone_port'] = 20021</span>
+      <span class="token key atrule">TZ</span><span class="token punctuation">:</span> <span class="token string">"Asia/Shanghai"</span>
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"20021:20021"</span>
+      <span class="token punctuation">-</span> <span class="token string">"20022:22"</span>
+      <span class="token punctuation">-</span> <span class="token string">"20023:20023"</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./data<span class="token punctuation">:</span>/var/opt/gitlab
+      <span class="token punctuation">-</span> ./logs<span class="token punctuation">:</span>/var/log/gitlab
+      <span class="token punctuation">-</span> ./conf<span class="token punctuation">:</span>/etc/gitlab
+      <span class="token punctuation">-</span> /etc/localtime<span class="token punctuation">:</span>/etc/localtime<span class="token punctuation">:</span>ro
+      <span class="token punctuation">-</span> ./gitlab<span class="token punctuation">-</span>clone<span class="token punctuation">-</span>only.conf<span class="token punctuation">:</span>/etc/nginx/conf.d/gitlab<span class="token punctuation">-</span>clone<span class="token punctuation">-</span>only.conf</code></pre>
+<h2 id="2、gitlab-屏蔽20021端口访问nginx配置">2、gitlab 屏蔽20021端口访问nginx配置</h2>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># cat gitlab-clone-only.conf</span>
+server <span class="token punctuation">{</span>
+    listen 0.0.0.0<span class="token punctuation">:</span>20021;
+    <span class="token comment">#listen *:20021 ssl http2;  # 注意该配置，没有该配置将导致https拉取代码失败</span>
+    server_name 127.0.0.1;
+    <span class="token comment">#ssl_certificate /etc/gitlab/ssl/server.crt;</span>
+    <span class="token comment">#ssl_certificate_key /etc/gitlab/ssl/server.key;</span>
+    client_max_body_size 1024m;
+    location ~ (\.git(/.<span class="token important">*)?$)</span> <span class="token punctuation">{</span>
+        proxy_cache off;
+        proxy_pass http<span class="token punctuation">:</span>//gitlab<span class="token punctuation">-</span>workhorse;
+        proxy_request_buffering off;
+    <span class="token punctuation">}</span>
+    location / <span class="token punctuation">{</span>
+        proxy_cache off;
+        <span class="token comment">#proxy_pass http://gitlab-workhorse;</span>
+        return 403;
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h1>三、k8s部署</h1>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>web页面访问端口为31080，也可以克隆代码。31088端口只能克隆代码</p>
+</li>
+</ul>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml">root@master<span class="token punctuation">:</span>/opt/gitlab<span class="token comment"># cat deployment.yml</span>
+<span class="token comment"># gitlab-nginx-configmap.yml</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ConfigMap
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> gitlab<span class="token punctuation">-</span>nginx<span class="token punctuation">-</span>config
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> middleware
+<span class="token key atrule">data</span><span class="token punctuation">:</span>
+  <span class="token key atrule">gitlab-http-clone-only.conf</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+    server {
+      listen 0.0.0.0:31088;</span>
+
+
+      server_name 192.168.41.50;
+
+      location ~ (\.git(/.<span class="token important">*)?$)</span> <span class="token punctuation">{</span>
+        proxy_cache off;
+        proxy_pass http<span class="token punctuation">:</span>//gitlab<span class="token punctuation">-</span>workhorse;
+        proxy_request_buffering off;
+      <span class="token punctuation">}</span>
+
+
+      location / <span class="token punctuation">{</span>
+        proxy_cache off;
+        <span class="token comment">#proxy_pass  http://gitlab-workhorse;</span>
+        return 403;
+      <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> gitlab<span class="token punctuation">-</span>ee
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> middleware
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> gitlab
+  <span class="token comment"># 项目的提交历史记录将只保留最近的 100 次提交 超出这个范围的提交将被删除或不可访问（具体取决于 GitLab 的实现方式）</span>
+  <span class="token key atrule">revisionHistoryLimit</span><span class="token punctuation">:</span> <span class="token number">100</span>
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> gitlab
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">env</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_OMNIBUS_CONFIG
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+            # 强化主服务端口绑定 外部访问 URL
+            external_url 'http://192.168.41.50:31080'
+            # SSH 相关配置
+            gitlab_rails['gitlab_shell_ssh_port'] = 31022
+            gitlab_rails['gitlab_ssh_host'] = '192.168.41.50'
+            gitlab_rails['time_zone'] = 'Asia/Shanghai'
+            # 数据库相关配置
+            gitlab_rails['db_adapter'] = "postgresql"
+            gitlab_rails['db_encoding'] = "utf8"
+            gitlab_rails['db_database'] = "gitlab"
+            gitlab_rails['db_username'] = "postgres"
+            gitlab_rails['db_password'] = "123456"
+            gitlab_rails['db_host'] = '192.168.41.50'
+            gitlab_rails['db_port'] = 30431
+            # 分离 Workhorse
+            #gitlab_workhorse['listen_network'] = 'tcp'
+            #gitlab_workhorse['listen_addr'] = '0.0.0.0:31080'
+            # 必须跟external_url保持一致 否则内部跳转会出问题，比如代码仓库里的成员名称跳转403
+            nginx['listen_port'] = 31080
+            nginx['custom_nginx_config'] = "include /etc/nginx/conf.d/gitlab-http-clone-only.conf;"
+            # 新增配置，允许使用 31088 端口进行 HTTP 方式的代码操作
+            gitlab_rails['gitlab_http_clone_host'] = '192.168.41.50'
+            gitlab_rails['gitlab_http_clone_port'] = 31088</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> TZ
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> Asia/Shanghai
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_TIMEZONE
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> Beijing
+        <span class="token comment"># 用于加密 CI 密钥变量及数据库中的重要凭证。如果丢失这个密码，将无法使用已经存在的 CI 密钥。</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_SECRETS_DB_KEY_BASE
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> long<span class="token punctuation">-</span>and<span class="token punctuation">-</span>random<span class="token punctuation">-</span>alpha<span class="token punctuation">-</span>numeric<span class="token punctuation">-</span>string
+        <span class="token comment"># 用于密码重置链接以及其他“标准”身份验证功能。如果丢失这个密码，电子邮件中的密码重置 token 将重置。</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_SECRETS_SECRET_KEY_BASE
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> long<span class="token punctuation">-</span>and<span class="token punctuation">-</span>random<span class="token punctuation">-</span>alpha<span class="token punctuation">-</span>numeric<span class="token punctuation">-</span>string
+        <span class="token comment"># 用于加密数据库的 2FA 密钥。如果丢失这个密码，所有用户都无法通过 2FA 登录</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_SECRETS_OTP_KEY_BASE
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> long<span class="token punctuation">-</span>and<span class="token punctuation">-</span>random<span class="token punctuation">-</span>alpha<span class="token punctuation">-</span>numeric<span class="token punctuation">-</span>string
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_ROOT_PASSWORD
+          <span class="token comment">#valueFrom:</span>
+          <span class="token comment">#  secretKeyRef:</span>
+          <span class="token comment">#    name: git-user-pass</span>
+          <span class="token comment">#    key: password</span>
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token number">123456</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_ROOT_EMAIL
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> 851448443@qq.com
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_HOST
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> 192.168.41.50
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_PORT
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token string">"31080"</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_SSH_PORT
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token string">"31022"</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_NOTIFY_ON_BROKEN_BUILDS
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token string">"true"</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_NOTIFY_PUSHER
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token string">"false"</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_BACKUP_SCHEDULE
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> daily
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> GITLAB_BACKUP_TIME
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token datetime number">01:00</span>
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gitlab
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> 192.168.41.200/devops/gitlab/gitlab<span class="token punctuation">-</span>ee<span class="token punctuation">:</span>16.11.10<span class="token punctuation">-</span>ee.0
+        <span class="token key atrule">imagePullPolicy</span><span class="token punctuation">:</span> IfNotPresent
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">443</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> https
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">31080</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> http
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">31088</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> http<span class="token punctuation">-</span>git
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">22</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> ssh
+        <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+          <span class="token key atrule">requests</span><span class="token punctuation">:</span>
+            <span class="token key atrule">memory</span><span class="token punctuation">:</span> <span class="token string">"2048Mi"</span>
+            <span class="token key atrule">cpu</span><span class="token punctuation">:</span> <span class="token number">2</span>
+          <span class="token key atrule">limits</span><span class="token punctuation">:</span>
+            <span class="token key atrule">memory</span><span class="token punctuation">:</span> <span class="token string">"8096Mi"</span>
+            <span class="token key atrule">cpu</span><span class="token punctuation">:</span> <span class="token number">4</span>
+        <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> timezone
+          <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /etc/localtime
+          <span class="token key atrule">readOnly</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> gitlab
+          <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /etc/gitlab
+          <span class="token key atrule">subPath</span><span class="token punctuation">:</span> gitlab<span class="token punctuation">-</span>config                    <span class="token comment"># 使用 subPath 在宿主机的挂载目录上设置一个子目录，用于存放上面指定目录的数据</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> gitlab
+          <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /var/log/gitlab
+          <span class="token key atrule">subPath</span><span class="token punctuation">:</span> gitlab<span class="token punctuation">-</span>logs
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> gitlab
+          <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /var/opt/gitlab
+          <span class="token key atrule">subPath</span><span class="token punctuation">:</span> gitlab<span class="token punctuation">-</span>data
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> gitlab<span class="token punctuation">-</span>nginx<span class="token punctuation">-</span>config
+          <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /etc/nginx/conf.d/gitlab<span class="token punctuation">-</span>http<span class="token punctuation">-</span>clone<span class="token punctuation">-</span>only.conf
+          <span class="token key atrule">subPath</span><span class="token punctuation">:</span> gitlab<span class="token punctuation">-</span>http<span class="token punctuation">-</span>clone<span class="token punctuation">-</span>only.conf
+      <span class="token key atrule">imagePullSecrets</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> harbor<span class="token punctuation">-</span>secret
+      <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> timezone
+        <span class="token key atrule">hostPath</span><span class="token punctuation">:</span>
+          <span class="token key atrule">path</span><span class="token punctuation">:</span> /etc/localtime
+          <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">""</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> gitlab
+        <span class="token key atrule">persistentVolumeClaim</span><span class="token punctuation">:</span>
+          <span class="token key atrule">claimName</span><span class="token punctuation">:</span> gitlab<span class="token punctuation">-</span>pvc    <span class="token comment">#绑定下面创建的 PVC</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> gitlab<span class="token punctuation">-</span>nginx<span class="token punctuation">-</span>config  <span class="token comment"># 新增此行，匹配 volumeMounts 中的名称</span>
+        <span class="token key atrule">configMap</span><span class="token punctuation">:</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> gitlab<span class="token punctuation">-</span>nginx<span class="token punctuation">-</span>config  <span class="token comment"># 关联已定义的 ConfigMap</span>
+
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> PersistentVolumeClaim
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> gitlab<span class="token punctuation">-</span>pvc
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> middleware
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">storageClassName</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>sc
+  <span class="token key atrule">accessModes</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> ReadWriteMany
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+    <span class="token key atrule">requests</span><span class="token punctuation">:</span>
+      <span class="token key atrule">storage</span><span class="token punctuation">:</span> 10Gi
+
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> gitlab<span class="token punctuation">-</span>svc
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> middleware
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> NodePort
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">443</span> <span class="token comment"># pod端口</span>
+    <span class="token key atrule">nodePort</span><span class="token punctuation">:</span> <span class="token number">31443</span> <span class="token comment"># 外部端口</span>
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">443</span> <span class="token comment"># 容器端口</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> https
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">31080</span>
+    <span class="token key atrule">nodePort</span><span class="token punctuation">:</span> <span class="token number">31080</span>
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">31080</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> http
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">31088</span>
+    <span class="token key atrule">nodePort</span><span class="token punctuation">:</span> <span class="token number">31088</span>
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">31088</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> http<span class="token punctuation">-</span>git
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">22</span>
+    <span class="token key atrule">nodePort</span><span class="token punctuation">:</span> <span class="token number">31022</span>
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">22</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> ssh
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> gitlab
+</code></pre>
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/style.css"><script src="https://fastly.jsdelivr.net/npm/d3@7"></script><script src="https://fastly.jsdelivr.net/npm/markmap-view@0.18.10"></script><script src="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10"></script>
 <link rel="stylesheet" href="/css/markmap.css">
 
 <script src="/js/markmap.js"></script>
@@ -818,7 +1100,7 @@ transparent;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blog.hzhero.cn/project/index.html">https://blog.hzhero.cn/project/index.html</a>
+                    <a href="https://blog.hzhero.cn/article/gitlab-ext-clone-port.html">https://blog.hzhero.cn/article/gitlab-ext-clone-port.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -855,7 +1137,15 @@ transparent;
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/gitlab/">
+                                    <span class="chip bg-color">gitlab</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%BF%90%E7%BB%B4/">
+                                    <span class="chip bg-color">运维</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1296,34 +1586,50 @@ transparent;
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/project/index.html">
+                <a href="/article/gitlab-ext-clone-port.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="项目">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="gitlab分离克隆端口笔记">
                         
-                        <span class="card-title">项目</span>
+                        <span class="card-title">gitlab分离克隆端口笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            gitlab的web页面访问端口与克隆端口分离配置笔记
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-07-07
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            天际星空
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
+                                    运维
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/gitlab/">
+                        <span class="chip bg-color">gitlab</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%BF%90%E7%BB%B4/">
+                        <span class="chip bg-color">运维</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1331,37 +1637,52 @@ transparent;
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/project/index.html">
+                <a href="/article/gitlab-ee-install.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="项目">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Gitlab企业版安装">
                         
-                        <span class="card-title">项目</span>
+                        <span class="card-title">Gitlab企业版安装</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            gitlab-ee企业版安装
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-07-03
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            天际星空
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
+                                    运维
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/gitlab/">
+                        <span class="chip bg-color">gitlab</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%BF%90%E7%BB%B4/">
+                        <span class="chip bg-color">运维</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
