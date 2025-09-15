@@ -846,7 +846,7 @@ transparent;
 <p>截取的nginx的分层</p>
 <pre class="language-none"><code class="language-none">nginx这个镜像怎么存的
 使用：docker image inspect nginx</code></pre>
-<p><img src="/article/docker-network/image-20220112105627092.png" alt="" loading="lazy"></p>
+<p><img src="/article/docker-network/image-20220112105627092.png" alt loading="lazy"></p>
 <p>指示了镜像怎么存的</p>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -902,7 +902,7 @@ c862f1e9a0562de2384dbc/work"</code></pre>
 </li>
 <li class="lvl-2">
 <p>MergedDir ：合并目录；容器最终的完整工作目录全内容都在合并层；数据卷在容器层产生；所 有的增删改都在容器层；</p>
-<p><img src="/article/docker-network/image-20220112110750671.png" alt="" loading="lazy"></p>
+<p><img src="/article/docker-network/image-20220112110750671.png" alt loading="lazy"></p>
 </li>
 <li class="lvl-2">
 <p>UpperDir ：上层目录；</p>
@@ -934,7 +934,7 @@ RUN命令使用make命令构建您的应用程序。
 创建新容器时，可以在基础层之上添加一个新的可写层。 该层通常称为“容器层”。 对运行中
 的容器所做的所有更改（例如写入新文件，修改现有文件和删除文件）都将写入此薄可写容
 器层。</code></pre>
-<p><img src="/article/docker-network/image-20220112112018808.png" alt="" loading="lazy"></p>
+<p><img src="/article/docker-network/image-20220112112018808.png" alt loading="lazy"></p>
 </li>
 </ul>
 <h4 id="2、Container-and-layers">2、Container and layers</h4>
@@ -981,7 +981,7 @@ slim：docker hub中有些镜像有slim标识，都是瘦身了的镜像。也�
 </ul>
 </blockquote>
 <h3 id="2、容器如何挂载">2、容器如何挂载</h3>
-<p><img src="/article/docker-network/image-20220112114951928.png" alt="" loading="lazy"></p>
+<p><img src="/article/docker-network/image-20220112114951928.png" alt loading="lazy"></p>
 <pre class="language-none"><code class="language-none">每一个容器里面的内容，支持三种挂载方式：
 1）、docker自动在外部创建文件夹自动挂载容器内部指定的文件夹内容【Dockerfile VOLUME指令的作
 用】
@@ -1397,7 +1397,7 @@ ping mysql</code></pre>
 <h3 id="3、自定义网络">3、自定义网络</h3>
 <h4 id="1、默认网络原理">1、默认网络原理</h4>
 <p>Docker使用Linux桥接，在宿主机虚拟一个Docker容器网桥(docker0)，Docker启动一个容器时会根据 Docker网桥的网段分配给容器一个IP地址，称为Container-IP，同时Docker网桥是每个容器的默认网关。 因为在同一宿主机内的容器都接入同一个网桥，这样容器之间就能够通过容器的Container-IP直接通信。</p>
-<p><img src="/article/docker-network/image-20220112143319080.png" alt="" loading="lazy"></p>
+<p><img src="/article/docker-network/image-20220112143319080.png" alt loading="lazy"></p>
 <p>Docker容器网络就很好的利用了Linux虚拟网络技术，在本地主机和容器内分别创建一个虚拟接口，并让 他们彼此联通（这样一对接口叫veth pair）；</p>
 <p>Docker中的网络接口默认都是虚拟的接口。虚拟接口的优势就是转发效率极高（因为Linux是在内核中进行数据的复制来实现虚拟接口之间的数据转发，无需通过外部的网络设备交换），对于本地系统和容器 系统来说，虚拟接口跟一个正常的以太网卡相比并没有区别，只是他的速度快很多。</p>
 <ul class="lvl-0">
@@ -2314,7 +2314,7 @@ docker run -d -P --network 自定义网络名(提前创建)</code></pre>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">82k</span>&nbsp;字
+                class="white-color">90.5k</span>&nbsp;字
             
             
             

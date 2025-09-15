@@ -1,0 +1,2067 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="prompt-skill">
+    <meta name="description" content="把经验变产品，把专业变事业">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>prompt-skill | 天际星空的神知库</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+    <!-- 防止网站被克隆镜像 -->
+    <script>
+        (function() {
+            var allowedHostnames = [
+                decryptHostname([98, 108, 111, 103, 46, 104, 122, 104, 101, 114, 111, 46, 99, 110]), // 'blog.hzhero.cn'
+                decryptHostname([104, 101, 122, 104, 101, 114, 111, 46, 103, 105, 116, 104, 117, 98, 46, 105, 111]), // 'hezhero.github.io'
+                decryptHostname([108, 111, 99, 97, 108, 104, 111, 115, 116]) // 'localhost'
+            ];
+
+            var currentHostname = document.location.hostname;
+            console.log('当前主机名为：' + currentHostname);
+
+            if (!isHostnameAllowed(currentHostname)) {
+                showAlertAndRedirect();
+            }
+
+            function isHostnameAllowed(hostname) {
+                return allowedHostnames.includes(hostname);
+            }
+
+            function decryptHostname(charCodes) {
+                return String.fromCharCode.apply(null, charCodes);
+            }
+
+            function showAlertAndRedirect() {
+                var countdown = 5;
+                var alertDiv = document.createElement('div');
+                alertDiv.style.position = 'fixed';
+                alertDiv.style.width = '50%';
+                alertDiv.style.height = '50%';
+                alertDiv.style.top = '50%';
+                alertDiv.style.left = '50%';
+                alertDiv.style.transform = 'translate(-50%, -50%)';
+                alertDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                alertDiv.style.color = 'white';
+                alertDiv.style.display = 'flex';
+                alertDiv.style.justifyContent = 'center';
+                alertDiv.style.alignItems = 'center';
+                alertDiv.style.fontSize = '24px';
+                alertDiv.style.textAlign = 'center';
+                alertDiv.style.zIndex = '10000';
+                alertDiv.innerHTML = '<div>您访问的网页为镜像地址，<span id="countdown">' + countdown + '</span>秒后会跳转到源地址</div>';
+                document.body.appendChild(alertDiv);
+
+                var countdownInterval = setInterval(function() {
+                countdown--;
+                document.getElementById('countdown').innerText = countdown;
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = new URL(document.location.href).href.replace(currentHostname, allowedHostnames[0]);
+                }
+                }, 1000);
+            }
+        })();
+    </script>
+<meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+
+    <style type="text/css" lang="css">
+    #loading-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100vw;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: 
+#FFF;
+        text-align: center;
+        /* loader页面消失采用渐隐的方式*/
+        -webkit-transition: opacity 1s ease;
+        -moz-transition: opacity 1s ease;
+        -o-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+    }
+    .loading-image{
+        width: 120px;
+        height: 50px;
+        transform: translate(-50%);
+    }
+
+    .loading-image div:nth-child(2) {
+        -webkit-animation: pacman-balls 1s linear 0s infinite;
+        animation: pacman-balls 1s linear 0s infinite
+    }
+
+    .loading-image div:nth-child(3) {
+        -webkit-animation: pacman-balls 1s linear .33s infinite;
+        animation: pacman-balls 1s linear .33s infinite
+    }
+
+    .loading-image div:nth-child(4) {
+        -webkit-animation: pacman-balls 1s linear .66s infinite;
+        animation: pacman-balls 1s linear .66s infinite
+    }
+
+    .loading-image div:nth-child(5) {
+        -webkit-animation: pacman-balls 1s linear .99s infinite;
+        animation: pacman-balls 1s linear .99s infinite
+    }
+
+   .loading-image div:first-of-type {
+        width: 0;
+        height: 0;
+        border: 25px solid 
+#49b1f5;
+        border-right-color: 
+transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+        animation: rotate_pacman_half_up .5s 0s infinite;
+    }
+    .loading-image div:nth-child(2) {
+        width: 0;
+        height: 0;
+        border: 25px solid 
+#49b1f5;
+        border-right-color: 
+transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+        animation: rotate_pacman_half_down .5s 0s infinite;
+        margin-top: -50px;
+    }
+    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    .loading-image div:nth-child(3),
+    .loading-image div:nth-child(4),
+    .loading-image div:nth-child(5),
+    .loading-image div:nth-child(6){
+        background-color: 
+#49b1f5;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        margin: 2px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        transform: translateY(-6.25px);
+        top: 25px;
+        left: 100px;
+    }
+    .loading-text{
+        background: linear-gradient(to right, #ff0000, #00ff00);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 20vh;
+        text-align: center;
+        font-size: 1.5rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    @media only screen and (max-width: 500px) {
+         .loading-text{
+            font-size: 2rem;
+         }
+    }
+    .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    /* logo出现动画 */
+    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
+ </style>
+ <script>
+(function () {
+    const loaded = function(){
+       setTimeout(function(){
+            const loader = document.getElementById("loading-container");
+            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+            // document.getElementById("body-wrap").style.display="flex";
+            setTimeout(function(){
+                loader.style.display="none";
+            },2500); 
+        },1000);//强制显示loading page 1s  
+    };
+    loaded();
+})()
+</script>
+ 
+
+<body>
+    
+        <div id="loading-container">
+             <p class="loading-text">欢迎你的到来，神圣知识宝库将为你的成长保驾护航~~ </p> 
+        </div>
+    
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">天际星空的神知库</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/program" class="waves-effect waves-light">
+      
+      <i class="fas fa-code" style="zoom: 0.6;"></i>
+      
+      <span>编程</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/architecture" class="waves-effect waves-light">
+      
+      <i class="fas fa-layer-group" style="zoom: 0.6;"></i>
+      
+      <span>架构设计</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/pmp" class="waves-effect waves-light">
+      
+      <i class="fas fa-user" style="zoom: 0.6;"></i>
+      
+      <span>项目管理</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/maintenance" class="waves-effect waves-light">
+      
+      <i class="fas fa-arrows-alt faa-shake" style="zoom: 0.6;"></i>
+      
+      <span>运维</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-icons" style="zoom: 0.6;"></i>
+      
+      <span>娱乐</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/mofang">
+          
+          <i class="fas fa-cube faa-horizontal faa-reverse" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>魔方</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/plane">
+          
+          <i class="fas fa-plane faa-vertical" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>能飞多远</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tetris">
+          
+          <i class="fas fa-cubes faa-shake" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>俄罗斯方块</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>文章</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/tags">
+          
+          <i class="fas fa-tags" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>标签</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories">
+          
+          <i class="fas fa-bookmark" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>分类</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/archives">
+          
+          <i class="fas fa-archive" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>归档</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle faa-vertical" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">天际星空的神知库</div>
+        <div class="logo-desc">
+            
+            把经验变产品，把专业变事业
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/program" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-code"></i>
+			
+			编程
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/architecture" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-layer-group"></i>
+			
+			架构设计
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/pmp" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user"></i>
+			
+			项目管理
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/maintenance" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-arrows-alt faa-shake"></i>
+			
+			运维
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-icons"></i>
+			
+			娱乐
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/mofang " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-cube faa-horizontal faa-reverse" style="position: absolute;left:28px" ></i>
+			      
+		          <span>魔方</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/plane " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-plane faa-vertical" style="position: absolute;left:28px" ></i>
+			      
+		          <span>能飞多远</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/tetris " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-cubes faa-shake" style="position: absolute;left:28px" ></i>
+			      
+		          <span>俄罗斯方块</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			文章
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/tags " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-tags" style="position: absolute;left:28px" ></i>
+			      
+		          <span>标签</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/categories " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-bookmark" style="position: absolute;left:28px" ></i>
+			      
+		          <span>分类</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/archives " style="margin-left:50px">
+				  
+				   <i class="fa fas fa-archive" style="position: absolute;left:28px" ></i>
+			      
+		          <span>归档</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle faa-vertical"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">prompt-skill</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/AI/">
+                                <span class="chip bg-color">AI</span>
+                            </a>
+                        
+                            <a href="/tags/prompt-skill/">
+                                <span class="chip bg-color">prompt-skill</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/AI/" class="post-category">
+                                AI
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-09-15
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-09-15
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    8.5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    49 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1>一、书籍基础信息</h1>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>关键内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>作者</td>
+<td>Ibrahim John（坦桑尼亚人，创立 Nzunda Technologies Limited 等 3 家公司，Prompt 工程领域专家）</td>
+</tr>
+<tr>
+<td>书名</td>
+<td>《向 ChatGPT 提问获取高质量答案的艺术：Prompt 工程技术完全指南》</td>
+</tr>
+<tr>
+<td>出版信息</td>
+<td>出版单位：Nzunda Technologies Limited；版权年份：2023 年；印刷地：美国</td>
+</tr>
+<tr>
+<td>标识信息</td>
+<td>ISBN-13: 9781234567890；ISBN-10: 1477123456；美国国会图书馆控制号：2018675309</td>
+</tr>
+<tr>
+<td>适用人群</td>
+<td>普通人、研究人员、开发人员、需将 ChatGPT 作为领域个人助手的使用者</td>
+</tr>
+<tr>
+<td>核心目标</td>
+<td>通过 24 种 Prompt 技术，引导 ChatGPT 生成符合特定需求的高质量文本</td>
+</tr>
+</tbody>
+</table>
+<h1>二、Prompt 工程核心定义与公式</h1>
+<h2 id="1-定义">1. <strong>定义</strong></h2>
+<p>创建Prompt（提问 / 指导）引导 ChatGPT 等语言模型输出的过程，核心是通过清晰引导控制文本相关性、准确性与定制化程度，弥补模型 “无引导时输出不稳定” 的缺陷。</p>
+<h2 id="2-核心公式">2. <strong>核心公式</strong></h2>
+<p><strong>Prompt = 任务 + 指令 + 角色</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>任务：明确模型需生成的内容（如 “生成客户服务响应”“总结新闻文章”）；</p>
+</li>
+<li class="lvl-2">
+<p>指令：模型生成时需遵循的规则（如 “专业准确”“中立客观”）；</p>
+</li>
+<li class="lvl-2">
+<p>角色：模型需扮演的身份（如 “客户服务代表”“律师”“技术专家”）。</p>
+</li>
+</ul>
+<h1>三、核心 Prompt 技术分类总结（按章节）</h1>
+<div class="markmap-wrap" id="hmm-57e8b8c63c" style="height: 1200px">
+      <script type="application/json">{"content":"&#x4e09;&#x3001;&#x6838;&#x5fc3; Prompt &#x6280;&#x672f;&#x5206;&#x7c7b;&#x603b;&#x7ed3;&#xff08;&#x6309;&#x7ae0;&#x8282;&#xff09;","children":[{"content":"&#x57fa;&#x7840;Prompt&#x6280;&#x672f;&#xff08;&#x7b2c;2-4&#x7ae0;&#xff09;","children":[{"content":"&#x6307;&#x4ee4;Prompt","children":[{"content":"\n<p data-lines=\"12,13\">&#x5b9a;&#x4e49;&#xff1a;&#x901a;&#x8fc7;&#x63d0;&#x4f9b;&#x7279;&#x5b9a;&#x6307;&#x4ee4;&#x5f15;&#x5bfc;ChatGPT&#x8f93;&#x51fa;&#xff0c;&#x786e;&#x4fdd;&#x8f93;&#x51fa;&#x76f8;&#x5173;&#x4e14;&#x9ad8;&#x8d28;&#x91cf;&#x7684;&#x65b9;&#x6cd5;</p>","children":[],"payload":{"tag":"li","lines":"12,16"}},{"content":"\n<p data-lines=\"16,17\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;&#x6309;&#x7167;&#x4ee5;&#x4e0b;&#x6307;&#x793a;&#x751f;&#x6210;[&#x4efb;&#x52a1;]&#xff1a;[&#x6307;&#x793a;]</p>","children":[],"payload":{"tag":"li","lines":"16,20"}},{"content":"\n<p data-lines=\"20,21\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;&#x4efb;&#x52a1;&#xff1a;&#x751f;&#x6210;&#x5ba2;&#x6237;&#x670d;&#x52a1;&#x54cd;&#x5e94;&#xff1b;&#x6307;&#x4ee4;&#xff1a;&#x4e13;&#x4e1a;&#x51c6;&#x786e; &#x2192; Prompt&#xff1a;&#x201c;&#x6309;&#x7167;&#x4ee5;&#x4e0b;&#x6307;&#x793a;&#x751f;&#x6210;&#x4e13;&#x4e1a;&#x4e14;&#x51c6;&#x786e;&#x7684;&#x54cd;&#x5e94;&#x5ba2;&#x6237;&#x67e5;&#x8be2;&#xff1a;&#x54cd;&#x5e94;&#x5e94;&#x8be5;&#x4e13;&#x4e1a;&#x5e76;&#x63d0;&#x4f9b;&#x51c6;&#x786e;&#x4fe1;&#x606f;&#x201d;</p>","children":[],"payload":{"tag":"li","lines":"20,24"}}],"payload":{"tag":"h3","lines":"8,9"}},{"content":"&#x89d2;&#x8272;Prompt","children":[{"content":"\n<p data-lines=\"28,29\">&#x5b9a;&#x4e49;&#xff1a;&#x901a;&#x8fc7;&#x6307;&#x5b9a;&#x6a21;&#x578b;&#x8981;&#x626e;&#x6f14;&#x7684;&#x7279;&#x5b9a;&#x89d2;&#x8272;&#x5f15;&#x5bfc;ChatGPT&#x8f93;&#x51fa;&#xff0c;&#x751f;&#x6210;&#x9488;&#x5bf9;&#x7279;&#x5b9a;&#x4e0a;&#x4e0b;&#x6587;&#x6216;&#x53d7;&#x4f17;&#x91cf;&#x8eab;&#x5b9a;&#x5236;&#x6587;&#x672c;&#x7684;&#x65b9;&#x6cd5;</p>","children":[],"payload":{"tag":"li","lines":"28,32"}},{"content":"\n<p data-lines=\"32,33\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;&#x4ee5;[&#x89d2;&#x8272;]&#x8eab;&#x4efd;&#x751f;&#x6210;[&#x4efb;&#x52a1;]</p>","children":[],"payload":{"tag":"li","lines":"32,36"}},{"content":"\n<p data-lines=\"36,37\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;&#x4efb;&#x52a1;&#xff1a;&#x751f;&#x6210;&#x6cd5;&#x5f8b;&#x6587;&#x4ef6;&#xff1b;&#x89d2;&#x8272;&#xff1a;&#x5f8b;&#x5e08; &#x2192; Prompt&#xff1a;&#x201c;&#x4ee5;&#x5f8b;&#x5e08;&#x7684;&#x8eab;&#x4efd;&#x751f;&#x6210;&#x6cd5;&#x5f8b;&#x6587;&#x4ef6;&#x201d;</p>","children":[],"payload":{"tag":"li","lines":"36,40"}}],"payload":{"tag":"h3","lines":"24,25"}},{"content":"&#x6807;&#x51c6;Prompt","children":[{"content":"\n<p data-lines=\"44,45\">&#x5b9a;&#x4e49;&#xff1a;&#x901a;&#x8fc7;&#x63d0;&#x4f9b;&#x6a21;&#x578b;&#x8981;&#x5b8c;&#x6210;&#x7684;&#x7279;&#x5b9a;&#x4efb;&#x52a1;&#x5f15;&#x5bfc;ChatGPT&#x8f93;&#x51fa;&#x7684;&#x7b80;&#x5355;&#x65b9;&#x6cd5;&#xff0c;&#x53ef;&#x4f5c;&#x4e3a;&#x57fa;&#x7840;&#x4e0e;&#x5176;&#x4ed6;&#x6280;&#x672f;&#x7ed3;&#x5408;</p>","children":[],"payload":{"tag":"li","lines":"44,48"}},{"content":"\n<p data-lines=\"48,49\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;&#x751f;&#x6210;&#x4e00;&#x4e2a;[&#x4efb;&#x52a1;]</p>","children":[],"payload":{"tag":"li","lines":"48,52"}},{"content":"\n<p data-lines=\"52,53\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;&#x4efb;&#x52a1;&#xff1a;&#x603b;&#x7ed3;&#x65b0;&#x95fb;&#x6587;&#x7ae0; &#x2192; Prompt&#xff1a;&#x201c;&#x751f;&#x6210;&#x6b64;&#x65b0;&#x95fb;&#x6587;&#x7ae0;&#x7684;&#x6458;&#x8981;&#x201d;</p>","children":[],"payload":{"tag":"li","lines":"52,56"}}],"payload":{"tag":"h3","lines":"40,41"}}],"payload":{"tag":"h2","lines":"4,5"}},{"content":"&#x8fdb;&#x9636;Prompt&#x6280;&#x672f;&#xff08;&#x7b2c;5-10&#x7ae0;&#xff09;","children":[{"content":"&#x96f6;&#x6837;&#x672c;&#x3001;&#x4e00;&#x6837;&#x672c;&#x3001;&#x5c11;&#x6837;&#x672c;Prompting","children":[{"content":"\n<p data-lines=\"64,65\">&#x5b9a;&#x4e49;&#xff1a;&#x6700;&#x5c0f;&#x5316;&#x6216;&#x4e0d;&#x4f7f;&#x7528;&#x793a;&#x4f8b;&#x5f15;&#x5bfc;ChatGPT&#x751f;&#x6210;&#x6587;&#x672c;&#x7684;&#x6280;&#x672f;&#xff0c;&#x96f6;&#x6837;&#x672c;&#x65e0;&#x6837;&#x4f8b;&#x3001;&#x4e00;&#x6837;&#x672c;1&#x4e2a;&#x6837;&#x4f8b;&#x3001;&#x5c11;&#x6837;&#x672c;&#x6709;&#x9650;&#x6837;&#x4f8b;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x6570;&#x636e;&#x6709;&#x9650;&#x6216;&#x65b0;&#x4efb;&#x52a1;</p>","children":[],"payload":{"tag":"li","lines":"64,68"}},{"content":"\n<p data-lines=\"68,69\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;</p>","children":[{"content":"1. &#x96f6;&#x6837;&#x672c;&#xff1a;&#x201c;&#x96f6;&#x6837;&#x4f8b;&#x751f;&#x6210;[&#x4efb;&#x52a1;]&#x201d;","children":[],"payload":{"tag":"li","lines":"70,71","listIndex":1}},{"content":"2. &#x4e00;&#x6837;&#x672c;&#xff1a;&#x201c;&#x4f7f;&#x7528;&#x4e00;&#x4e2a;&#x6837;&#x4f8b;[&#x6837;&#x4f8b;&#x5185;&#x5bb9;]&#x751f;&#x6210;[&#x4efb;&#x52a1;]&#x201d;","children":[],"payload":{"tag":"li","lines":"71,72","listIndex":2}},{"content":"3. &#x5c11;&#x6837;&#x672c;&#xff1a;&#x201c;&#x4f7f;&#x7528;&#x5c11;&#x6570;&#x6837;&#x4f8b;[&#x6837;&#x4f8b;&#x5185;&#x5bb9;]&#x751f;&#x6210;[&#x4efb;&#x52a1;]&#x201d;","children":[],"payload":{"tag":"li","lines":"72,74","listIndex":3}}],"payload":{"tag":"li","lines":"68,74"}},{"content":"\n<p data-lines=\"74,75\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x96f6;&#x6837;&#x672c;&#xff1a;&#x4efb;&#x52a1;&#xff1a;&#x4e3a;&#x65b0;&#x667a;&#x80fd;&#x624b;&#x8868;&#x5199;&#x4ea7;&#x54c1;&#x63cf;&#x8ff0; &#x2192; Prompt&#xff1a;&#x201c;&#x5bf9;&#x4e8e;&#x8fd9;&#x4e2a;&#x65b0;&#x667a;&#x80fd;&#x624b;&#x8868;&#xff0c;&#x96f6;&#x6837;&#x4f8b;&#x751f;&#x6210;&#x4ea7;&#x54c1;&#x63cf;&#x8ff0;&#x201d;","children":[],"payload":{"tag":"li","lines":"76,78","listIndex":1}},{"content":"2. &#x4e00;&#x6837;&#x672c;&#xff1a;&#x4efb;&#x52a1;&#xff1a;&#x6bd4;&#x8f83;&#x65b0;&#x667a;&#x80fd;&#x624b;&#x673a;&#x4e0e;&#x6700;&#x65b0;&#x6b3e;iPhone&#xff1b;&#x6837;&#x4f8b;&#xff1a;&#x6700;&#x65b0;&#x6b3e;iPhone &#x2192; Prompt&#xff1a;&#x201c;&#x4f7f;&#x7528;&#x4e00;&#x4e2a;&#x6837;&#x4f8b;(&#x6700;&#x65b0;&#x6b3e;iPhone)&#x5bf9;&#x8fd9;&#x4e2a;&#x65b0;&#x667a;&#x80fd;&#x624b;&#x673a;&#x8fdb;&#x884c;&#x4ea7;&#x54c1;&#x6bd4;&#x8f83;&#x201d;","children":[],"payload":{"tag":"li","lines":"78,80","listIndex":2}},{"content":"3. &#x5c11;&#x6837;&#x672c;&#xff1a;&#x4efb;&#x52a1;&#xff1a;&#x5199;&#x65b0;&#x7535;&#x5b50;&#x9605;&#x8bfb;&#x5668;&#x8bc4;&#x8bba;&#xff1b;&#x6837;&#x4f8b;&#xff1a;&#x53e6;&#x5916;&#x4e09;&#x6b3e;&#x7535;&#x5b50;&#x9605;&#x8bfb;&#x5668; &#x2192; Prompt&#xff1a;&#x201c;&#x5bf9;&#x4e8e;&#x8fd9;&#x4e2a;&#x65b0;&#x7535;&#x5b50;&#x9605;&#x8bfb;&#x5668;&#xff0c;&#x4f7f;&#x7528;&#x5c11;&#x6570;&#x6837;&#x4f8b;(&#x53e6;&#x5916;&#x4e09;&#x6b3e;&#x7535;&#x5b50;&#x9605;&#x8bfb;&#x5668;)&#x751f;&#x6210;&#x8bc4;&#x8bba;&#x201d;","children":[],"payload":{"tag":"li","lines":"80,82","listIndex":3}}],"payload":{"tag":"li","lines":"74,82"}}],"payload":{"tag":"h3","lines":"60,61"}},{"content":"&#x201c;&#x8ba9;&#x6211;&#x4eec;&#x601d;&#x8003;&#x4e00;&#x4e0b;&#x201d;Prompt","children":[{"content":"\n<p data-lines=\"86,87\">&#x5b9a;&#x4e49;&#xff1a;&#x9f13;&#x52b1;ChatGPT&#x751f;&#x6210;&#x53cd;&#x601d;&#x548c;&#x6c89;&#x601d;&#x6027;&#x6587;&#x672c;&#x7684;&#x6280;&#x5de7;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x8bba;&#x6587;&#x3001;&#x8bd7;&#x6b4c;&#x3001;&#x521b;&#x610f;&#x5199;&#x4f5c;&#x7b49;&#x4efb;&#x52a1;</p>","children":[],"payload":{"tag":"li","lines":"86,90"}},{"content":"\n<p data-lines=\"90,91\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;&#x8ba9;&#x6211;&#x4eec;&#x601d;&#x8003;&#x4e00;&#x4e0b;&#xff1a;[&#x4e3b;&#x9898;/&#x95ee;&#x9898;]</p>","children":[],"payload":{"tag":"li","lines":"90,94"}},{"content":"\n<p data-lines=\"94,95\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x4efb;&#x52a1;&#xff1a;&#x5199;&#x4e2a;&#x4eba;&#x6210;&#x957f;&#x53cd;&#x601d;&#x6027;&#x6587;&#x7ae0;&#xff1b;&#x4e3b;&#x9898;&#xff1a;&#x4e2a;&#x4eba;&#x6210;&#x957f; &#x2192; Prompt&#xff1a;&#x201c;&#x8ba9;&#x6211;&#x4eec;&#x601d;&#x8003;&#x4e00;&#x4e0b;&#xff1a;&#x4e2a;&#x4eba;&#x6210;&#x957f;&#x201d;","children":[],"payload":{"tag":"li","lines":"95,96","listIndex":1}},{"content":"2. &#x4efb;&#x52a1;&#xff1a;&#x5199;&#x5b63;&#x8282;&#x53d8;&#x5316;&#x4e3b;&#x9898;&#x8bd7;&#x6b4c;&#xff1b;&#x4e3b;&#x9898;&#xff1a;&#x5b63;&#x8282;&#x53d8;&#x5316; &#x2192; Prompt&#xff1a;&#x201c;&#x8ba9;&#x6211;&#x4eec;&#x601d;&#x8003;&#x4e00;&#x4e0b;&#xff1a;&#x5b63;&#x8282;&#x53d8;&#x5316;&#x201d;","children":[],"payload":{"tag":"li","lines":"96,100","listIndex":2}}],"payload":{"tag":"li","lines":"94,100"}}],"payload":{"tag":"h3","lines":"82,83"}},{"content":"&#x81ea;&#x4e00;&#x81f4;&#x6027;Prompt","children":[{"content":"\n<p data-lines=\"104,105\">&#x5b9a;&#x4e49;&#xff1a;&#x786e;&#x4fdd;ChatGPT&#x8f93;&#x51fa;&#x4e0e;&#x6240;&#x63d0;&#x4f9b;&#x8f93;&#x5165;&#x4e00;&#x81f4;&#x7684;&#x6280;&#x5de7;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x4e8b;&#x5b9e;&#x6838;&#x5b9e;&#x3001;&#x6570;&#x636e;&#x9a8c;&#x8bc1;&#x3001;&#x6587;&#x672c;&#x751f;&#x6210;&#x4e2d;&#x7684;&#x4e00;&#x81f4;&#x6027;&#x68c0;&#x67e5;&#x7b49;&#x4efb;&#x52a1;</p>","children":[],"payload":{"tag":"li","lines":"104,108"}},{"content":"\n<p data-lines=\"108,109\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;</p>","children":[{"content":"1. &#x8bf7;&#x786e;&#x4fdd;&#x4ee5;&#x4e0b;&#x6587;&#x672c;&#x81ea;&#x6211;&#x4e00;&#x81f4;&#xff1a;[&#x8f93;&#x5165;&#x6587;&#x672c;]","children":[],"payload":{"tag":"li","lines":"109,111","listIndex":1}},{"content":"2. &#x751f;&#x6210;&#x4e00;&#x7bc7;&#x4e0e;&#x4ee5;&#x4e0b;[&#x8f93;&#x5165;&#x4fe1;&#x606f;]&#x4e00;&#x81f4;&#x7684;[&#x4efb;&#x52a1;]","children":[],"payload":{"tag":"li","lines":"111,115","listIndex":2}}],"payload":{"tag":"li","lines":"108,115"}},{"content":"\n<p data-lines=\"115,116\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x4e8b;&#x5b9e;&#x6838;&#x67e5;&#xff1a;&#x8f93;&#x5165;&#x6587;&#x672c;&#xff1a;&#x201c;&#x6587;&#x7ae0;&#x4e2d;&#x57ce;&#x5e02;&#x4eba;&#x53e3;500&#x4e07;&#xff0c;&#x540e;&#x63d0;700&#x4e07;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x8bf7;&#x786e;&#x4fdd;&#x4ee5;&#x4e0b;&#x6587;&#x672c;&#x81ea;&#x6211;&#x4e00;&#x81f4;&#xff1a;&#x6587;&#x7ae0;&#x4e2d;&#x63d0;&#x5230;&#x8be5;&#x57ce;&#x5e02;&#x7684;&#x4eba;&#x53e3;&#x4e3a;500&#x4e07;&#xff0c;&#x4f46;&#x540e;&#x6765;&#x5b83;&#x8bf4;&#x8be5;&#x57ce;&#x5e02;&#x7684;&#x4eba;&#x53e3;&#x4e3a;700&#x4e07;&#x201d;","children":[],"payload":{"tag":"li","lines":"117,119","listIndex":1}},{"content":"2. &#x6587;&#x672c;&#x751f;&#x6210;&#xff1a;&#x4efb;&#x52a1;&#xff1a;&#x751f;&#x6210;&#x4ea7;&#x54c1;&#x8bc4;&#x8bba;&#xff1b;&#x8f93;&#x5165;&#x4fe1;&#x606f;&#xff1a;&#x4ea7;&#x54c1;&#x53c2;&#x6570; &#x2192; Prompt&#xff1a;&#x201c;&#x751f;&#x6210;&#x4e00;&#x7bc7;&#x4e0e;&#x4ee5;&#x4e0b;&#x4ea7;&#x54c1;&#x4fe1;&#x606f;&#x4e00;&#x81f4;&#x7684;&#x4ea7;&#x54c1;&#x8bc4;&#x8bba;[&#x63d2;&#x5165;&#x4ea7;&#x54c1;&#x4fe1;&#x606f;]&#x201d;","children":[],"payload":{"tag":"li","lines":"119,123","listIndex":2}}],"payload":{"tag":"li","lines":"115,123"}}],"payload":{"tag":"h3","lines":"100,101"}},{"content":"&#x79cd;&#x5b50;&#x8bcd;Prompt","children":[{"content":"\n<p data-lines=\"127,128\">&#x5b9a;&#x4e49;&#xff1a;&#x901a;&#x8fc7;&#x63d0;&#x4f9b;&#x7279;&#x5b9a;&#x79cd;&#x5b50;&#x8bcd;&#x6216;&#x77ed;&#x8bed;&#x63a7;&#x5236;ChatGPT&#x8f93;&#x51fa;&#x7684;&#x6280;&#x5de7;&#xff0c;&#x53ef;&#x4e0e;&#x89d2;&#x8272;&#x3001;&#x6307;&#x4ee4;Prompt&#x7ed3;&#x5408;&#x589e;&#x5f3a;&#x9488;&#x5bf9;&#x6027;</p>","children":[],"payload":{"tag":"li","lines":"127,131"}},{"content":"\n<p data-lines=\"131,132\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;</p>","children":[{"content":"1. &#x8bf7;&#x6839;&#x636e;&#x4ee5;&#x4e0b;&#x79cd;&#x5b50;&#x8bcd;&#x751f;&#x6210;&#x6587;&#x672c;&#xff1a;[&#x79cd;&#x5b50;&#x8bcd;]","children":[],"payload":{"tag":"li","lines":"133,135","listIndex":1}},{"content":"2. &#x4ee5;[&#x89d2;&#x8272;]&#x8eab;&#x4efd;&#xff0c;&#x6839;&#x636e;&#x4ee5;&#x4e0b;&#x79cd;&#x5b50;&#x8bcd;[&#x79cd;&#x5b50;&#x8bcd;]&#x751f;&#x6210;[&#x4efb;&#x52a1;]&#xff08;&#x7b26;&#x5408;[&#x6307;&#x4ee4;]&#xff09;","children":[],"payload":{"tag":"li","lines":"135,139","listIndex":2}}],"payload":{"tag":"li","lines":"131,139"}},{"content":"\n<p data-lines=\"139,140\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x57fa;&#x7840;&#x751f;&#x6210;&#xff1a;&#x79cd;&#x5b50;&#x8bcd;&#xff1a;&#x201c;&#x9f99;&#x201d;&#xff1b;&#x4efb;&#x52a1;&#xff1a;&#x751f;&#x6210;&#x6545;&#x4e8b; &#x2192; Prompt&#xff1a;&#x201c;&#x8bf7;&#x6839;&#x636e;&#x4ee5;&#x4e0b;&#x79cd;&#x5b50;&#x8bcd;&#x751f;&#x6210;&#x6587;&#x672c;&#xff1a;&#x9f99;&#x201d;","children":[],"payload":{"tag":"li","lines":"141,143","listIndex":1}},{"content":"2. &#x7ed3;&#x5408;&#x591a;&#x6280;&#x672f;&#xff1a;&#x89d2;&#x8272;&#xff1a;&#x8bd7;&#x4eba;&#xff1b;&#x79cd;&#x5b50;&#x8bcd;&#xff1a;&#x201c;&#x7231;&#x201d;&#xff1b;&#x4efb;&#x52a1;&#xff1a;&#x751f;&#x6210;&#x5341;&#x56db;&#x884c;&#x8bd7;&#xff1b;&#x6307;&#x4ee4;&#xff1a;&#x7b26;&#x5408;&#x5341;&#x56db;&#x884c;&#x8bd7;&#x683c;&#x5f0f; &#x2192; Prompt&#xff1a;&#x201c;&#x4f5c;&#x4e3a;&#x8bd7;&#x4eba;&#xff0c;&#x8bf7;&#x6839;&#x636e;&#x4ee5;&#x4e0b;&#x79cd;&#x5b50;&#x8bcd;&#x2018;&#x7231;&#x2019;&#x751f;&#x6210;&#x4e00;&#x9996;&#x5341;&#x56db;&#x884c;&#x8bd7;&#x201d;","children":[],"payload":{"tag":"li","lines":"143,147","listIndex":2}}],"payload":{"tag":"li","lines":"139,147"}}],"payload":{"tag":"h3","lines":"123,124"}},{"content":"&#x77e5;&#x8bc6;&#x751f;&#x6210;Prompt","children":[{"content":"\n<p data-lines=\"151,152\">&#x5b9a;&#x4e49;&#xff1a;&#x4ece;ChatGPT&#x4e2d;&#x5f15;&#x53d1;&#x65b0;&#x7684;&#x548c;&#x539f;&#x59cb;&#x4fe1;&#x606f;&#x7684;&#x6280;&#x672f;&#xff0c;&#x5229;&#x7528;&#x6a21;&#x578b;&#x9884;&#x8bad;&#x7ec3;&#x77e5;&#x8bc6;&#x751f;&#x6210;&#x4fe1;&#x606f;&#x6216;&#x56de;&#x7b54;&#x95ee;&#x9898;</p>","children":[],"payload":{"tag":"li","lines":"151,155"}},{"content":"\n<p data-lines=\"155,156\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;</p>","children":[{"content":"1. &#x8bf7;&#x751f;&#x6210;&#x5173;&#x4e8e;[&#x7279;&#x5b9a;&#x4e3b;&#x9898;]&#x7684;&#x65b0;&#x7684;&#x51c6;&#x786e;&#x4fe1;&#x606f;","children":[],"payload":{"tag":"li","lines":"157,159","listIndex":1}},{"content":"2. &#x56de;&#x7b54;&#x4ee5;&#x4e0b;&#x95ee;&#x9898;&#xff1a;[&#x63d2;&#x5165;&#x95ee;&#x9898;]","children":[],"payload":{"tag":"li","lines":"159,161","listIndex":2}},{"content":"3. &#x8bf7;&#x4ece;&#x6b64;[&#x6570;&#x636e;&#x6e90;]&#x751f;&#x6210;&#x5173;&#x4e8e;[&#x4e3b;&#x9898;]&#x7684;&#x65b0;&#x7684;&#x548c;&#x539f;&#x59cb;&#x7684;&#x4fe1;&#x606f;","children":[],"payload":{"tag":"li","lines":"161,165","listIndex":3}}],"payload":{"tag":"li","lines":"155,165"}},{"content":"\n<p data-lines=\"165,166\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x4efb;&#x52a1;&#xff1a;&#x751f;&#x6210;AI&#x6700;&#x65b0;&#x5e94;&#x7528;&#x4fe1;&#x606f;&#xff1b;&#x4e3b;&#x9898;&#xff1a;&#x4eba;&#x5de5;&#x667a;&#x80fd;&#x6700;&#x65b0;&#x5e94;&#x7528; &#x2192; Prompt&#xff1a;&#x201c;&#x8bf7;&#x751f;&#x6210;&#x5173;&#x4e8e;&#x4eba;&#x5de5;&#x667a;&#x80fd;&#x6700;&#x65b0;&#x5e94;&#x7528;&#x7684;&#x65b0;&#x7684;&#x51c6;&#x786e;&#x4fe1;&#x606f;&#x201d;","children":[],"payload":{"tag":"li","lines":"167,169","listIndex":1}},{"content":"2. &#x4efb;&#x52a1;&#xff1a;&#x5206;&#x6790;&#x5ba2;&#x6237;&#x884c;&#x4e3a;&#xff1b;&#x6570;&#x636e;&#x6e90;&#xff1a;&#x5ba2;&#x6237;&#x884c;&#x4e3a;&#x6570;&#x636e;&#x96c6; &#x2192; Prompt&#xff1a;&#x201c;&#x8bf7;&#x4ece;&#x6b64;&#x6570;&#x636e;&#x96c6;&#x4e2d;&#x751f;&#x6210;&#x5173;&#x4e8e;&#x5ba2;&#x6237;&#x884c;&#x4e3a;&#x7684;&#x65b0;&#x7684;&#x548c;&#x539f;&#x59cb;&#x7684;&#x4fe1;&#x606f;&#x201d;","children":[],"payload":{"tag":"li","lines":"169,173","listIndex":2}}],"payload":{"tag":"li","lines":"165,173"}}],"payload":{"tag":"h3","lines":"147,148"}},{"content":"&#x77e5;&#x8bc6;&#x6574;&#x5408;Prompt","children":[{"content":"\n<p data-lines=\"177,178\">&#x5b9a;&#x4e49;&#xff1a;&#x5229;&#x7528;&#x6a21;&#x578b;&#x9884;&#x5148;&#x5b58;&#x5728;&#x7684;&#x77e5;&#x8bc6;&#x6574;&#x5408;&#x65b0;&#x4fe1;&#x606f;&#x6216;&#x8fde;&#x63a5;&#x4e0d;&#x540c;&#x4fe1;&#x606f;&#x7684;&#x6280;&#x672f;&#xff0c;&#x52a9;&#x529b;&#x751f;&#x6210;&#x5bf9;&#x7279;&#x5b9a;&#x4e3b;&#x9898;&#x66f4;&#x5168;&#x9762;&#x7684;&#x7406;&#x89e3;</p>","children":[],"payload":{"tag":"li","lines":"177,181"}},{"content":"\n<p data-lines=\"181,182\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;</p>","children":[{"content":"1. &#x5c06;&#x4ee5;&#x4e0b;&#x4fe1;&#x606f;&#x4e0e;&#x6709;&#x5173;[&#x7279;&#x5b9a;&#x4e3b;&#x9898;]&#x7684;&#x73b0;&#x6709;&#x77e5;&#x8bc6;&#x6574;&#x5408;&#xff1a;[&#x63d2;&#x5165;&#x65b0;&#x4fe1;&#x606f;]","children":[],"payload":{"tag":"li","lines":"183,185","listIndex":1}},{"content":"2. &#x4ee5;&#x76f8;&#x5173;&#x548c;&#x903b;&#x8f91;&#x7684;&#x65b9;&#x5f0f;&#x8fde;&#x63a5;&#x4ee5;&#x4e0b;&#x4fe1;&#x606f;&#xff1a;[&#x63d2;&#x5165;&#x4fe1;&#x606f;1] [&#x63d2;&#x5165;&#x4fe1;&#x606f;2]","children":[],"payload":{"tag":"li","lines":"185,187","listIndex":2}},{"content":"3. &#x4f7f;&#x7528;&#x4ee5;&#x4e0b;&#x4fe1;&#x606f;&#x66f4;&#x65b0;&#x6709;&#x5173;[&#x7279;&#x5b9a;&#x4e3b;&#x9898;]&#x7684;&#x73b0;&#x6709;&#x77e5;&#x8bc6;&#xff1a;[&#x63d2;&#x5165;&#x65b0;&#x4fe1;&#x606f;]","children":[],"payload":{"tag":"li","lines":"187,191","listIndex":3}}],"payload":{"tag":"li","lines":"181,191"}},{"content":"\n<p data-lines=\"191,192\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x6574;&#x5408;&#x77e5;&#x8bc6;&#xff1a;&#x4e3b;&#x9898;&#xff1a;&#x65b0;&#x80fd;&#x6e90;&#xff1b;&#x65b0;&#x4fe1;&#x606f;&#xff1a;2024&#x5e74;&#x65b0;&#x80fd;&#x6e90;&#x6280;&#x672f;&#x8fdb;&#x5c55; &#x2192; Prompt&#xff1a;&#x201c;&#x5c06;&#x4ee5;&#x4e0b;2024&#x5e74;&#x65b0;&#x80fd;&#x6e90;&#x6280;&#x672f;&#x8fdb;&#x5c55;&#x4fe1;&#x606f;&#x4e0e;&#x6709;&#x5173;&#x65b0;&#x80fd;&#x6e90;&#x7684;&#x73b0;&#x6709;&#x77e5;&#x8bc6;&#x6574;&#x5408;&#xff1a;[&#x63d2;&#x5165;&#x65b0;&#x4fe1;&#x606f;]&#x201d;","children":[],"payload":{"tag":"li","lines":"193,195","listIndex":1}},{"content":"2. &#x8fde;&#x63a5;&#x4fe1;&#x606f;&#xff1a;&#x4fe1;&#x606f;1&#xff1a;5G&#x6280;&#x672f;&#xff1b;&#x4fe1;&#x606f;2&#xff1a;&#x667a;&#x80fd;&#x5bb6;&#x5c45;&#x53d1;&#x5c55; &#x2192; Prompt&#xff1a;&#x201c;&#x4ee5;&#x76f8;&#x5173;&#x548c;&#x903b;&#x8f91;&#x7684;&#x65b9;&#x5f0f;&#x8fde;&#x63a5;&#x4ee5;&#x4e0b;&#x4fe1;&#x606f;&#xff1a;5G&#x6280;&#x672f; &#x667a;&#x80fd;&#x5bb6;&#x5c45;&#x53d1;&#x5c55;&#x201d;","children":[],"payload":{"tag":"li","lines":"195,199","listIndex":2}}],"payload":{"tag":"li","lines":"191,199"}}],"payload":{"tag":"h3","lines":"173,174"}}],"payload":{"tag":"h2","lines":"56,57"}},{"content":"&#x5e94;&#x7528;&#x7c7b;Prompt&#x6280;&#x672f;&#xff08;&#x7b2c;11-24&#x7ae0;&#xff09;","children":[{"content":"&#x591a;&#x9879;&#x9009;&#x62e9;Prompt","children":[{"content":"\n<p data-lines=\"207,208\">&#x5b9a;&#x4e49;&#xff1a;&#x5c06;&#x95ee;&#x9898;/&#x4efb;&#x52a1;&#x4e0e;&#x9884;&#x5b9a;&#x4e49;&#x9009;&#x9879;&#x4f5c;&#x4e3a;&#x6f5c;&#x5728;&#x7b54;&#x6848;&#x5448;&#x73b0;&#x7ed9;ChatGPT&#xff0c;&#x751f;&#x6210;&#x9650;&#x5b9a;&#x4e8e;&#x7279;&#x5b9a;&#x9009;&#x9879;&#x96c6;&#x6587;&#x672c;&#x7684;&#x6280;&#x672f;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x95ee;&#x7b54;&#x3001;&#x6587;&#x672c;&#x8865;&#x5168;&#x3001;&#x60c5;&#x611f;&#x5206;&#x6790;&#x7b49;&#x4efb;&#x52a1;</p>","children":[],"payload":{"tag":"li","lines":"207,211"}},{"content":"\n<p data-lines=\"211,212\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;&#x901a;&#x8fc7;&#x9009;&#x62e9;&#x4ee5;&#x4e0b;&#x9009;&#x9879;&#x4e4b;&#x4e00;[&#x5b8c;&#x6210;&#x4efb;&#x52a1;]&#xff1a;[&#x63d2;&#x5165;&#x95ee;&#x9898;/&#x53e5;&#x5b50;/&#x6587;&#x672c;] [&#x63d2;&#x5165;&#x9009;&#x9879;1] [&#x63d2;&#x5165;&#x9009;&#x9879;2] [&#x63d2;&#x5165;&#x9009;&#x9879;3]</p>","children":[],"payload":{"tag":"li","lines":"211,215"}},{"content":"\n<p data-lines=\"215,216\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x95ee;&#x7b54;&#xff1a;&#x95ee;&#x9898;&#xff1a;&#x201c;&#x5730;&#x7403;&#x516c;&#x8f6c;&#x5468;&#x671f;&#x7ea6;&#x591a;&#x5c11;&#x5929;&#x201d;&#xff1b;&#x9009;&#x9879;&#xff1a;&#x201c;365&#x5929;&#x3001;30&#x5929;&#x3001;1&#x5929;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x901a;&#x8fc7;&#x9009;&#x62e9;&#x4ee5;&#x4e0b;&#x9009;&#x9879;&#x4e4b;&#x4e00;&#x56de;&#x7b54;&#x4ee5;&#x4e0b;&#x95ee;&#x9898;&#xff1a;&#x5730;&#x7403;&#x516c;&#x8f6c;&#x5468;&#x671f;&#x7ea6;&#x4e3a;&#x591a;&#x5c11;&#x5929; 365&#x5929; 30&#x5929; 1&#x5929;&#x201d;","children":[],"payload":{"tag":"li","lines":"217,219","listIndex":1}},{"content":"2. &#x60c5;&#x611f;&#x5206;&#x6790;&#xff1a;&#x6587;&#x672c;&#xff1a;[&#x5ba2;&#x6237;&#x8bc4;&#x8bba;]&#xff1b;&#x9009;&#x9879;&#xff1a;&#x201c;&#x79ef;&#x6781;&#x3001;&#x4e2d;&#x6027;&#x3001;&#x6d88;&#x6781;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x901a;&#x8fc7;&#x9009;&#x62e9;&#x4ee5;&#x4e0b;&#x9009;&#x9879;&#x4e4b;&#x4e00;&#x5c06;&#x4ee5;&#x4e0b;&#x6587;&#x672c;&#x5206;&#x7c7b;&#x4e3a;&#x79ef;&#x6781;&#x7684;&#x3001;&#x4e2d;&#x6027;&#x7684;&#x6216;&#x6d88;&#x6781;&#x7684;&#xff1a;[&#x63d2;&#x5165;&#x8bc4;&#x8bba;] [&#x79ef;&#x6781;] [&#x4e2d;&#x6027;] [&#x6d88;&#x6781;]&#x201d;","children":[],"payload":{"tag":"li","lines":"219,223","listIndex":2}}],"payload":{"tag":"li","lines":"215,223"}}],"payload":{"tag":"h3","lines":"203,204"}},{"content":"&#x53ef;&#x89e3;&#x91ca;&#x6027;&#x8f6f;Prompt","children":[{"content":"\n<p data-lines=\"227,228\">&#x5b9a;&#x4e49;&#xff1a;&#x5411;ChatGPT&#x63d0;&#x4f9b;&#x53d7;&#x63a7;&#x8f93;&#x5165;&#x53ca;&#x6240;&#x9700;&#x8f93;&#x51fa;&#x4fe1;&#x606f;&#xff0c;&#x5728;&#x4fdd;&#x8bc1;&#x7075;&#x6d3b;&#x6027;&#x7684;&#x540c;&#x65f6;&#x63a7;&#x5236;&#x6587;&#x672c;&#x751f;&#x6210;&#xff0c;&#x63d0;&#x4f9b;&#x66f4;&#x53ef;&#x89e3;&#x91ca;&#x3001;&#x53ef;&#x63a7;&#x8f93;&#x51fa;&#x7684;&#x6280;&#x672f;</p>","children":[],"payload":{"tag":"li","lines":"227,231"}},{"content":"\n<p data-lines=\"231,232\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;</p>","children":[{"content":"1. &#x57fa;&#x4e8e;&#x4ee5;&#x4e0b;[&#x53d7;&#x63a7;&#x8f93;&#x5165;&#xff08;&#x89d2;&#x8272;/&#x4e3b;&#x9898;&#x7b49;&#xff09;]&#x751f;&#x6210;[&#x4efb;&#x52a1;]&#xff1a;[&#x63d2;&#x5165;&#x53d7;&#x63a7;&#x8f93;&#x5165;] [&#x63d2;&#x5165;&#x4efb;&#x52a1;&#x76f8;&#x5173;&#x5185;&#x5bb9;]","children":[],"payload":{"tag":"li","lines":"233,235","listIndex":1}},{"content":"2. &#x4ee5;[&#x7279;&#x5b9a;&#x98ce;&#x683c;/&#x8eab;&#x4efd;]&#x5b8c;&#x6210;&#x4ee5;&#x4e0b;[&#x4efb;&#x52a1;]&#xff1a;[&#x63d2;&#x5165;&#x4efb;&#x52a1;&#x5185;&#x5bb9;]","children":[],"payload":{"tag":"li","lines":"235,239","listIndex":2}}],"payload":{"tag":"li","lines":"231,239"}},{"content":"\n<p data-lines=\"239,240\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x6587;&#x672c;&#x751f;&#x6210;&#xff1a;&#x53d7;&#x63a7;&#x8f93;&#x5165;&#xff1a;&#x89d2;&#x8272;&#x201c;&#x4fa6;&#x63a2;&#x201d;&#x3001;&#x4e3b;&#x9898;&#x201c;&#x5bc6;&#x5ba4;&#x6848;&#x4ef6;&#x201d;&#xff1b;&#x4efb;&#x52a1;&#xff1a;&#x751f;&#x6210;&#x6545;&#x4e8b; &#x2192; Prompt&#xff1a;&#x201c;&#x57fa;&#x4e8e;&#x4ee5;&#x4e0b;&#x89d2;&#x8272;&#x4fa6;&#x63a2;&#x548c;&#x4e3b;&#x9898;&#x5bc6;&#x5ba4;&#x6848;&#x4ef6;&#x751f;&#x6210;&#x6545;&#x4e8b;&#xff1a;[&#x63d2;&#x5165;&#x57fa;&#x7840;&#x80cc;&#x666f;]&#x201d;","children":[],"payload":{"tag":"li","lines":"241,243","listIndex":1}},{"content":"2. &#x6587;&#x672c;&#x5b8c;&#x6210;&#xff1a;&#x7279;&#x5b9a;&#x98ce;&#x683c;&#xff1a;&#x201c;&#x9c81;&#x8fc5;&#x98ce;&#x683c;&#x201d;&#xff1b;&#x4efb;&#x52a1;&#xff1a;&#x5b8c;&#x6210;&#x53e5;&#x5b50; &#x2192; Prompt&#xff1a;&#x201c;&#x4ee5;&#x9c81;&#x8fc5;&#x7684;&#x98ce;&#x683c;&#x5b8c;&#x6210;&#x4ee5;&#x4e0b;&#x53e5;&#x5b50;&#xff1a;[&#x63d2;&#x5165;&#x53e5;&#x5b50;]&#x201d;","children":[],"payload":{"tag":"li","lines":"243,247","listIndex":2}}],"payload":{"tag":"li","lines":"239,247"}}],"payload":{"tag":"h3","lines":"223,224"}},{"content":"&#x63a7;&#x5236;&#x751f;&#x6210;Prompt","children":[{"content":"\n<p data-lines=\"251,252\">&#x5b9a;&#x4e49;&#xff1a;&#x901a;&#x8fc7;&#x63d0;&#x4f9b;&#x6a21;&#x677f;&#x3001;&#x7279;&#x5b9a;&#x8bcd;&#x6c47;&#x8868;&#x3001;&#x9650;&#x5236;&#x6761;&#x4ef6;&#x7b49;&#x8f93;&#x5165;&#x6307;&#x5bfc;ChatGPT&#x751f;&#x6210;&#x8fc7;&#x7a0b;&#xff0c;&#x5b9e;&#x73b0;&#x5bf9;&#x8f93;&#x51fa;&#x9ad8;&#x5ea6;&#x63a7;&#x5236;&#x7684;&#x6280;&#x672f;</p>","children":[],"payload":{"tag":"li","lines":"251,255"}},{"content":"\n<p data-lines=\"255,256\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;</p>","children":[{"content":"1. &#x6839;&#x636e;&#x4ee5;&#x4e0b;&#x6a21;&#x677f;&#x751f;&#x6210;[&#x4efb;&#x52a1;]&#xff1a;[&#x63d2;&#x5165;&#x6a21;&#x677f;]","children":[],"payload":{"tag":"li","lines":"257,259","listIndex":1}},{"content":"2. &#x4f7f;&#x7528;&#x4ee5;&#x4e0b;&#x8bcd;&#x6c47;&#x8868;&#x5b8c;&#x6210;&#x4ee5;&#x4e0b;[&#x4efb;&#x52a1;]&#xff1a;[&#x63d2;&#x5165;&#x8bcd;&#x6c47;&#x8868;] [&#x63d2;&#x5165;&#x4efb;&#x52a1;&#x5185;&#x5bb9;]","children":[],"payload":{"tag":"li","lines":"259,261","listIndex":2}},{"content":"3. &#x751f;&#x6210;&#x9075;&#x5faa;&#x4ee5;&#x4e0b;&#x8bed;&#x6cd5;&#x89c4;&#x5219;&#x7684;[&#x4efb;&#x52a1;]&#xff1a;[&#x63d2;&#x5165;&#x89c4;&#x5219;] [&#x63d2;&#x5165;&#x5185;&#x5bb9;]","children":[],"payload":{"tag":"li","lines":"261,265","listIndex":3}}],"payload":{"tag":"li","lines":"255,265"}},{"content":"\n<p data-lines=\"265,266\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x6587;&#x672c;&#x751f;&#x6210;&#xff1a;&#x6a21;&#x677f;&#xff1a;&#x201c;&#x5f00;&#x5934;&#xff1a;&#x6821;&#x56ed;&#x573a;&#x666f;&#x2192;&#x53d1;&#x5c55;&#xff1a;&#x793e;&#x56e2;&#x62db;&#x65b0;&#x2192;&#x7ed3;&#x5c3e;&#xff1a;&#x5b66;&#x751f;&#x52a0;&#x5165;&#x793e;&#x56e2;&#x201d;&#xff1b;&#x4efb;&#x52a1;&#xff1a;&#x5199;&#x6545;&#x4e8b; &#x2192; Prompt&#xff1a;&#x201c;&#x6839;&#x636e;&#x4ee5;&#x4e0b;&#x6a21;&#x677f;&#x751f;&#x6210;&#x6545;&#x4e8b;&#xff1a;&#x5f00;&#x5934;&#xff1a;&#x6821;&#x56ed;&#x573a;&#x666f;&#x2192;&#x53d1;&#x5c55;&#xff1a;&#x793e;&#x56e2;&#x62db;&#x65b0;&#x2192;&#x7ed3;&#x5c3e;&#xff1a;&#x5b66;&#x751f;&#x52a0;&#x5165;&#x793e;&#x56e2;&#x201d;","children":[],"payload":{"tag":"li","lines":"267,269","listIndex":1}},{"content":"2. &#x6587;&#x672c;&#x5b8c;&#x6210;&#xff1a;&#x8bcd;&#x6c47;&#x8868;&#xff1a;&#x201c;&#x7f16;&#x7a0b;&#x3001;&#x7b97;&#x6cd5;&#x3001;&#x6570;&#x636e;&#x7ed3;&#x6784;&#x201d;&#xff1b;&#x4efb;&#x52a1;&#xff1a;&#x5b8c;&#x6210;&#x53e5;&#x5b50;&#x201c;&#x8ba1;&#x7b97;&#x673a;&#x5b66;&#x4e60;&#x7684;&#x6838;&#x5fc3;&#x5185;&#x5bb9;&#x5305;&#x62ec;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x4f7f;&#x7528;&#x4ee5;&#x4e0b;&#x8bcd;&#x6c47;&#x8868;&#x5b8c;&#x6210;&#x4ee5;&#x4e0b;&#x53e5;&#x5b50;&#xff1a;&#x8ba1;&#x7b97;&#x673a;&#x5b66;&#x4e60;&#x7684;&#x6838;&#x5fc3;&#x5185;&#x5bb9;&#x5305;&#x62ec; &#x7f16;&#x7a0b;&#x3001;&#x7b97;&#x6cd5;&#x3001;&#x6570;&#x636e;&#x7ed3;&#x6784;&#x201d;","children":[],"payload":{"tag":"li","lines":"269,273","listIndex":2}}],"payload":{"tag":"li","lines":"265,273"}}],"payload":{"tag":"h3","lines":"247,248"}},{"content":"&#x95ee;&#x7b54;Prompt","children":[{"content":"\n<p data-lines=\"277,278\">&#x5b9a;&#x4e49;&#xff1a;&#x5411;ChatGPT&#x63d0;&#x4f9b;&#x95ee;&#x9898;/&#x4efb;&#x52a1;&#x53ca;&#x76f8;&#x5173;&#x4fe1;&#x606f;&#xff0c;&#x5f15;&#x5bfc;&#x5176;&#x751f;&#x6210;&#x5bf9;&#x5e94;&#x7b54;&#x6848;&#x7684;&#x6280;&#x672f;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x4e8b;&#x5b9e;&#x95ee;&#x7b54;&#x3001;&#x5b9a;&#x4e49;&#x89e3;&#x91ca;&#x3001;&#x4fe1;&#x606f;&#x68c0;&#x7d22;&#x7b49;&#x4efb;&#x52a1;</p>","children":[],"payload":{"tag":"li","lines":"277,281"}},{"content":"\n<p data-lines=\"281,282\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;</p>","children":[{"content":"1. &#x56de;&#x7b54;&#x4ee5;&#x4e0b;&#x4e8b;&#x5b9e;&#x6027;&#x95ee;&#x9898;&#xff1a;[&#x63d2;&#x5165;&#x95ee;&#x9898;]","children":[],"payload":{"tag":"li","lines":"283,285","listIndex":1}},{"content":"2. &#x5b9a;&#x4e49;&#x4ee5;&#x4e0b;&#x8bcd;&#x8bed;&#xff1a;[&#x63d2;&#x5165;&#x8bcd;&#x8bed;]","children":[],"payload":{"tag":"li","lines":"285,287","listIndex":2}},{"content":"3. &#x4ece;&#x4ee5;&#x4e0b;&#x6765;&#x6e90;&#x68c0;&#x7d22;&#x6709;&#x5173;[&#x7279;&#x5b9a;&#x4e3b;&#x9898;]&#x7684;&#x4fe1;&#x606f;&#xff1a;[&#x63d2;&#x5165;&#x6765;&#x6e90;]","children":[],"payload":{"tag":"li","lines":"287,291","listIndex":3}}],"payload":{"tag":"li","lines":"281,291"}},{"content":"\n<p data-lines=\"291,292\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x4e8b;&#x5b9e;&#x95ee;&#x7b54;&#xff1a;&#x95ee;&#x9898;&#xff1a;&#x201c;&#x4e16;&#x754c;&#x7b2c;&#x4e00;&#x9ad8;&#x5cf0;&#x662f;&#x4ec0;&#x4e48;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x56de;&#x7b54;&#x4ee5;&#x4e0b;&#x4e8b;&#x5b9e;&#x6027;&#x95ee;&#x9898;&#xff1a;&#x4e16;&#x754c;&#x7b2c;&#x4e00;&#x9ad8;&#x5cf0;&#x662f;&#x4ec0;&#x4e48;&#x201d;","children":[],"payload":{"tag":"li","lines":"293,295","listIndex":1}},{"content":"2. &#x5b9a;&#x4e49;&#xff1a;&#x8bcd;&#x8bed;&#xff1a;&#x201c;&#x4eba;&#x5de5;&#x667a;&#x80fd;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x5b9a;&#x4e49;&#x4ee5;&#x4e0b;&#x8bcd;&#x8bed;&#xff1a;&#x4eba;&#x5de5;&#x667a;&#x80fd;&#x201d;","children":[],"payload":{"tag":"li","lines":"295,297","listIndex":2}},{"content":"3. &#x4fe1;&#x606f;&#x68c0;&#x7d22;&#xff1a;&#x6765;&#x6e90;&#xff1a;&#x201c;2023&#x5e74;&#x79d1;&#x6280;&#x62a5;&#x544a;&#x201d;&#xff1b;&#x4e3b;&#x9898;&#xff1a;&#x201c;&#x91cf;&#x5b50;&#x8ba1;&#x7b97;&#x8fdb;&#x5c55;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x4ece;&#x4ee5;&#x4e0b;&#x6765;&#x6e90;&#x68c0;&#x7d22;&#x6709;&#x5173;&#x91cf;&#x5b50;&#x8ba1;&#x7b97;&#x8fdb;&#x5c55;&#x7684;&#x4fe1;&#x606f;&#xff1a;2023&#x5e74;&#x79d1;&#x6280;&#x62a5;&#x544a;&#x201d;","children":[],"payload":{"tag":"li","lines":"297,301","listIndex":3}}],"payload":{"tag":"li","lines":"291,301"}}],"payload":{"tag":"h3","lines":"273,274"}},{"content":"&#x6458;&#x8981;Prompt","children":[{"content":"\n<p data-lines=\"305,306\">&#x5b9a;&#x4e49;&#xff1a;&#x5411;ChatGPT&#x63d0;&#x4f9b;&#x8f83;&#x957f;&#x6587;&#x672c;&#xff0c;&#x5f15;&#x5bfc;&#x5176;&#x751f;&#x6210;&#x4fdd;&#x7559;&#x4e3b;&#x8981;&#x601d;&#x60f3;&#x548c;&#x4fe1;&#x606f;&#x7684;&#x8f83;&#x77ed;&#x7248;&#x672c;&#x7684;&#x6280;&#x672f;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x6587;&#x7ae0;&#x3001;&#x4f1a;&#x8bae;&#x8bb0;&#x5f55;&#x3001;&#x4e66;&#x7c4d;&#x7b49;&#x6587;&#x672c;&#x6458;&#x8981;</p>","children":[],"payload":{"tag":"li","lines":"305,309"}},{"content":"\n<p data-lines=\"309,310\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;</p>","children":[{"content":"1. &#x7528;[&#x957f;&#x5ea6;&#x8981;&#x6c42;&#xff08;&#x4e00;&#x53e5;&#x8bdd;/&#x4e00;&#x6bb5;&#xff09;]&#x6982;&#x8ff0;&#x4ee5;&#x4e0b;[&#x6587;&#x672c;&#x7c7b;&#x578b;]&#xff1a;[&#x63d2;&#x5165;&#x6587;&#x672c;]","children":[],"payload":{"tag":"li","lines":"311,313","listIndex":1}},{"content":"2. &#x901a;&#x8fc7;[&#x63d0;&#x70bc;&#x65b9;&#x5f0f;&#xff08;&#x5217;&#x8981;&#x70b9;&#x7b49;&#xff09;]&#x6982;&#x8ff0;&#x4ee5;&#x4e0b;[&#x6587;&#x672c;&#x7c7b;&#x578b;]&#xff1a;[&#x63d2;&#x5165;&#x6587;&#x672c;]","children":[],"payload":{"tag":"li","lines":"313,317","listIndex":2}}],"payload":{"tag":"li","lines":"309,317"}},{"content":"\n<p data-lines=\"317,318\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x6587;&#x7ae0;&#x6458;&#x8981;&#xff1a;&#x957f;&#x5ea6;&#x8981;&#x6c42;&#xff1a;&#x201c;&#x4e00;&#x53e5;&#x8bdd;&#x201d;&#xff1b;&#x6587;&#x672c;&#x7c7b;&#x578b;&#xff1a;&#x201c;&#x65b0;&#x95fb;&#x6587;&#x7ae0;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x7528;&#x4e00;&#x53e5;&#x8bdd;&#x6982;&#x8ff0;&#x4ee5;&#x4e0b;&#x65b0;&#x95fb;&#x6587;&#x7ae0;&#xff1a;[&#x63d2;&#x5165;&#x6587;&#x7ae0;]&#x201d;","children":[],"payload":{"tag":"li","lines":"319,321","listIndex":1}},{"content":"2. &#x4f1a;&#x8bae;&#x8bb0;&#x5f55;&#x6458;&#x8981;&#xff1a;&#x63d0;&#x70bc;&#x65b9;&#x5f0f;&#xff1a;&#x201c;&#x5217;&#x4e3b;&#x8981;&#x51b3;&#x7b56;&#x548c;&#x884c;&#x52a8;&#x201d;&#xff1b;&#x6587;&#x672c;&#x7c7b;&#x578b;&#xff1a;&#x201c;&#x4f1a;&#x8bae;&#x8bb0;&#x5f55;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x901a;&#x8fc7;&#x5217;&#x51fa;&#x4f1a;&#x8bae;&#x8bb0;&#x5f55;&#x4e2d;&#x6240;&#x505a;&#x7684;&#x4e3b;&#x8981;&#x51b3;&#x7b56;&#x548c;&#x884c;&#x52a8;&#xff0c;&#x6982;&#x8ff0;&#x4ee5;&#x4e0b;&#x4f1a;&#x8bae;&#x8bb0;&#x5f55;&#xff1a;[&#x63d2;&#x5165;&#x8bb0;&#x5f55;]&#x201d;","children":[],"payload":{"tag":"li","lines":"321,325","listIndex":2}}],"payload":{"tag":"li","lines":"317,325"}}],"payload":{"tag":"h3","lines":"301,302"}},{"content":"&#x5bf9;&#x8bdd;Prompt","children":[{"content":"\n<p data-lines=\"329,330\">&#x5b9a;&#x4e49;&#xff1a;&#x5411;ChatGPT&#x63d0;&#x4f9b;&#x4e0a;&#x4e0b;&#x6587;&#x3001;&#x89d2;&#x8272;&#x53ca;&#x80cc;&#x666f;&#x4fe1;&#x606f;&#xff0c;&#x5f15;&#x5bfc;&#x5176;&#x751f;&#x6210;&#x6a21;&#x62df;&#x4e24;&#x4e2a;&#x6216;&#x591a;&#x4e2a;&#x5b9e;&#x4f53;&#x95f4;&#x5bf9;&#x8bdd;&#x7684;&#x6280;&#x672f;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x5bf9;&#x8bdd;&#x751f;&#x6210;&#x3001;&#x6545;&#x4e8b;&#x7f16;&#x5199;&#x3001;&#x804a;&#x5929;&#x673a;&#x5668;&#x4eba;&#x5f00;&#x53d1;</p>","children":[],"payload":{"tag":"li","lines":"329,333"}},{"content":"\n<p data-lines=\"333,334\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;</p>","children":[{"content":"1. &#x5728;&#x4ee5;&#x4e0b;&#x4e0a;&#x4e0b;&#x6587;&#x4e2d;&#xff0c;&#x751f;&#x6210;&#x4ee5;&#x4e0b;&#x89d2;&#x8272;&#x4e4b;&#x95f4;&#x7684;&#x5bf9;&#x8bdd;&#xff1a;[&#x63d2;&#x5165;&#x4e0a;&#x4e0b;&#x6587;] [&#x63d2;&#x5165;&#x89d2;&#x8272;]","children":[],"payload":{"tag":"li","lines":"335,337","listIndex":1}},{"content":"2. &#x5f53;[&#x89e6;&#x53d1;&#x573a;&#x666f;]&#x65f6;&#xff0c;&#x4e3a;[&#x89d2;&#x8272;]&#x751f;&#x6210;&#x5bf9;&#x8bdd;&#xff1a;[&#x63d2;&#x5165;&#x89e6;&#x53d1;&#x573a;&#x666f;] [&#x63d2;&#x5165;&#x89d2;&#x8272;]","children":[],"payload":{"tag":"li","lines":"337,341","listIndex":2}}],"payload":{"tag":"li","lines":"333,341"}},{"content":"\n<p data-lines=\"341,342\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x6545;&#x4e8b;&#x5bf9;&#x8bdd;&#xff1a;&#x4e0a;&#x4e0b;&#x6587;&#xff1a;&#x201c;&#x5947;&#x5e7b;&#x4e16;&#x754c;&#xff0c;&#x52c7;&#x8005;&#x62ef;&#x6551;&#x516c;&#x4e3b;&#x201d;&#xff1b;&#x89d2;&#x8272;&#xff1a;&#x201c;&#x52c7;&#x8005;&#x3001;&#x5deb;&#x5e08;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x5728;&#x4ee5;&#x4e0b;&#x4e0a;&#x4e0b;&#x6587;&#x4e2d;&#xff0c;&#x751f;&#x6210;&#x4ee5;&#x4e0b;&#x89d2;&#x8272;&#x4e4b;&#x95f4;&#x7684;&#x5bf9;&#x8bdd;&#xff1a;&#x5947;&#x5e7b;&#x4e16;&#x754c;&#xff0c;&#x52c7;&#x8005;&#x62ef;&#x6551;&#x516c;&#x4e3b; &#x52c7;&#x8005;&#x3001;&#x5deb;&#x5e08;&#x201d;","children":[],"payload":{"tag":"li","lines":"343,345","listIndex":1}},{"content":"2. &#x804a;&#x5929;&#x673a;&#x5668;&#x4eba;&#xff1a;&#x89e6;&#x53d1;&#x573a;&#x666f;&#xff1a;&#x201c;&#x5ba2;&#x6237;&#x8be2;&#x95ee;&#x9000;&#x8d27;&#x653f;&#x7b56;&#x201d;&#xff1b;&#x89d2;&#x8272;&#xff1a;&#x201c;&#x5ba2;&#x670d;&#x3001;&#x5ba2;&#x6237;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x5f53;&#x5ba2;&#x6237;&#x8be2;&#x95ee;&#x6709;&#x5173;&#x9000;&#x8d27;&#x653f;&#x7b56;&#x7684;&#x4fe1;&#x606f;&#x65f6;&#xff0c;&#x4e3a;&#x5ba2;&#x6237;&#x670d;&#x52a1;&#x804a;&#x5929;&#x673a;&#x5668;&#x4eba;&#x751f;&#x6210;&#x4e13;&#x4e1a;&#x548c;&#x51c6;&#x786e;&#x7684;&#x5bf9;&#x8bdd;&#x201d;","children":[],"payload":{"tag":"li","lines":"345,349","listIndex":2}}],"payload":{"tag":"li","lines":"341,349"}}],"payload":{"tag":"h3","lines":"325,326"}},{"content":"&#x5bf9;&#x6297;Prompt","children":[{"content":"\n<p data-lines=\"353,354\">&#x5b9a;&#x4e49;&#xff1a;&#x5411;ChatGPT&#x63d0;&#x4f9b;&#x8bbe;&#x8ba1;&#x6210;&#x96be;&#x4ee5;&#x751f;&#x6210;&#x4e0e;&#x6240;&#x9700;&#x8f93;&#x51fa;&#x4e00;&#x81f4;&#x7684;&#x63d0;&#x793a;&#xff0c;&#x5f15;&#x5bfc;&#x5176;&#x751f;&#x6210;&#x5bf9;&#x653b;&#x51fb;&#x6216;&#x504f;&#x5dee;&#x5177;&#x6709;&#x62b5;&#x6297;&#x529b;&#x6587;&#x672c;&#x7684;&#x6280;&#x672f;&#xff0c;&#x7528;&#x4e8e;&#x8bad;&#x7ec3;&#x6a21;&#x578b;&#x9c81;&#x68d2;&#x6027;</p>","children":[],"payload":{"tag":"li","lines":"353,357"}},{"content":"\n<p data-lines=\"357,358\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;</p>","children":[{"content":"1. &#x751f;&#x6210;&#x96be;&#x4ee5;&#x5206;&#x7c7b;&#x4e3a;[&#x63d2;&#x5165;&#x6807;&#x7b7e;]&#x7684;&#x6587;&#x672c;","children":[],"payload":{"tag":"li","lines":"359,361","listIndex":1}},{"content":"2. &#x751f;&#x6210;&#x96be;&#x4ee5;&#x88ab;&#x5206;&#x7c7b;&#x4e3a;[&#x63d2;&#x5165;&#x60c5;&#x611f;]&#x7684;&#x6587;&#x672c;","children":[],"payload":{"tag":"li","lines":"361,363","listIndex":2}},{"content":"3. &#x751f;&#x6210;&#x96be;&#x4ee5;&#x7ffb;&#x8bd1;&#x4e3a;[&#x63d2;&#x5165;&#x76ee;&#x6807;&#x8bed;&#x8a00;]&#x7684;&#x6587;&#x672c;","children":[],"payload":{"tag":"li","lines":"363,367","listIndex":3}}],"payload":{"tag":"li","lines":"357,367"}},{"content":"\n<p data-lines=\"367,368\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x6587;&#x672c;&#x5206;&#x7c7b;&#x5bf9;&#x6297;&#xff1a;&#x6807;&#x7b7e;&#xff1a;&#x201c;&#x79d1;&#x6280;&#x7c7b;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x751f;&#x6210;&#x96be;&#x4ee5;&#x5206;&#x7c7b;&#x4e3a;&#x79d1;&#x6280;&#x7c7b;&#x7684;&#x6587;&#x672c;&#x201d;","children":[],"payload":{"tag":"li","lines":"369,371","listIndex":1}},{"content":"2. &#x60c5;&#x611f;&#x5206;&#x6790;&#x5bf9;&#x6297;&#xff1a;&#x60c5;&#x611f;&#xff1a;&#x201c;&#x6d88;&#x6781;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x751f;&#x6210;&#x96be;&#x4ee5;&#x5206;&#x7c7b;&#x4e3a;&#x6d88;&#x6781;&#x7684;&#x6587;&#x672c;&#x201d;","children":[],"payload":{"tag":"li","lines":"371,373","listIndex":2}},{"content":"3. &#x7ffb;&#x8bd1;&#x5bf9;&#x6297;&#xff1a;&#x76ee;&#x6807;&#x8bed;&#x8a00;&#xff1a;&#x201c;&#x6cd5;&#x8bed;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x751f;&#x6210;&#x96be;&#x4ee5;&#x7ffb;&#x8bd1;&#x4e3a;&#x6cd5;&#x8bed;&#x7684;&#x6587;&#x672c;&#x201d;","children":[],"payload":{"tag":"li","lines":"373,377","listIndex":3}}],"payload":{"tag":"li","lines":"367,377"}}],"payload":{"tag":"h3","lines":"349,350"}},{"content":"&#x805a;&#x7c7b;Prompt","children":[{"content":"\n<p data-lines=\"381,382\">&#x5b9a;&#x4e49;&#xff1a;&#x5411;ChatGPT&#x63d0;&#x4f9b;&#x4e00;&#x7ec4;&#x6570;&#x636e;&#x70b9;&#xff0c;&#x5f15;&#x5bfc;&#x5176;&#x57fa;&#x4e8e;&#x67d0;&#x4e9b;&#x7279;&#x5f81;&#xff08;&#x60c5;&#x611f;&#x3001;&#x4e3b;&#x9898;&#x7b49;&#xff09;&#x5c06;&#x76f8;&#x4f3c;&#x6570;&#x636e;&#x5206;&#x7ec4;&#x5728;&#x4e00;&#x8d77;&#x7684;&#x6280;&#x672f;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x6570;&#x636e;&#x5206;&#x6790;&#x3001;&#x673a;&#x5668;&#x5b66;&#x4e60;&#x3001;&#x81ea;&#x7136;&#x8bed;&#x8a00;&#x5904;&#x7406;</p>","children":[],"payload":{"tag":"li","lines":"381,385"}},{"content":"\n<p data-lines=\"385,386\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;&#x57fa;&#x4e8e;[&#x7279;&#x5f81;&#xff08;&#x60c5;&#x611f;/&#x4e3b;&#x9898;&#x7b49;&#xff09;]&#x5c06;&#x4ee5;&#x4e0b;[&#x6570;&#x636e;&#x7c7b;&#x578b;]&#x5206;&#x7ec4;&#x6210;&#x7c07;&#xff1a;[&#x63d2;&#x5165;&#x6570;&#x636e;]</p>","children":[],"payload":{"tag":"li","lines":"385,389"}},{"content":"\n<p data-lines=\"389,390\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x5ba2;&#x6237;&#x8bc4;&#x8bba;&#x805a;&#x7c7b;&#xff1a;&#x7279;&#x5f81;&#xff1a;&#x201c;&#x60c5;&#x611f;&#x201d;&#xff1b;&#x6570;&#x636e;&#x7c7b;&#x578b;&#xff1a;&#x201c;&#x5ba2;&#x6237;&#x8bc4;&#x8bba;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x57fa;&#x4e8e;&#x60c5;&#x611f;&#x5c06;&#x4ee5;&#x4e0b;&#x5ba2;&#x6237;&#x8bc4;&#x8bba;&#x5206;&#x7ec4;&#x6210;&#x7c07;&#xff1a;[&#x63d2;&#x5165;&#x8bc4;&#x8bba;]&#x201d;","children":[],"payload":{"tag":"li","lines":"391,393","listIndex":1}},{"content":"2. &#x65b0;&#x95fb;&#x6587;&#x7ae0;&#x805a;&#x7c7b;&#xff1a;&#x7279;&#x5f81;&#xff1a;&#x201c;&#x4e3b;&#x9898;&#x201d;&#xff1b;&#x6570;&#x636e;&#x7c7b;&#x578b;&#xff1a;&#x201c;&#x65b0;&#x95fb;&#x6587;&#x7ae0;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x57fa;&#x4e8e;&#x4e3b;&#x9898;&#x5c06;&#x4ee5;&#x4e0b;&#x65b0;&#x95fb;&#x6587;&#x7ae0;&#x5206;&#x7ec4;&#x6210;&#x7c07;&#xff1a;[&#x63d2;&#x5165;&#x6587;&#x7ae0;]&#x201d;","children":[],"payload":{"tag":"li","lines":"393,397","listIndex":2}}],"payload":{"tag":"li","lines":"389,397"}}],"payload":{"tag":"h3","lines":"377,378"}},{"content":"&#x5f3a;&#x5316;&#x5b66;&#x4e60;Prompt","children":[{"content":"\n<p data-lines=\"401,402\">&#x5b9a;&#x4e49;&#xff1a;&#x5411;ChatGPT&#x63d0;&#x4f9b;&#x8f93;&#x5165;&#x548c;&#x5956;&#x52b1;&#x673a;&#x5236;&#xff0c;&#x5f15;&#x5bfc;&#x5176;&#x4ece;&#x8fc7;&#x53bb;&#x884c;&#x4e3a;&#x4e2d;&#x5b66;&#x4e60;&#x5e76;&#x968f;&#x65f6;&#x95f4;&#x6539;&#x5584;&#x6027;&#x80fd;&#x7684;&#x6280;&#x672f;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x51b3;&#x7b56;&#x5236;&#x5b9a;&#x3001;&#x6e38;&#x620f;&#x73a9;&#x6cd5;&#x3001;&#x81ea;&#x7136;&#x8bed;&#x8a00;&#x751f;&#x6210;</p>","children":[],"payload":{"tag":"li","lines":"401,405"}},{"content":"\n<p data-lines=\"405,406\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;</p>","children":[{"content":"1. &#x4f7f;&#x7528;&#x5f3a;&#x5316;&#x5b66;&#x4e60;&#x751f;&#x6210;&#x4e0e;&#x4ee5;&#x4e0b;[&#x8981;&#x6c42;&#xff08;&#x98ce;&#x683c;/&#x51c6;&#x786e;&#x6027;&#x7b49;&#xff09;]&#x4e00;&#x81f4;&#x7684;[&#x4efb;&#x52a1;]&#xff1a;[&#x63d2;&#x5165;&#x8981;&#x6c42;] [&#x63d2;&#x5165;&#x4efb;&#x52a1;&#x5185;&#x5bb9;]","children":[],"payload":{"tag":"li","lines":"407,409","listIndex":1}},{"content":"2. &#x4f7f;&#x7528;&#x5f3a;&#x5316;&#x5b66;&#x4e60;&#x5c06;[&#x8f93;&#x5165;&#x5185;&#x5bb9;]&#x4ece;[&#x6e90;&#x7c7b;&#x578b;]&#x8f6c;&#x6362;&#x4e3a;[&#x76ee;&#x6807;&#x7c7b;&#x578b;]&#xff1a;[&#x63d2;&#x5165;&#x8f93;&#x5165;&#x5185;&#x5bb9;] [&#x6e90;&#x7c7b;&#x578b;] [&#x76ee;&#x6807;&#x7c7b;&#x578b;]","children":[],"payload":{"tag":"li","lines":"409,413","listIndex":2}}],"payload":{"tag":"li","lines":"405,413"}},{"content":"\n<p data-lines=\"413,414\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x6587;&#x672c;&#x751f;&#x6210;&#xff1a;&#x8981;&#x6c42;&#xff1a;&#x201c;&#x5b66;&#x672f;&#x98ce;&#x683c;&#x201d;&#xff1b;&#x4efb;&#x52a1;&#xff1a;&#x201c;&#x751f;&#x6210;&#x8bba;&#x6587;&#x7247;&#x6bb5;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x4f7f;&#x7528;&#x5f3a;&#x5316;&#x5b66;&#x4e60;&#x751f;&#x6210;&#x4e0e;&#x4ee5;&#x4e0b;&#x5b66;&#x672f;&#x98ce;&#x683c;&#x4e00;&#x81f4;&#x7684;&#x8bba;&#x6587;&#x7247;&#x6bb5; [&#x63d2;&#x5165;&#x8bba;&#x6587;&#x4e3b;&#x9898;]&#x201d;","children":[],"payload":{"tag":"li","lines":"415,417","listIndex":1}},{"content":"2. &#x8bed;&#x8a00;&#x7ffb;&#x8bd1;&#xff1a;&#x8f93;&#x5165;&#x5185;&#x5bb9;&#xff1a;&#x201c;&#x82f1;&#x8bed;&#x6587;&#x672c;&#x201d;&#xff1b;&#x6e90;&#x7c7b;&#x578b;&#xff1a;&#x201c;&#x82f1;&#x8bed;&#x201d;&#xff1b;&#x76ee;&#x6807;&#x7c7b;&#x578b;&#xff1a;&#x201c;&#x5fb7;&#x8bed;&#x201d;&#xff1b;&#x8981;&#x6c42;&#xff1a;&#x201c;&#x51c6;&#x786e;&#x7ffb;&#x8bd1;&#x83b7;&#x5956;&#x52b1;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x4f7f;&#x7528;&#x5f3a;&#x5316;&#x5b66;&#x4e60;&#x5c06;&#x4ee5;&#x4e0b;&#x6587;&#x672c; [&#x63d2;&#x5165;&#x82f1;&#x8bed;&#x6587;&#x672c;] &#x4ece;&#x82f1;&#x8bed; &#x7ffb;&#x8bd1;&#x6210; &#x5fb7;&#x8bed;&#x201d;","children":[],"payload":{"tag":"li","lines":"417,421","listIndex":2}}],"payload":{"tag":"li","lines":"413,421"}}],"payload":{"tag":"h3","lines":"397,398"}},{"content":"&#x8bfe;&#x7a0b;&#x5b66;&#x4e60;Prompt","children":[{"content":"\n<p data-lines=\"425,426\">&#x5b9a;&#x4e49;&#xff1a;&#x5411;ChatGPT&#x63d0;&#x4f9b;&#x96be;&#x5ea6;&#x9010;&#x6b65;&#x589e;&#x52a0;&#x7684;&#x7cfb;&#x5217;&#x4efb;&#x52a1;&#xff0c;&#x5f15;&#x5bfc;&#x5176;&#x5148;&#x5b66;&#x7b80;&#x5355;&#x4efb;&#x52a1;&#x518d;&#x5b66;&#x590d;&#x6742;&#x4efb;&#x52a1;&#x7684;&#x6280;&#x672f;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x81ea;&#x7136;&#x8bed;&#x8a00;&#x5904;&#x7406;&#x3001;&#x56fe;&#x50cf;&#x8bc6;&#x522b;&#x3001;&#x673a;&#x5668;&#x5b66;&#x4e60;</p>","children":[],"payload":{"tag":"li","lines":"425,429"}},{"content":"\n<p data-lines=\"429,430\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;&#x4f7f;&#x7528;&#x8bfe;&#x7a0b;&#x5b66;&#x4e60;[&#x5b8c;&#x6210;&#x6700;&#x7ec8;&#x4efb;&#x52a1;]&#xff0c;&#x6309;&#x4ee5;&#x4e0b;&#x987a;&#x5e8f;[&#x4efb;&#x52a1;&#x96be;&#x5ea6;&#x987a;&#x5e8f;]&#xff1a;[&#x63d2;&#x5165;&#x6700;&#x7ec8;&#x4efb;&#x52a1;] [&#x63d2;&#x5165;&#x4efb;&#x52a1;&#x987a;&#x5e8f;]</p>","children":[],"payload":{"tag":"li","lines":"429,433"}},{"content":"\n<p data-lines=\"433,434\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x6587;&#x672c;&#x751f;&#x6210;&#xff1a;&#x6700;&#x7ec8;&#x4efb;&#x52a1;&#xff1a;&#x201c;&#x751f;&#x6210;&#x79d1;&#x5e7b;&#x5c0f;&#x8bf4;&#x201d;&#xff1b;&#x4efb;&#x52a1;&#x987a;&#x5e8f;&#xff1a;&#x201c;&#x77ed;&#x7bc7;&#x79d1;&#x5e7b;&#x6545;&#x4e8b;&#x2192;&#x4e2d;&#x7bc7;&#x79d1;&#x5e7b;&#x6545;&#x4e8b;&#x2192;&#x957f;&#x7bc7;&#x79d1;&#x5e7b;&#x5c0f;&#x8bf4;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x4f7f;&#x7528;&#x8bfe;&#x7a0b;&#x5b66;&#x4e60;&#x751f;&#x6210;&#x79d1;&#x5e7b;&#x5c0f;&#x8bf4;&#xff0c;&#x6309;&#x4ee5;&#x4e0b;&#x987a;&#x5e8f; &#x77ed;&#x7bc7;&#x79d1;&#x5e7b;&#x6545;&#x4e8b;&#x2192;&#x4e2d;&#x7bc7;&#x79d1;&#x5e7b;&#x6545;&#x4e8b;&#x2192;&#x957f;&#x7bc7;&#x79d1;&#x5e7b;&#x5c0f;&#x8bf4;&#x201d;","children":[],"payload":{"tag":"li","lines":"435,437","listIndex":1}},{"content":"2. &#x8bed;&#x8a00;&#x7ffb;&#x8bd1;&#xff1a;&#x6700;&#x7ec8;&#x4efb;&#x52a1;&#xff1a;&#x201c;&#x7ffb;&#x8bd1;&#x82f1;&#x8bed;&#x6587;&#x672c;&#x6210;&#x4e2d;&#x6587;&#x201d;&#xff1b;&#x4efb;&#x52a1;&#x987a;&#x5e8f;&#xff1a;&#x201c;&#x7b80;&#x5355;&#x53e5;&#x5b50;&#x2192;&#x6bb5;&#x843d;&#x2192;&#x6587;&#x7ae0;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x4f7f;&#x7528;&#x8bfe;&#x7a0b;&#x5b66;&#x4e60;&#x5c06;&#x4ee5;&#x4e0b;&#x82f1;&#x8bed;&#x6587;&#x672c;&#x7ffb;&#x8bd1;&#x6210;&#x4e2d;&#x6587;&#xff0c;&#x6309;&#x4ee5;&#x4e0b;&#x987a;&#x5e8f; &#x7b80;&#x5355;&#x53e5;&#x5b50;&#x2192;&#x6bb5;&#x843d;&#x2192;&#x6587;&#x7ae0; [&#x63d2;&#x5165;&#x82f1;&#x8bed;&#x6587;&#x672c;]&#x201d;","children":[],"payload":{"tag":"li","lines":"437,441","listIndex":2}}],"payload":{"tag":"li","lines":"433,441"}}],"payload":{"tag":"h3","lines":"421,422"}},{"content":"&#x60c5;&#x611f;&#x5206;&#x6790;Prompt","children":[{"content":"\n<p data-lines=\"445,446\">&#x5b9a;&#x4e49;&#xff1a;&#x5411;ChatGPT&#x63d0;&#x4f9b;&#x6587;&#x672c;&#xff0c;&#x5f15;&#x5bfc;&#x5176;&#x786e;&#x5b9a;&#x6587;&#x672c;&#x60c5;&#x611f;&#x8272;&#x5f69;&#xff08;&#x79ef;&#x6781;&#x3001;&#x6d88;&#x6781;&#x3001;&#x4e2d;&#x6027;&#xff09;&#x7684;&#x6280;&#x672f;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x5ba2;&#x6237;&#x670d;&#x52a1;&#x3001;&#x5e02;&#x573a;&#x7814;&#x7a76;&#x3001;&#x793e;&#x4ea4;&#x5a92;&#x4f53;&#x5206;&#x6790;</p>","children":[],"payload":{"tag":"li","lines":"445,449"}},{"content":"\n<p data-lines=\"449,450\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;&#x5bf9;&#x4ee5;&#x4e0b;[&#x6587;&#x672c;&#x7c7b;&#x578b;&#xff08;&#x8bc4;&#x8bba;/&#x63a8;&#x6587;&#x7b49;&#xff09;]&#x8fdb;&#x884c;&#x60c5;&#x611f;&#x5206;&#x6790;&#xff0c;&#x5e76;&#x5c06;&#x5b83;&#x4eec;&#x5206;&#x7c7b;&#x4e3a;&#x79ef;&#x6781;&#x7684;&#x3001;&#x6d88;&#x6781;&#x7684;&#x6216;&#x4e2d;&#x6027;&#x7684;&#xff1a;[&#x63d2;&#x5165;&#x6587;&#x672c;]</p>","children":[],"payload":{"tag":"li","lines":"449,453"}},{"content":"\n<p data-lines=\"453,454\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x5ba2;&#x6237;&#x8bc4;&#x8bba;&#x5206;&#x6790;&#xff1a;&#x6587;&#x672c;&#x7c7b;&#x578b;&#xff1a;&#x201c;&#x7535;&#x5546;&#x4ea7;&#x54c1;&#x8bc4;&#x8bba;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x5bf9;&#x4ee5;&#x4e0b;&#x5ba2;&#x6237;&#x8bc4;&#x8bba; [&#x63d2;&#x5165;&#x8bc4;&#x8bba;] &#x8fdb;&#x884c;&#x60c5;&#x611f;&#x5206;&#x6790;&#xff0c;&#x5e76;&#x5c06;&#x5b83;&#x4eec;&#x5206;&#x7c7b;&#x4e3a;&#x79ef;&#x6781;&#x7684;&#x3001;&#x6d88;&#x6781;&#x7684;&#x6216;&#x4e2d;&#x6027;&#x7684;&#x201d;","children":[],"payload":{"tag":"li","lines":"455,457","listIndex":1}},{"content":"2. &#x63a8;&#x6587;&#x5206;&#x6790;&#xff1a;&#x6587;&#x672c;&#x7c7b;&#x578b;&#xff1a;&#x201c;&#x793e;&#x4ea4;&#x5a92;&#x4f53;&#x63a8;&#x6587;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x5bf9;&#x4ee5;&#x4e0b;&#x63a8;&#x6587; [&#x63d2;&#x5165;&#x63a8;&#x6587;] &#x8fdb;&#x884c;&#x60c5;&#x611f;&#x5206;&#x6790;&#xff0c;&#x5e76;&#x5c06;&#x5b83;&#x4eec;&#x5206;&#x7c7b;&#x4e3a;&#x79ef;&#x6781;&#x7684;&#x3001;&#x6d88;&#x6781;&#x7684;&#x6216;&#x4e2d;&#x6027;&#x7684;&#x201d;","children":[],"payload":{"tag":"li","lines":"457,461","listIndex":2}}],"payload":{"tag":"li","lines":"453,461"}}],"payload":{"tag":"h3","lines":"441,442"}},{"content":"&#x547d;&#x540d;&#x5b9e;&#x4f53;&#x8bc6;&#x522b;Prompt","children":[{"content":"\n<p data-lines=\"465,466\">&#x5b9a;&#x4e49;&#xff1a;&#x5411;ChatGPT&#x63d0;&#x4f9b;&#x6587;&#x672c;&#xff0c;&#x5f15;&#x5bfc;&#x5176;&#x8bc6;&#x522b;&#x5e76;&#x5206;&#x7c7b;&#x6587;&#x672c;&#x4e2d;&#x547d;&#x540d;&#x5b9e;&#x4f53;&#xff08;&#x4eba;&#x7269;&#x3001;&#x7ec4;&#x7ec7;&#x673a;&#x6784;&#x3001;&#x5730;&#x70b9;&#x3001;&#x65e5;&#x671f;&#xff09;&#x7684;&#x6280;&#x672f;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x65b0;&#x95fb;&#x5206;&#x6790;&#x3001;&#x6cd5;&#x5f8b;&#x6587;&#x4ef6;&#x5904;&#x7406;&#x3001;&#x7814;&#x7a76;&#x8bba;&#x6587;&#x6574;&#x7406;</p>","children":[],"payload":{"tag":"li","lines":"465,469"}},{"content":"\n<p data-lines=\"469,470\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;&#x5bf9;&#x4ee5;&#x4e0b;[&#x6587;&#x672c;&#x7c7b;&#x578b;&#xff08;&#x65b0;&#x95fb;/&#x6cd5;&#x5f8b;&#x6587;&#x4ef6;&#x7b49;&#xff09;]&#x8fdb;&#x884c;&#x547d;&#x540d;&#x5b9e;&#x4f53;&#x8bc6;&#x522b;&#xff0c;&#x5e76;&#x8bc6;&#x522b;&#x548c;&#x5206;&#x7c7b;&#x4eba;&#x7269;&#x3001;&#x7ec4;&#x7ec7;&#x673a;&#x6784;&#x3001;&#x5730;&#x70b9;&#x548c;&#x65e5;&#x671f;&#xff1a;[&#x63d2;&#x5165;&#x6587;&#x672c;]</p>","children":[],"payload":{"tag":"li","lines":"469,473"}},{"content":"\n<p data-lines=\"473,474\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x65b0;&#x95fb;&#x5b9e;&#x4f53;&#x8bc6;&#x522b;&#xff1a;&#x6587;&#x672c;&#x7c7b;&#x578b;&#xff1a;&#x201c;&#x65b0;&#x95fb;&#x6587;&#x7ae0;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x5bf9;&#x4ee5;&#x4e0b;&#x65b0;&#x95fb;&#x6587;&#x7ae0;&#x8fdb;&#x884c;&#x547d;&#x540d;&#x5b9e;&#x4f53;&#x8bc6;&#x522b;[&#x63d2;&#x5165;&#x6587;&#x7ae0;]&#x5e76;&#x8bc6;&#x522b;&#x548c;&#x5206;&#x7c7b;&#x4eba;&#x7269;&#x3001;&#x7ec4;&#x7ec7;&#x673a;&#x6784;&#x3001;&#x5730;&#x70b9;&#x548c;&#x65e5;&#x671f;&#x201d;","children":[],"payload":{"tag":"li","lines":"475,477","listIndex":1}},{"content":"2. &#x6cd5;&#x5f8b;&#x6587;&#x4ef6;&#x5b9e;&#x4f53;&#x8bc6;&#x522b;&#xff1a;&#x6587;&#x672c;&#x7c7b;&#x578b;&#xff1a;&#x201c;&#x5408;&#x540c;&#x6587;&#x4ef6;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x5bf9;&#x4ee5;&#x4e0b;&#x6cd5;&#x5f8b;&#x6587;&#x4ef6;&#x8fdb;&#x884c;&#x547d;&#x540d;&#x5b9e;&#x4f53;&#x8bc6;&#x522b;[&#x63d2;&#x5165;&#x6587;&#x6863;]&#x5e76;&#x8bc6;&#x522b;&#x548c;&#x5206;&#x7c7b;&#x4eba;&#x7269;&#x3001;&#x7ec4;&#x7ec7;&#x673a;&#x6784;&#x3001;&#x5730;&#x70b9;&#x548c;&#x65e5;&#x671f;&#x201d;","children":[],"payload":{"tag":"li","lines":"477,481","listIndex":2}}],"payload":{"tag":"li","lines":"473,481"}}],"payload":{"tag":"h3","lines":"461,462"}},{"content":"&#x6587;&#x672c;&#x5206;&#x7c7b;Prompt","children":[{"content":"\n<p data-lines=\"485,486\">&#x5b9a;&#x4e49;&#xff1a;&#x5411;ChatGPT&#x63d0;&#x4f9b;&#x6587;&#x672c;&#xff0c;&#x5f15;&#x5bfc;&#x5176;&#x5c06;&#x6587;&#x672c;&#x5206;&#x7c7b;&#x5230;&#x9884;&#x5b9a;&#x4e49;&#x7c7b;&#x522b;&#xff08;&#x975e;&#x60c5;&#x611f;&#x7ef4;&#x5ea6;&#xff09;&#x7684;&#x6280;&#x672f;&#xff0c;&#x4e0e;&#x60c5;&#x611f;&#x5206;&#x6790;&#x533a;&#x5206;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x6587;&#x672c;&#x5206;&#x6790;&#x3001;&#x4fe1;&#x606f;&#x7b5b;&#x9009;</p>","children":[],"payload":{"tag":"li","lines":"485,489"}},{"content":"\n<p data-lines=\"489,490\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;&#x5bf9;&#x4ee5;&#x4e0b;[&#x6587;&#x672c;&#x7c7b;&#x578b;&#xff08;&#x8bc4;&#x8bba;/&#x90ae;&#x4ef6;&#x7b49;&#xff09;]&#x8fdb;&#x884c;&#x6587;&#x672c;&#x5206;&#x7c7b;&#xff0c;&#x5e76;&#x6839;&#x636e;[&#x5206;&#x7c7b;&#x7ef4;&#x5ea6;&#xff08;&#x4e3b;&#x9898;/&#x7528;&#x9014;&#x7b49;&#xff09;]&#x5c06;&#x5b83;&#x4eec;&#x5206;&#x7c7b;&#x5230;&#x4e0d;&#x540c;&#x7684;&#x7c7b;&#x522b;&#x4e2d;&#xff1a;[&#x63d2;&#x5165;&#x6587;&#x672c;] [&#x63d2;&#x5165;&#x7c7b;&#x522b;]</p>","children":[],"payload":{"tag":"li","lines":"489,493"}},{"content":"\n<p data-lines=\"493,494\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x5ba2;&#x6237;&#x8bc4;&#x8bba;&#x5206;&#x7c7b;&#xff1a;&#x6587;&#x672c;&#x7c7b;&#x578b;&#xff1a;&#x201c;&#x5ba2;&#x6237;&#x8bc4;&#x8bba;&#x201d;&#xff1b;&#x5206;&#x7c7b;&#x7ef4;&#x5ea6;&#xff1a;&#x201c;&#x5546;&#x54c1;&#x7c7b;&#x578b;&#x201d;&#xff1b;&#x7c7b;&#x522b;&#xff1a;&#x201c;&#x7535;&#x5b50;&#x4ea7;&#x54c1;&#x3001;&#x670d;&#x88c5;&#x3001;&#x5bb6;&#x5177;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x5bf9;&#x4ee5;&#x4e0b;&#x5ba2;&#x6237;&#x8bc4;&#x8bba;&#x8fdb;&#x884c;&#x6587;&#x672c;&#x5206;&#x7c7b;[&#x63d2;&#x5165;&#x8bc4;&#x8bba;]&#xff0c;&#x5e76;&#x6839;&#x636e;&#x5176;&#x5185;&#x5bb9;&#x5c06;&#x5b83;&#x4eec;&#x5206;&#x7c7b;&#x5230;&#x4e0d;&#x540c;&#x7684;&#x7c7b;&#x522b;&#x4e2d;&#xff0c;&#x4f8b;&#x5982;&#x7535;&#x5b50;&#x4ea7;&#x54c1;&#x3001;&#x670d;&#x88c5;&#x548c;&#x5bb6;&#x5177;&#x201d;","children":[],"payload":{"tag":"li","lines":"495,497","listIndex":1}},{"content":"2. &#x7535;&#x5b50;&#x90ae;&#x4ef6;&#x5206;&#x7c7b;&#xff1a;&#x6587;&#x672c;&#x7c7b;&#x578b;&#xff1a;&#x201c;&#x7535;&#x5b50;&#x90ae;&#x4ef6;&#x201d;&#xff1b;&#x5206;&#x7c7b;&#x7ef4;&#x5ea6;&#xff1a;&#x201c;&#x91cd;&#x8981;&#x6027;&#x201d;&#xff1b;&#x7c7b;&#x522b;&#xff1a;&#x201c;&#x5783;&#x573e;&#x90ae;&#x4ef6;&#x3001;&#x91cd;&#x8981;&#x90ae;&#x4ef6;&#x3001;&#x7d27;&#x6025;&#x90ae;&#x4ef6;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x5bf9;&#x4ee5;&#x4e0b;&#x7535;&#x5b50;&#x90ae;&#x4ef6;&#x8fdb;&#x884c;&#x6587;&#x672c;&#x5206;&#x7c7b;[&#x63d2;&#x5165;&#x7535;&#x5b50;&#x90ae;&#x4ef6;]&#xff0c;&#x5e76;&#x6839;&#x636e;&#x5176;&#x5185;&#x5bb9;&#x548c;&#x53d1;&#x9001;&#x8005;&#x5c06;&#x5176;&#x5206;&#x7c7b;&#x5230;&#x4e0d;&#x540c;&#x7684;&#x7c7b;&#x522b;&#x4e2d;&#xff0c;&#x5982;&#x5783;&#x573e;&#x90ae;&#x4ef6;&#x3001;&#x91cd;&#x8981;&#x90ae;&#x4ef6;&#x6216;&#x7d27;&#x6025;&#x90ae;&#x4ef6;&#x201d;","children":[],"payload":{"tag":"li","lines":"497,501","listIndex":2}}],"payload":{"tag":"li","lines":"493,501"}}],"payload":{"tag":"h3","lines":"481,482"}},{"content":"&#x6587;&#x672c;&#x751f;&#x6210;Prompt","children":[{"content":"\n<p data-lines=\"505,506\">&#x5b9a;&#x4e49;&#xff1a;&#x5f15;&#x5bfc;ChatGPT&#x751f;&#x6210;&#x5b9a;&#x5236;&#x5316;&#x6587;&#x672c;&#xff08;&#x6545;&#x4e8b;&#x3001;&#x7ffb;&#x8bd1;&#x3001;&#x53e5;&#x5b50;&#x8865;&#x5168;&#xff09;&#x7684;&#x6280;&#x672f;&#xff0c;&#x53ef;&#x7ed3;&#x5408;&#x96f6;/&#x4e00;/&#x5c11;&#x6837;&#x672c;&#x3001;&#x63a7;&#x5236;&#x751f;&#x6210;&#x7b49;&#x6280;&#x672f;&#xff0c;&#x9002;&#x7528;&#x4e8e;&#x5185;&#x5bb9;&#x521b;&#x4f5c;&#x3001;&#x8bed;&#x8a00;&#x8f6c;&#x6362;</p>","children":[],"payload":{"tag":"li","lines":"505,509"}},{"content":"\n<p data-lines=\"509,510\">&#x6838;&#x5fc3;&#x516c;&#x5f0f;&#xff1a;</p>","children":[{"content":"1. &#x57fa;&#x4e8e;&#x4ee5;&#x4e0b;&#x63d0;&#x793a;[&#x63d2;&#x5165;&#x63d0;&#x793a;]&#xff0c;&#x751f;&#x6210;[&#x8981;&#x6c42;&#xff08;&#x957f;&#x5ea6;/&#x89d2;&#x8272;/&#x60c5;&#x8282;&#x7b49;&#xff09;]&#x7684;[&#x6587;&#x672c;&#x7c7b;&#x578b;]&#xff1a;[&#x63d2;&#x5165;&#x76f8;&#x5173;&#x5185;&#x5bb9;]","children":[],"payload":{"tag":"li","lines":"511,513","listIndex":1}},{"content":"2. &#x5c06;&#x4ee5;&#x4e0b;&#x6587;&#x672c;[&#x63d2;&#x5165;&#x6587;&#x672c;]&#x7ffb;&#x8bd1;&#x6210;[&#x63d2;&#x5165;&#x76ee;&#x6807;&#x8bed;&#x8a00;]&#xff0c;&#x5e76;&#x786e;&#x4fdd;[&#x8981;&#x6c42;&#xff08;&#x51c6;&#x786e;&#x6027;/&#x8bed;&#x8a00;&#x4e60;&#x60ef;&#x7b49;&#xff09;]","children":[],"payload":{"tag":"li","lines":"513,515","listIndex":2}},{"content":"3. &#x5b8c;&#x6210;&#x4ee5;&#x4e0b;&#x6587;&#x672c;[&#x63d2;&#x5165;&#x6587;&#x672c;]&#xff0c;&#x5e76;&#x786e;&#x4fdd;&#x751f;&#x6210;&#x7684;&#x6587;&#x672c;&#x8fde;&#x8d2f;&#x4e00;&#x81f4;&#x4e0e;&#x8f93;&#x5165;&#x6587;&#x672c;&#x4e00;&#x81f4;","children":[],"payload":{"tag":"li","lines":"515,519","listIndex":3}}],"payload":{"tag":"li","lines":"509,519"}},{"content":"\n<p data-lines=\"519,520\">&#x5178;&#x578b;&#x793a;&#x4f8b;&#x573a;&#x666f;&#xff1a;</p>","children":[{"content":"1. &#x6545;&#x4e8b;&#x751f;&#x6210;&#xff1a;&#x63d0;&#x793a;&#xff1a;&#x201c;&#x672a;&#x6765;&#x57ce;&#x5e02;&#x201d;&#xff1b;&#x8981;&#x6c42;&#xff1a;&#x201c;1000&#x5b57;&#x4ee5;&#x4e0a;&#x3001;&#x542b;&#x2018;&#x5de5;&#x7a0b;&#x5e08;&#x3001;AI&#x52a9;&#x624b;&#x2019;&#x89d2;&#x8272;&#x201d;&#xff1b;&#x6587;&#x672c;&#x7c7b;&#x578b;&#xff1a;&#x201c;&#x6545;&#x4e8b;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x57fa;&#x4e8e;&#x4ee5;&#x4e0b;&#x63d0;&#x793a;&#x672a;&#x6765;&#x57ce;&#x5e02;&#xff0c;&#x751f;&#x6210;&#x81f3;&#x5c11;1000&#x4e2a;&#x5355;&#x8bcd;&#x7684;&#x6545;&#x4e8b;&#xff0c;&#x5305;&#x62ec;&#x89d2;&#x8272;&#x5de5;&#x7a0b;&#x5e08;&#x3001;AI&#x52a9;&#x624b;&#x548c;&#x60c5;&#x8282;&#x89e3;&#x51b3;&#x80fd;&#x6e90;&#x5371;&#x673a;&#x201d;","children":[],"payload":{"tag":"li","lines":"521,523","listIndex":1}},{"content":"2. &#x8bed;&#x8a00;&#x7ffb;&#x8bd1;&#xff1a;&#x6587;&#x672c;&#xff1a;&#x201c;&#x4e2d;&#x6587;&#x6587;&#x672c;&#x201d;&#xff1b;&#x76ee;&#x6807;&#x8bed;&#x8a00;&#xff1a;&#x201c;&#x82f1;&#x8bed;&#x201d;&#xff1b;&#x8981;&#x6c42;&#xff1a;&#x201c;&#x51c6;&#x786e;&#x7b26;&#x5408;&#x8bed;&#x8a00;&#x4e60;&#x60ef;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x5c06;&#x4ee5;&#x4e0b;&#x6587;&#x672c;[&#x63d2;&#x5165;&#x4e2d;&#x6587;&#x6587;&#x672c;]&#x7ffb;&#x8bd1;&#x6210;&#x82f1;&#x8bed;&#xff0c;&#x5e76;&#x786e;&#x4fdd;&#x7ffb;&#x8bd1;&#x51c6;&#x786e;&#x4e14;&#x7b26;&#x5408;&#x8bed;&#x8a00;&#x4e60;&#x60ef;&#x201d;","children":[],"payload":{"tag":"li","lines":"523,525","listIndex":2}},{"content":"3. &#x53e5;&#x5b50;&#x8865;&#x5168;&#xff1a;&#x6587;&#x672c;&#xff1a;&#x201c;&#x4eba;&#x5de5;&#x667a;&#x80fd;&#x5728;&#x533b;&#x7597;&#x9886;&#x57df;&#x7684;&#x5e94;&#x7528;&#x5305;&#x62ec;&#x201d;&#xff1b;&#x8981;&#x6c42;&#xff1a;&#x201c;&#x8fde;&#x8d2f;&#x4e00;&#x81f4;&#x201d; &#x2192; Prompt&#xff1a;&#x201c;&#x5b8c;&#x6210;&#x4ee5;&#x4e0b;&#x6587;&#x672c;&#x4eba;&#x5de5;&#x667a;&#x80fd;&#x5728;&#x533b;&#x7597;&#x9886;&#x57df;&#x7684;&#x5e94;&#x7528;&#x5305;&#x62ec;&#xff0c;&#x5e76;&#x786e;&#x4fdd;&#x751f;&#x6210;&#x7684;&#x6587;&#x672c;&#x8fde;&#x8d2f;&#x4e00;&#x81f4;&#x4e0e;&#x8f93;&#x5165;&#x6587;&#x672c;&#x4e00;&#x81f4;&#x201d;","children":[],"payload":{"tag":"li","lines":"525,527","listIndex":3}}],"payload":{"tag":"li","lines":"519,527"}}],"payload":{"tag":"h3","lines":"501,502"}}],"payload":{"tag":"h2","lines":"199,200"}},{"content":"&#x6838;&#x5fc3;&#x4ef7;&#x503c;","children":[{"content":"\n<p data-lines=\"529,530\">&#x63a7;&#x5236;&#x6a21;&#x578b;&#x8f93;&#x51fa;&#x65b9;&#x5411;&#xff0c;&#x907f;&#x514d;&#x65e0;&#x5173;&#x7ed3;&#x679c;</p>","children":[],"payload":{"tag":"li","lines":"529,531"}},{"content":"\n<p data-lines=\"531,532\">&#x63d0;&#x5347;&#x6587;&#x672c;&#x51c6;&#x786e;&#x6027;&#x3001;&#x76f8;&#x5173;&#x6027;&#x4e0e;&#x5b9a;&#x5236;&#x5316;&#x7a0b;&#x5ea6;</p>","children":[],"payload":{"tag":"li","lines":"531,533"}},{"content":"\n<p data-lines=\"533,534\">&#x652f;&#x6301;&#x591a;&#x6280;&#x672f;&#x7ed3;&#x5408;&#xff0c;&#x5b9e;&#x73b0;&#x590d;&#x6742;&#x76ee;&#x6807;</p>","children":[],"payload":{"tag":"li","lines":"533,534"}}],"payload":{"tag":"h2","lines":"527,528"}}],"payload":{"tag":"h1","lines":"1,2"}}</script>
+      <script type="application/json">{}</script>
+    </div>
+<h1>四、核心价值与实践建议</h1>
+<ol>
+<li class="lvl-3">
+<p><strong>核心价值</strong>：通过 “明确引导” 解决 ChatGPT“无 Prompt 时输出模糊、无关” 的问题，实现 “定制化高质量输出”；</p>
+</li>
+<li class="lvl-3">
+<p><strong>实践建议</strong>：单一技术可满足基础需求，复杂目标需结合多种技术（如 “角色 + 指令 + 种子词”），建议根据具体场景测试不同组合，找到最优方案。</p>
+</li>
+</ol>
+<h1>五、关键问题与答案</h1>
+<h2 id="问题-1：Prompt-工程的核心公式由哪三部分构成？这三部分分别起到什么作用？">问题 1：Prompt 工程的核心公式由哪三部分构成？这三部分分别起到什么作用？</h2>
+<p><strong>答案</strong>：Prompt 工程的核心公式是<strong>任务 + 指令 + 角色</strong>，三部分作用如下：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>任务</strong>：明确模型需生成的具体内容（如 “生成客户服务响应”“总结新闻文章”），是 Prompt 的 “目标导向”，避免模型输出偏离需求；</p>
+</li>
+<li class="lvl-2">
+<p><strong>指令</strong>：规定模型生成文本时需遵循的规则（如 “专业准确”“中立客观”“突出创新特点”），是 Prompt 的 “质量约束”，确保输出符合风格、精度要求；</p>
+</li>
+<li class="lvl-2">
+<p><strong>角色</strong>：指定模型需扮演的身份（如 “客户服务代表”“律师”“技术专家”），是 Prompt 的 “场景适配”，让输出贴合特定职业视角或受众需求。<br>
+三者结合可形成 “目标清晰、规则明确、场景适配” 的 Prompt，大幅提升 ChatGPT 输出质量。</p>
+</li>
+</ul>
+<h2 id="问题-2：零样本、一样本、少样本-Prompting-的核心区别是什么？分别适用于哪些实际场景？">问题 2：零样本、一样本、少样本 Prompting 的核心区别是什么？分别适用于哪些实际场景？</h2>
+<p><strong>答案</strong>：三者的核心区别在于 “引导模型时使用的样例数量”，适用场景随样例数量变化：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>零样本 Prompting</strong>：无任何样例，直接让模型基于对任务的理解生成文本；适用于 “新任务、无参考数据” 的场景，如 “为刚发布的、无历史评论的新智能手表撰写产品描述”；</p>
+</li>
+<li class="lvl-2">
+<p><strong>一样本 Prompting</strong>：提供 1 个样例，让模型模仿样例逻辑生成文本；适用于 “任务有少量参考、需统一风格” 的场景，如 “用最新款 iPhone 的评测作为样例，生成新智能手机的对比评测”；</p>
+</li>
+<li class="lvl-2">
+<p><strong>少样本 Prompting</strong>：提供 2-5 个（有限数量）样例，让模型归纳样例规律后生成文本；适用于 “任务有少量参考数据、需保证输出一致性” 的场景，如 “用 3 款主流电子阅读器的评论作为样例，生成新电子阅读器的评论”。</p>
+</li>
+</ul>
+<h2 id="问题-3：如何将多种-Prompt-技术结合使用？请结合文档中的示例说明其优势。">问题 3：如何将多种 Prompt 技术结合使用？请结合文档中的示例说明其优势。</h2>
+<p><strong>答案</strong>：结合多种 Prompt 技术的核心逻辑是 “以‘任务’为核心，叠加‘角色’（场景）、‘指令’（质量）、‘种子词’（方向）等要素”，文档中典型示例如下：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>结合方案</strong>：角色（营销代表）+ 指令（有信息量、有说服力，突出独特特点）+ 种子词（创新的）+ 任务（生成新款智能手机产品描述）；</p>
+</li>
+<li class="lvl-2">
+<p><strong>具体 Prompt 公式</strong>：“以营销代表的身份，生成一个具有信息量、说服力的产品描述，突出新款智能手机的创新特点。智能手机具有以下特点 [插入特点]”；</p>
+</li>
+<li class="lvl-2">
+<p><strong>结合优势</strong>：单一技术（如仅用角色 Prompt）可能导致输出 “符合身份但缺乏重点”，而多技术结合后：① 角色确保视角贴合营销场景；② 指令确保文本有说服力；③ 种子词确保聚焦 “创新” 核心；④ 任务明确目标，最终输出既专业又精准，完全匹配 “推广新手机” 的商业需求，比单一技术输出更贴合实际应用场景。</p>
+</li>
+</ul>
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/style.css"><script src="https://fastly.jsdelivr.net/npm/d3@7"></script><script src="https://fastly.jsdelivr.net/npm/markmap-view@0.18.10"></script><script src="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10"></script><style></style>
+<link rel="stylesheet" href="/css/markmap.css">
+
+<script src="/js/markmap.js"></script>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">天际星空</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://blog.hzhero.cn/article/prompt-skill.html">https://blog.hzhero.cn/article/prompt-skill.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">天际星空</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/AI/">
+                                    <span class="chip bg-color">AI</span>
+                                </a>
+                            
+                                <a href="/tags/prompt-skill/">
+                                    <span class="chip bg-color">prompt-skill</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="wechat,twitter,facebook,google,qq,qzone,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'jsv9vKDGdh7V6BcBVcknKmRt-gzGzoHsz',
+        appKey: 'ESy7W7SfvbuWhiuK83B3FOvL',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'hide',
+        pageSize: '12',
+        lang: 'zh-cn',
+        placeholder: '😁请文明评论哦😁\r\n❌禁止恶意评论❌\r\n⚡️公开网络空间，请不要发表任何包含个人或其他人的隐私信息️⚡️'
+    });
+</script>
+<!-- 直达评论 -->
+<div id="to_comment" class="comment-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#vcomments" title="直达评论">
+        <i class="fas fa-comments"></i>
+    </a>
+</div>
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/article/prompt-skill.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="prompt-skill">
+                        
+                        <span class="card-title">prompt-skill</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            prompt-skill
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-09-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/AI/" class="post-category">
+                                    AI
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/AI/">
+                        <span class="chip bg-color">AI</span>
+                    </a>
+                    
+                    <a href="/tags/prompt-skill/">
+                        <span class="chip bg-color">prompt-skill</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/article/gitlab-ext-clone-port.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="gitlab分离克隆端口笔记">
+                        
+                        <span class="card-title">gitlab分离克隆端口笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            gitlab的web页面访问端口与克隆端口分离配置笔记
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-07-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
+                                    运维
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/gitlab/">
+                        <span class="chip bg-color">gitlab</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%BF%90%E7%BB%B4/">
+                        <span class="chip bg-color">运维</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 天际星空的神知库<br />'
+            + '文章作者: 天际星空<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="2988868328"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/meting/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            
+                <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
+                <a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备2022004140号-1</a>
+            </span>
+            
+            | Copyright&nbsp;&copy;
+            
+                <span id="year">2016-2025</span>
+            
+            <span id="year">2016</span>
+            <a href="/about" target="_blank">天际星空</a>
+
+<!--            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>-->
+<!--            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>-->
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">90.5k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2016";
+                    var startMonth = "7";
+                    var startDate = "1";
+                    var startHour = "8";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+<!--            <br>-->
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Hezhero/Hezhero.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:la9408531@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+<!--  -->
+
+<!--  -->
+
+<!--  -->
+
+<!--  -->
+
+<!--  -->
+
+<!--  -->
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!-- 冒泡 -->
+    
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            document.write(
+                '<script type="text/javascript" src="/libs/others/bubble.js"><\/script>'
+            );
+        </script>
+    
+
+    <!--  禁止查看源代码，屏蔽F12和鼠标右键-->
+    <script type="text/javascript">
+        window.onload = function(){
+            //屏蔽键盘事件
+            document.onkeydown = function (){
+                var e = window.event || arguments[0];
+                //F12
+                if(e.keyCode == 123){
+                    return false;
+                //Ctrl+Shift+I
+                }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
+                    return false;
+                //Shift+F10
+                }else if((e.shiftKey) && (e.keyCode == 121)){
+                    return false;
+                //Ctrl+U
+                }else if((e.ctrlKey) && (e.keyCode == 85)){
+                    return false;
+                }
+            };
+            //屏蔽鼠标右键
+            document.oncontextmenu = function (){
+                return false;
+            }
+        }
+    </script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":200,"height":300,"hOffset":50,"vOffset":-5},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+</html>
